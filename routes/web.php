@@ -10,4 +10,4 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/reservation/confirmation', [App\Http\Controllers\HomeController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
+Route::get('/reservation/confirmation', [App\Http\Controllers\ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
