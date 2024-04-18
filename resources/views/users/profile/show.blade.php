@@ -12,20 +12,20 @@
                         <i class="fa-solid fa-user"></i>
                         Your Profile
                     </h2>
-                    <a href="#" class="col-auto text-white btn btn-info">
+                    <a href="#" class="col btn btn-blue">
                         <i class="fa-solid fa-pen-to-square"></i>
                         Edit Profile
                     </a>
                 </div>
                 <div class="row mx-auto">
-                    <div class="col-auto lato-bold">
+                    <div class="col-auto fs-5 fw-bold">
                         <p>Full Name</p>
                         <p>Email</p>
                         <p>Phone Number</p>
                         <p>Plate Number</p>
                         <p>Attribute</p>
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto fs-5">
                         <p>John Doe</p>
                         <p>john@email.com</p>
                         <p>01-2345-6789</p>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="col-auto me-3 my-3">
-                <a href="#" class="text-white btn btn-danger btn-color-red">
+                <a href="#" class="btn btn-red">
                     <i class="fa-solid fa-trash-can"></i>
                     Delete Account
                 </a>
