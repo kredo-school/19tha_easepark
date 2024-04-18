@@ -65,9 +65,9 @@
             <ul class="record-list">
                 @foreach ($tentativeReservations as $reservation)
                     <li>
-                        <span>{{ $reservation['date'] }}</span>
+                        <span>{{ (new DateTime($reservation['date']))->format('F j (D)') }}</span>
                         <span>{{ $reservation['area'] }}</span>
-                        <span>{{ $reservation['fee'] }}</span>
+                        <span>$ {{ $reservation['fee'] }}</span>
                     </li>
                 @endforeach
             </ul>
