@@ -106,6 +106,27 @@
                 </div>
             </div>
         </main>
+        <footer class="footer navbar-color" style="padding: 30px 0px; height: 100px">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="fs-3 col-md-3 text-center">
+                        <a href="{{ asset('https://www.facebook.com/') }}"
+                            class="text-decoration-none text-white mx-3"><i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="{{ asset('https://twitter.com/') }}" class="text-decoration-none text-white mx-3"><i
+                                class="fa-brands fa-twitter"></i></a>
+                        <a href="{{ asset('https://www.instagram.com/') }}"
+                            class="text-decoration-none text-white mx-3"><i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+
+                    <div class="text-white col-md-9 d-flex justify-content-end align-items-center">Copyright &copy;
+                        {{ now()->year }}
+                        EasePark Co., Ltd. All Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 

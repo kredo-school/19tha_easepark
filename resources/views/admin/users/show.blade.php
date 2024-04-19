@@ -11,17 +11,17 @@
 
     <div class="card border">
         <div class="card-header bg-light">
-            <div class="row justify-content-centeralign-items-center">
+            <div class="row d-flex justify-content-center align-items-center">
 
-                <h3 class="col-md-7 card-title mt-1">
+                <h3 class="col-md-6 card-title mt-1">
                     <i class="fa-solid fa-people-group"></i> Users
                 </h3>
-                <div class="col-md-4 justify-content-end me-1">
-                    <form action="#" class="">
+                <div class="col-md-5  me-1">
+                    <form action="#" class="ms-auto">
                         <div class="input-group">
                             <input type="search" name="search" placeholder="Search Users" value=""
                                 class="form-control form-control-sm">
-                            <button type="submit" class="btn bg-dark text-white border"><i
+                            <button type="submit" class="btn bg-dark text-white border" aria-label="Search Users"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
