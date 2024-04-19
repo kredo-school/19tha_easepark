@@ -64,3 +64,91 @@ body {
     font-weight: 900;
     font-style: italic;
   }
+  .btn-blue {
+    background: #3399CC;
+    color: #FFFF;
+    border: none;
+  }
+
+  a:link {
+    color: #3399CC;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #003399;
+    text-decoration: underline;
+  }
+
+  .btn-blue:hover, .btn-blue:focus, 
+  .btn-blue:active, .btn-blue:active:focus, .btn-blue:active:hover, .btn-blue:active.focus,
+  .btn-blue.active, .btn-blue.active:focus, .btn-blue.active:hover, .btn-blue.active.focus,
+  .open > .dropdown-toggle.btn-blue, 
+  .open > .dropdown-toggle.btn-blue:hover,
+  .open > .dropdown-toggle.btn-blue:focus, 
+  .open > .dropdown-toggle.btn-blue.focus,
+  .btn-blue.disabled:hover, .btn-blue[disabled]:hover, fieldset[disabled] .btn-blue:hover,
+  .btn-blue.disabled:focus, .btn-blue[disabled]:focus, fieldset[disabled] .btn-blue:focus,
+  .btn-blue.disabled.focus, .btn-blue[disabled].focus, fieldset[disabled] .btn-blue.focus {
+    background: #003399;
+    color: #FFFF;
+}
+
+.btn-red {
+  background: #C73E3A;
+  color: #FFFF;
+  border: none;
+}
+
+.btn-red:hover, .btn-red:focus, 
+.btn-red:active, .btn-red:active:focus, .btn-red:active:hover, .btn-red:active.focus,
+.btn-red.active, .btn-red.active:focus, .btn-red.active:hover, .btn-red.active.focus,
+.open > .dropdown-toggle.btn-red, 
+.open > .dropdown-toggle.btn-red:hover,
+.open > .dropdown-toggle.btn-red:focus, 
+.open > .dropdown-toggle.btn-red.focus,
+.btn-red.disabled:hover, .btn-red[disabled]:hover, fieldset[disabled] .btn-red:hover,
+.btn-red.disabled:focus, .btn-red[disabled]:focus, fieldset[disabled] .btn-red:focus,
+.btn-red.disabled.focus, .btn-red[disabled].focus, fieldset[disabled] .btn-red.focus {
+  background: #B31712;
+  color: #FFFF;
+}
+
+.btn-green {
+  background: #24936E;
+  color: #FFFF;
+  border: none;
+}
+
+.btn-green:hover, .btn-green:focus, 
+.btn-green:active, .btn-green:active:focus, .btn-green:active:hover, .btn-green:active.focus,
+.btn-green.active, .btn-green.active:focus, .btn-green.active:hover, .btn-green.active.focus,
+.open > .dropdown-toggle.btn-green, 
+.open > .dropdown-toggle.btn-green:hover,
+.open > .dropdown-toggle.btn-green:focus, 
+.open > .dropdown-toggle.btn-green.focus,
+.btn-green.disabled:hover, .btn-green[disabled]:hover, fieldset[disabled] .btn-green:hover,
+.btn-green.disabled:focus, .btn-green[disabled]:focus, fieldset[disabled] .btn-green:focus,
+.btn-green.disabled.focus, .btn-green[disabled].focus, fieldset[disabled] .btn-green.focus {
+  background: #2E7157;
+  color: #FFFF;
+}
+.btn-yellow {
+  background: #FFB11B;
+  color: #FFFF;
+  border: none;
+}
+
+.btn-yellow:hover, .btn-yellow:focus, 
+.btn-yellow:active, .btn-yellow:active:focus, .btn-yellow:active:hover, .btn-yellow:active.focus,
+.btn-yellow.active, .btn-yellow.active:focus, .btn-yellow.active:hover, .btn-yellow.active.focus,
+.open > .dropdown-toggle.btn-yellow, 
+.open > .dropdown-toggle.btn-yellow:hover,
+.open > .dropdown-toggle.btn-yellow:focus, 
+.open > .dropdown-toggle.btn-yellow.focus,
+.btn-yellow.disabled:hover, .btn-yellow[disabled]:hover, fieldset[disabled] .btn-yellow:hover,
+.btn-yellow.disabled:focus, .btn-yellow[disabled]:focus, fieldset[disabled] .btn-yellow:focus,
+.btn-yellow.disabled.focus, .btn-yellow[disabled].focus, fieldset[disabled] .btn-yellow.focus {
+  background: #CC8C16;
+  color: #FFFF;
+}

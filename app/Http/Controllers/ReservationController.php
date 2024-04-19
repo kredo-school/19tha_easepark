@@ -15,6 +15,9 @@ class ReservationController extends Controller
         ];
         $userAttribute = 'Disability';
 
+        // return view('users.reservation.list')
+        //     -> with('tentativeAllReservations', $tentativeAllReservations);
+
         return view('users.reservation.confirmation')
             ->with('tentativeReservations', $tentativeReservations)
             ->with ('userAttribute', $userAttribute);
