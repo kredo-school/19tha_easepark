@@ -30,4 +30,10 @@ class HomeController extends Controller
     {
         return view('users.home.index');
     }
+
+
+    public function showAllConfirmationReservation()
+    {
+        return view('users.reservation.list');
+    }
 }
