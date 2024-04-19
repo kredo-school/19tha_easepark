@@ -10,7 +10,11 @@ Route::get('/', function () {
 
 // Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
+Route::get('/login', [LoginController::class, 'userLogin'])->name('login');
+Route::get('/homepage', [HomeController::class, 'homePage'])->name('homepage');
+Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
+Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
+Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
+Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
