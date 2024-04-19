@@ -17,14 +17,10 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    <!-- FW -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom-font.css') }}">
+    <!-- FW -->
+    <link rel ="stylesheet" href="{{ asset('css/all.min.css') }}">
 </head>
 
 <body>
@@ -89,31 +85,27 @@
             </div>
         </nav>
 
-        <main class="">
-            @yield('content')
-        </main>
-
-        <footer class="footer navbar-color" style="padding: 30px 0px; height: 100px">
+        <main class="py-5">
             <div class="container">
-                <div class="row justify-content-center align-items-center">
-                    <div class="fs-3 col-md-3 text-center">
-                        <a href="{{ asset('https://www.facebook.com/') }}"
-                            class="text-decoration-none text-white mx-3"><i class="fa-brands fa-facebook"></i>
-                        </a>
-                        <a href="{{ asset('https://twitter.com/') }}" class="text-decoration-none text-white mx-3"><i
-                                class="fa-brands fa-twitter"></i></a>
-                        <a href="{{ asset('https://www.instagram.com/') }}"
-                            class="text-decoration-none text-white mx-3"><i class="fa-brands fa-instagram"></i>
-                        </a>
+                <div class="row justify-content-center">
+                    <div class="col-md-2">
+                        <div class="list-group text-center">
+                            <a href="#" class="list-group-item">Users</a>
+                            <a href="#" class="list-group-item">Areas</a>
+                            <a href="#" class="list-group-item">Attributes</a>
+                            <a href="#" class="list-group-item">Fees</a>
+                            <a href="#" class="list-group-item">Reservations</a>
+                            <a href="#" class="list-group-item">Statistics</a>
+                            <a href="#" class="list-group-item">Admin</a>
+                        </div>
                     </div>
 
-                    <div class="text-white col-md-9 d-flex justify-content-end align-items-center">Copyright &copy;
-                        {{ now()->year }}
-                        EasePark Co., Ltd. All Rights Reserved.
+                    <div class="col-9">
+                        @yield('content')
                     </div>
                 </div>
             </div>
-        </footer>
+        </main>
     </div>
 </body>
 
