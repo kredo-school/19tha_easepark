@@ -26,6 +26,11 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function homePage()
+    {
+        return view('users.home.index');
+    }
+
 
     public function showAllConfirmationReservation()
     {

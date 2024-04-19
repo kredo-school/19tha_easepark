@@ -3,59 +3,6 @@
 @section('title', 'All Confirmed Reservation')
 
 @section('content')
-<style>
-    .record-list {
-        list-style-type: none;
-        padding-left: 0;
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
-    .record-list li {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 0;
-        position: relative;
-        padding-left: 20px;
-        color: rgb(114, 113, 113);
-    }
-    .record-list li::before {
-        content: "•";
-        position: absolute;
-        left: 0;
-    }
-    .button-group {
-        display: flex;
-        justify-content: flex-end;
-    }
-    .btn-cancel {
-        background-color: white;
-        color: #003366;
-    }
-    .btn-confirm {
-        background-color: #3399CC;
-        color: white;
-    }
-    .total-info {
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
-    .font-navy {
-        color: #003366;
-    }
-    .font-bold {
-        font-weight: bold;
-    }
-    .details-box {
-        background-color: #dfdede;
-        padding: 20px;
-        border-radius: 10px;
-        display: flex;
-        justify-content: center;
-    }
-</style>
 
 <div class="container w-80 mt-3">
     <div class="row mb-2">
