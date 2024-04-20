@@ -74,4 +74,5 @@
             </tr>
         </tbody>
     </table>
+</div>
 @endsection
