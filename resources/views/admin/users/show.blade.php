@@ -3,12 +3,6 @@
 @section('title', 'Admin:Users')
 
 @section('content')
-    <style>
-        .bg-header {
-            background-color: #3399CC;
-        }
-    </style>
-
     <div class="card border">
         <div class="card-header bg-light">
             <div class="row d-flex justify-content-center align-items-center">
