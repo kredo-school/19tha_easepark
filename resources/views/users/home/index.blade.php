@@ -3,42 +3,11 @@
 @section('title', 'index')
 
 @section('content')
-    <style>
-        .background {
-            position: relative;
-            background-image: url('/images/pexels-k-howard-2220292.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(225, 225, 225, 0.8);
-            z-index: 1;
-        }
-
-        .background main {
-            position: relative;
-            z-index: 2;
-        }
-
-        #calendar {
-            height: 100%;
-        }
-
-    </style>
-
-    <div class="background">
+    <div class="index-background">
         <main class="container">
             <div class="row justify-content-center">
                 <div class="col-md-10 my-5">
-                    <form action="#">
+                    <form action="#" method="post">
                         @csrf
                         <div class="row mb-3">
                             <label for="type"
@@ -51,8 +20,12 @@
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <button type="submit" class="btn btn-blue">Reserve</button>
+                                <button type="submit" class="btn btn-blue" data-bs-toggle="modal" data-bs-target="#guest-test">Reserve</button>
+                                
                             </div>
+                            @include('users.home.modal.register-guidance')
+                            
+                            
                         </div>
                         {{-- error --}}
                         @error('type')
@@ -76,8 +49,11 @@
                             </script>
                         </div>
                     </div>
+                    
                 </div>
+                
             </div>
+            
         </main>
     </div>
 @endsection
