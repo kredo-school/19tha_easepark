@@ -2,7 +2,7 @@
     <div class="modal-dialog text-center modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header modal-head-color">
-                <h2 class="text-white mx-auto">New to this website</h2>
+                <h2 class="text-white mx-auto">New to this website?</h2>
                 <button type="button" class="btn-close btn-sm ms-auto" data-bs-dismiss="modal" style="filter: invert(1);"></button>
             </div>
             <div class="modal-body mx-4 d-flex align-items-center" style="height: 200px">

@@ -153,13 +153,13 @@ body {
   color: #FFFF;
 }
 
-/* for new register modal */
+/* register-guidance.blade.php */
 .modal-head-color {
   background: #003366;
 }
 
 
-/* for index page */
+/* index.blade.php */
 .index-background {
   position: relative;
   background-image: url('/images/pexels-k-howard-2220292.jpg');
