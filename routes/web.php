@@ -20,3 +20,4 @@ Route::get('/homepage', [HomeController::class, 'homePage'])->name('homepage');
 Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
 Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
 Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
+Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
