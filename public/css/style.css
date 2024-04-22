@@ -1,5 +1,4 @@
 html,body {
-    height: 100%;
     margin: 0;
     font-family: "Lato", sans-serif;
 }
@@ -155,13 +154,13 @@ html,body {
   color: #FFFF;
 }
 .content {
-    min-height: 80vh;
+    min-height: 100vh;
 }
 .footer {
     bottom: 0;
     height: 100px;
     width: 100%;
-    display: flex;
+    position:fixed;
 }
 .footer-content {
     bottom: 0;
@@ -322,4 +321,38 @@ html,body {
   border-radius: 10px;
   display: flex;
   justify-content: center;
+}
+/* register-guidance.blade.php */
+.modal-head-color {
+  background: #003366;
+}
+
+
+/* index.blade.php */
+.index-background {
+  position: relative;
+  background-image: url('/images/pexels-k-howard-2220292.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.index-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(225, 225, 225, 0.8);
+  /* z-index: 1; */
+}
+
+.index-background main {
+  position: relative;
+  /* z-index: 2; */
+}
+
+#calendar {
+  height: 100%;
 }
