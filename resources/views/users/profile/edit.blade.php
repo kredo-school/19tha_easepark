@@ -65,7 +65,7 @@
 
                 <div class="mt-4 button-group text-center">
                     <button type="button" class="btn btn-cancel me-2">Cancel</button>
-                    <button type="button" class="btn btn-blue">Save</button>
+                    <button type="submit" class="btn btn-blue">Save</button>
                 </div>
             </form>
         </div>
@@ -107,7 +107,7 @@
 
                 <div class="mt-4 button-group text-center">
                     <button type="button" class="btn btn-cancel me-2">Cancel</button>
-                    <button type="button" class="btn btn-blue">Update Password</button>
+                    <button type="submit" class="btn btn-blue">Update Password</button>
                 </div>
             </form>
         </div>
