@@ -13,7 +13,7 @@
             <div class="row d-flex justify-content-center align-items-center">
 
                 <h3 class="col-md-6 card-title mt-1">
-                    <i class="fa-solid fa-credit-card"></i> Fees
+                    <i class="fa-regular fa-credit-card"></i> Fees
                 </h3>
                 <div class="col-md-5  me-1">
                     <form action="#" class="ms-auto">
