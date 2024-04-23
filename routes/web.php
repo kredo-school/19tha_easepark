@@ -28,6 +28,6 @@ Route::get('/reservation/completion', [ReservationController::class, 'showComple
 
 //Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/showusers', [UsersController::class, 'showUsers'])->name('showusers');
+    Route::get('/users/show', [UsersController::class, 'showUsers'])->name('users.show');
     Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
 });
