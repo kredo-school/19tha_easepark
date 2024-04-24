@@ -15,4 +15,9 @@ class ProfileController extends Controller
     public function showProfile() {
         return view('users.profile.show');
     }
+
+    public function editProfile() {
+        $attributes = ['General', 'EV', 'Disability'];
+        return view('users.profile.edit')->with('attributes', $attributes);
+    }
 }
