@@ -15,7 +15,7 @@
                 <label for="name" class="form-label">{{ __('Full Name') }}</label>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-4">
                 <input id="name" type="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                 @error('name')
@@ -83,7 +83,7 @@
                 @enderror
             </div>
 
-            <div class="row mb-6">
+            <div class="row mb-3">
                 <div class="col">
                     {{-- Add Link --}}
                     <a href="#" role="button" class="btn btn-cancel w-100">
