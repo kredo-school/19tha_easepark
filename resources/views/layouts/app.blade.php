@@ -87,13 +87,13 @@
             </div>
         </nav>
 
-        <main class="">
+        <main class="content">
             @yield('content')
         </main>
 
-        <footer class="footer navbar-color" style="padding: 30px 0px; height: 100px">
+        <footer class="footer navbar-color mt-6">
             <div class="container">
-                <div class="row justify-content-center align-items-center">
+                <div class="row justify-content-center align-items-center footer-content">
                     <div class="fs-3 col-md-3 text-center">
                         <a href="{{ asset('https://www.facebook.com/') }}"
                             class="text-decoration-none text-white mx-3"><i class="fa-brands fa-facebook"></i>
