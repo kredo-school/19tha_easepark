@@ -30,7 +30,6 @@
 
 
                 </form>
-                <label for="attribute_edit" class="form-label"></label>
             </div>
     </div>
 </div>
