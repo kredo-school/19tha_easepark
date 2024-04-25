@@ -239,7 +239,10 @@ body {
   height: 100%;
 }
 
-/* should be included in others */
+/* 
+  should be included in others
+  styles for statistical pages
+*/
 .statistic-db-choice-range{
   background-color: rgba(225, 225, 225, 0.8);
 }
@@ -258,4 +261,12 @@ body {
 }
 .statistic-extract-condition-clicked:hover {
   color: white;
+}
+
+.year-selection {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .75rem center;
+  background-size: 8px 10px;
 }
