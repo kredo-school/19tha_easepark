@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class AttributesController extends Controller
 {
-    //
+    public function editAttribute()
+    {
+        return view('admin.attributes.edit');
+    }
 }
