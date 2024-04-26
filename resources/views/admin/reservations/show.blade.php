@@ -3,9 +3,9 @@
 @section('title', 'Admin:Reservations')
 
 @section('content')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="{{ asset('jquery-3.7.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('moment.js') }}"></script>
+<script type="text/javascript" src="{{ asset('daterangepicker.min.js') }}"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}" >
 
 
