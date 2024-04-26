@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\ReservationsController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -29,4 +30,5 @@ Route::get('/reservation/completion', [ReservationController::class, 'showComple
 //Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/showusers', [UsersController::class, 'showUsers'])->name('showusers');
+    Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
 });
