@@ -30,6 +30,12 @@ Route::get('/reservation/completion', [ReservationController::class, 'showComple
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/showusers', [UsersController::class, 'showUsers'])->name('showusers');
 
-    Route::get('/statistics/show', [StatisticsController::class, 'showStatistics'])->name('statistics.show');
-    Route::get('/statistics/show/users/registration', [StatisticsController::class, 'showUserRegistration'])->name('statistics.show.users.registration');
+    // Following routes are test routes for the statistics controller
+    Route::get('/statistics/show/test', [StatisticsController::class, 'showStatisticsTest']);
+    Route::get('/statistics/test/registrations-num/data', [StatisticsController::class, 'fetchRegistrationDataTest']);
+    Route::get('/statistics/test/deletions-num/data', [StatisticsController::class, 'fetchDeletionDataTest']);
+    Route::get('/statistics/test/reservations-num/data', [StatisticsController::class, 'fetchReservationDataTest']);
+    Route::get('/statistics/test/cancellations-num/data', [StatisticsController::class, 'fetchCancellationDataTest']);
+    Route::get('/statistics/test/sales-num/data', [StatisticsController::class, 'fetchSaleDataTest']);
+    // End of test routes for the statistics controller
 });
