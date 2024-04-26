@@ -27,9 +27,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-color shadow-sm">
             <div class="container">
-                <a class="text-white navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+                <div class="text-white navbar-brand">
+                    <img src="{{ asset('images/8C8FAB4E-E713-45F0-839A-5064D27EDBAA.png') }}" alt="Logo"
+                        class="logo-style">
+                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -45,67 +46,73 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link lato-regular text-white"
-                                        href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                        @guest('admin')
+                            <div class="nav-item d-flex align-items-center">
+                                <a class="nav-link text-white me-2" href="{{ route('homepage') }}">{{ __('Home') }}</a>
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link lato-regular text-white"
-                                        href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                                @if (Route::has('admin.login'))
+                                    <a class="nav-link btn btn-blue text-white"
+                                        href="{{ route('admin.login') }}">{{ __('Admin Login') }}</a>
+                                @endif
+                            </div>
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle lato-regular text-white"
-                                    href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                            <div class="nav-item d-flex align-items-center dropdown">
+                                <div class="nav-item d-flex align-items-center">
+                                    <a class="nav-link text-white me-3"
+                                        href="{{ route('admin.users.show') }}">{{ __('Home') }}</a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                    <a id="navbarDropdown"
+                                        class="nav-link dropdown-toggle lato-regular text-white text-decoration-none"
+                                        href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" v-pre>
+                                        <span class="fs-1"><i class="fa-solid fa-user-gear"></i></span>
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('admin.logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
                                 </div>
-                            </li>
-                        @endguest
+                            @endguest
                     </ul>
                 </div>
             </div>
         </nav>
+        @guest('admin')
+            <div class="col">
+                @yield('content')
+            </div>
+        @endguest
+        @auth('admin')
+            <main class="py-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-2">
+                            <div class="list-group text-center">
+                                <a href="{{ route('admin.users.show') }}" class="list-group-item">Users</a>
+                                <a href="#" class="list-group-item">Areas</a>
+                                <a href="#" class="list-group-item">Attributes</a>
+                                <a href="#" class="list-group-item">Fees</a>
+                                <a href="#" class="list-group-item">Reservations</a>
+                                <a href="#" class="list-group-item">Statistics</a>
+                                <a href="#" class="list-group-item">Admin</a>
+                            </div>
+                        </div>
 
-        <main class="py-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-2">
-                        <div class="list-group text-center">
-                            <a href="#" class="list-group-item">Users</a>
-                            <a href="#" class="list-group-item">Areas</a>
-                            <a href="#" class="list-group-item">Attributes</a>
-                            <a href="#" class="list-group-item">Fees</a>
-                            <a href="#" class="list-group-item">Reservations</a>
-                            <a href="#" class="list-group-item">Statistics</a>
-                            <a href="#" class="list-group-item">Admin</a>
+                        <div class="col-9">
+                            @yield('content')
                         </div>
                     </div>
-
-                    <div class="col-9">
-                        @yield('content')
-                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        @endauth
         <footer class="footer navbar-color" style="padding: 30px 0px; height: 100px">
             <div class="container">
                 <div class="row justify-content-center align-items-center">
