@@ -22,7 +22,6 @@
                                 <input type="search_attributes" name="search_attributes" placeholder="Search Attributes" value=""
                                 class="form-control form-control-sm">
                                 <button type="submit" class="btn bg-dark text-white border" aria-label="Search Attributes"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                <button type="submit" class="btn bg-dark text-white border" aria-label="Reload Attributes"><i class="fa-solid fa-rotate-right"></i></button>
                             </div>
                         </form>
                     </div>
