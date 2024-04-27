@@ -28,7 +28,7 @@
                             <div class="mb-3">
                                 {{-- Add : backend --}}
                                 <label for="amount" class="form-label">Amount of fee</label>
-                                <input type="text" name="amount" class="form-control mb-4" id="amount">
+                                <input type="number" name="amount" class="form-control mb-4" id="amount">
 
                                 @error('amount')
                                     <div class="text-danger small">{{ $message }}
