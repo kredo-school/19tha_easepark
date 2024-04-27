@@ -3,73 +3,73 @@ html,body {
     font-family: "Lato", sans-serif;
 }
 .navbar-color {
-    background: #003366;
+  background: #003366;
 }
 
 .lato-thin {
-    font-family: "Lato", sans-serif;
-    font-weight: 100;
-    font-style: normal;
-  }
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
 
-  .lato-light {
-    font-family: "Lato", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-  }
+.lato-light {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
 
-  .lato-regular {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
+.lato-regular {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
-  .lato-bold {
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-  }
+.lato-bold {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
 
-  .lato-black {
-    font-family: "Lato", sans-serif;
-    font-weight: 900;
-    font-style: normal;
-  }
+.lato-black {
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
 
-  .lato-thin-italic {
-    font-family: "Lato", sans-serif;
-    font-weight: 100;
-    font-style: italic;
-  }
+.lato-thin-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
 
-  .lato-light-italic {
-    font-family: "Lato", sans-serif;
-    font-weight: 300;
-    font-style: italic;
-  }
+.lato-light-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
 
-  .lato-regular-italic {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-style: italic;
-  }
+.lato-regular-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
 
-  .lato-bold-italic {
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-  }
+.lato-bold-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
 
-  .lato-black-italic {
-    font-family: "Lato", sans-serif;
-    font-weight: 900;
-    font-style: italic;
-  }
-  .btn-blue {
-    background: #3399CC;
-    color: #FFFF;
-    border: none;
-  }
+.lato-black-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+.btn-blue {
+  background: #3399CC;
+  color: #FFFF;
+  border: none;
+}
 
   a:link {
     color: #3399CC;
@@ -96,9 +96,9 @@ html,body {
 }
 
 .btn-red {
-  background: #C73E3A;
-  color: #FFFF;
-  border: none;
+background: #C73E3A;
+color: #FFFF;
+border: none;
 }
 
 .btn-red:hover, .btn-red:focus,
@@ -111,14 +111,14 @@ html,body {
 .btn-red.disabled:hover, .btn-red[disabled]:hover, fieldset[disabled] .btn-red:hover,
 .btn-red.disabled:focus, .btn-red[disabled]:focus, fieldset[disabled] .btn-red:focus,
 .btn-red.disabled.focus, .btn-red[disabled].focus, fieldset[disabled] .btn-red.focus {
-  background: #B31712;
-  color: #FFFF;
+background: #B31712;
+color: #FFFF;
 }
 
 .btn-green {
-  background: #24936E;
-  color: #FFFF;
-  border: none;
+background: #24936E;
+color: #FFFF;
+border: none;
 }
 
 .btn-green:hover, .btn-green:focus,
@@ -131,13 +131,13 @@ html,body {
 .btn-green.disabled:hover, .btn-green[disabled]:hover, fieldset[disabled] .btn-green:hover,
 .btn-green.disabled:focus, .btn-green[disabled]:focus, fieldset[disabled] .btn-green:focus,
 .btn-green.disabled.focus, .btn-green[disabled].focus, fieldset[disabled] .btn-green.focus {
-  background: #2E7157;
-  color: #FFFF;
+background: #2E7157;
+color: #FFFF;
 }
 .btn-yellow {
-  background: #FFB11B;
-  color: #FFFF;
-  border: none;
+background: #FFB11B;
+color: #FFFF;
+border: none;
 }
 
 .btn-yellow:hover, .btn-yellow:focus,
@@ -150,8 +150,8 @@ html,body {
 .btn-yellow.disabled:hover, .btn-yellow[disabled]:hover, fieldset[disabled] .btn-yellow:hover,
 .btn-yellow.disabled:focus, .btn-yellow[disabled]:focus, fieldset[disabled] .btn-yellow:focus,
 .btn-yellow.disabled.focus, .btn-yellow[disabled].focus, fieldset[disabled] .btn-yellow.focus {
-  background: #CC8C16;
-  color: #FFFF;
+background: #CC8C16;
+color: #FFFF;
 }
 .content {
     min-height: 100vh;
@@ -272,85 +272,75 @@ html,body {
 }
 
 .record-list {
-  list-style-type: none;
-  padding-left: 0;
-  font-size: 1.5rem;
-  font-weight: bold;
+list-style-type: none;
+padding-left: 0;
+font-size: 1.5rem;
+font-weight: bold;
 }
 .record-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  position: relative;
-  padding-left: 20px;
-  color: rgb(114, 113, 113);
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 0;
+position: relative;
+padding-left: 20px;
+color: rgb(114, 113, 113);
 }
 .record-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
+content: "•";
+position: absolute;
+left: 0;
 }
 .button-group {
-  display: flex;
-  justify-content: flex-end;
+display: flex;
+justify-content: flex-end;
 }
-.btn-cancel {
-  background-color: white;
-  color: #003366;
-}
-.btn-confirm {
-  background-color: #3399CC;
-  color: white;
-}
+
 .total-info {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.5rem;
-  font-weight: bold;
+display: flex;
+justify-content: space-between;
+font-size: 1.5rem;
+font-weight: bold;
 }
 .font-navy {
-  color: #003366;
+color: #003366;
 }
 .font-bold {
-  font-weight: bold;
+font-weight: bold;
 }
 .details-box {
-  background-color: #dfdede;
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
+background-color: #dfdede;
+padding: 20px;
+border-radius: 10px;
+display: flex;
+justify-content: center;
 }
-/* register-guidance.blade.php */
 .modal-head-color {
-  background: #003366;
+background: #003366;
 }
 
-
-/* index.blade.php */
 .index-background {
-  position: relative;
-  background-image: url('/images/pexels-k-howard-2220292.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+position: relative;
+background-image: url('/images/pexels-k-howard-2220292.jpg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
 }
 
 .index-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(225, 225, 225, 0.8);
-  /* z-index: 1; */
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(225, 225, 225, 0.8);
+/* z-index: 1; */
 }
 
 .index-background main {
-  position: relative;
-  /* z-index: 2; */
+position: relative;
+/* z-index: 2; */
 }
 
 #calendar {
