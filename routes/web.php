@@ -1,10 +1,11 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\admin\AdminsController;
 use App\Http\Controllers\admin\AttributesController;
 
 Route::get('/', function () {
@@ -31,4 +32,5 @@ Route::get('/reservation/completion', [ReservationController::class, 'showComple
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/attribute/edit', [AttributesController::class, 'editAttribute'])->name('admin.attributes.edit');
     Route::get('/showusers', [UsersController::class, 'showUsers'])->name('showusers');
+    Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
 });
