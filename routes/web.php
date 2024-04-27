@@ -16,7 +16,7 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
+// Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
 Route::get('/login', [LoginController::class, 'userLogin'])->name('login');
 
 Route::get('/profile/show', [ProfileController::class, 'showProfile'])->name('profile.show');
