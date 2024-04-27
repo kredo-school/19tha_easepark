@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class AdminsController extends Controller
 {
+    public function registerAdmin() {
+        return view('admin.admins.register');
+    }
     public function editAdmin() {
         return view('admin.admins.edit');
     }
