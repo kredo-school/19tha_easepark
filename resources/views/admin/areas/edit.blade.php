@@ -54,10 +54,7 @@
 
                             <label for="max_number" class="form-label">Max Number</label>
                             {{-- Add : backend --}}
-                            <select class="form-select mb-5" name="max_number" id="max_number" required>
-                                <option value="">Select Max Number</option>
-                                <option value="#">Option 1</option>
-                            </select>
+                            <input type="number" name="max_number" class="form-control mb-3" id="max_number">
                             @error('max_number')
                                 <div class="text-danger small">{{ $message }}
                                 </div>
