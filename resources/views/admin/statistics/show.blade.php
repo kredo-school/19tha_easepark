@@ -85,16 +85,11 @@
 
     {{-- CDN for jQeury (NOT USED)--}}
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-
     {{-- Downloaded jQuery --}}
-    <script src="/storage/js/jquery-3.7.1.min.js"></script>
-
-    {{-- JavaScript for the statistics page --}}
-    <script src="/storage/js/manageStatistics.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-3.7.1.min.js')}}"></script>
 
     {{-- CDN for Chart.js --}}
     {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
-    
     {{-- Downloaded Chart.js --}}
-    <script src="/storage/js/chart.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/chart.min.js')}}"></script>
 @endsection
