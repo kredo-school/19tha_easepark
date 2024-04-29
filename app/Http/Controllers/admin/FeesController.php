@@ -28,4 +28,10 @@ class FeesController extends Controller
         return view('admin.fees.show',['fees'=>$fees]);
     }
 
+    public function updateRegisteredFees()
+    {
+        $fee_name = ['Normal Season'];
+
+        return view('admin.fees.edit');
+    }
 }

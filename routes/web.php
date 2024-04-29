@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\FeesController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\admin\AdminsController;
 use App\Http\Controllers\admin\AttributesController;
+use App\Http\Controllers\admin\FeesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,7 +19,7 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
+// Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
 Route::get('/login', [LoginController::class, 'userLogin'])->name('login');
 
 Route::get('/profile/show', [ProfileController::class, 'showProfile'])->name('profile.show');
@@ -35,4 +36,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
     Route::get('/users/show', [UsersController::class, 'showUsers'])->name('users.show');
     Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
+    Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('admin.fees.edit');
 });

@@ -347,3 +347,12 @@ fieldset[disabled] .btn-yellow.focus {
 .logo-style {
     height: 50px;
 }
+
+/* Modal-red*/
+.modal-head-color-red {
+  background-color: #C73E3A;
+}
+
+.modal-head-color-red-transparent{
+  background-color: #F2D3D3;
+}
