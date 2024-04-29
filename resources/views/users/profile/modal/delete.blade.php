@@ -11,11 +11,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body fs-5 text-dark text-center mt-3">
-                    Are you sure you want to delete the following user?
-                    <br>All associated data will be permanently removed.
-                    <div class="my-4">
-                        <span class="modal-head-color-red-transparent px-2 py-1">John Doe</span>
-                    </div>
+                    Are you sure you want to delete <span class="lato-bold">Your Profile</span>?
+                    <br><br>
+                    All associated data will be permanently removed.
+                    <br>
                     Once deleted, it cannot be undone.
                 </div>
                 <div class="modal-footer border-0">
