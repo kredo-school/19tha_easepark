@@ -3,11 +3,12 @@
 @section('title', 'Admin:Reservations')
 
 @section('content')
-<script type="text/javascript" src="{{ asset('jquery-3.7.1.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('moment.js') }}"></script>
-<script type="text/javascript" src="{{ asset('daterangepicker.min.js') }}"></script>
-<link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}" >
 
+{{-- Downloaded DateRangePicker(for search calendar) --}}
+<script type="text/javascript" src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/moment.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/daterangepicker.min.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}" >
 
     <div class="card border">
         <div class="card-header bg-light">
@@ -78,7 +79,9 @@
                                 <td>{{ $reservation['type'] }}</td>
                                 <td>${{ $reservation['fee'] }}</td>
                                 <td>
-                                    <span class="text-danger"><i class="fa-solid fa-trash-can mx-1"></i></span>
+                                    <button type="button" class="btn btn-sm text-danger" data-bs-toggle="modal" data-bs-target="#">
+                                        <i class="fa-solid fa-trash-can mx-1"></i>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
