@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title')</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     {{-- <link rel="dns-prefetch" href="//fonts.bunny.net"> --}}
@@ -21,8 +21,6 @@
     <link rel="stylesheet" href="{{ asset('css/custom-font.css') }}">
     <!-- FW -->
     <link rel ="stylesheet" href="{{ asset('css/all.min.css') }}">
-
-    
 </head>
 
 <body>
@@ -87,13 +85,30 @@
             </div>
         </nav>
 
-        <main class="content">
-            @yield('content')
-        </main>
-
-        <footer class="footer navbar-color mt-6">
+        <main class="py-5">
             <div class="container">
-                <div class="row justify-content-center align-items-center footer-content">
+                <div class="row justify-content-center">
+                    <div class="col-md-2">
+                        <div class="list-group text-center">
+                            <a href="#" class="list-group-item">Users</a>
+                            <a href="#" class="list-group-item">Areas</a>
+                            <a href="#" class="list-group-item">Attributes</a>
+                            <a href="#" class="list-group-item">Fees</a>
+                            <a href="#" class="list-group-item">Reservations</a>
+                            <a href="#" class="list-group-item">Statistics</a>
+                            <a href="#" class="list-group-item">Admin</a>
+                        </div>
+                    </div>
+
+                    <div class="col-9">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer navbar-color" style="padding: 30px 0px; height: 100px">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
                     <div class="fs-3 col-md-3 text-center">
                         <a href="{{ asset('https://www.facebook.com/') }}"
                             class="text-decoration-none text-white mx-3"><i class="fa-brands fa-facebook"></i>
