@@ -167,6 +167,7 @@ $(document).ready(function() {
             console.log('Fetched data:', fetchedData, 'Chart ID:', chartId);
 
             updateTable('.table-responsive .table', fetchedData);
+            
             updateChart('#' + chartId, fetchedData);
         } catch (error) {
             console.error('An error occurred:', error);
@@ -226,17 +227,15 @@ $(document).ready(function() {
      * @param {Object} data.numericalDataNumByAttribute - The statistical data for the chart, organized by attribute and month.
      */
     function updateChart(selector, data) {
-        
         if (myChart) {
             // If a chart already exists, destroy it
             myChart.destroy();
         }
-        // var ctx = document.querySelector(selector).getContext('2d');
         var ctx = document.querySelector(selector).getContext('2d');
         var colors = ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(54, 162, 235, 0.2)'];
         var borderColors = ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 206, 86, 1)', 'rgba(54, 162, 235, 1)'];
         var datasets = data['attributes'].map(function(attribute, index) {
-            return {
+            var dataset = {
                 label: attribute,
                 data: data['months'].map(function(month) {
                     // Adjust how you're accessing the statistical data
@@ -246,6 +245,11 @@ $(document).ready(function() {
                 borderColor: borderColors[index % borderColors.length],
                 borderWidth: 1
             };
+            // If the selector is "#sales-num-chart" and the attribute is "Total", set the type to 'bar'
+            if (selector === '#sales-num-chart' && attribute === 'Total') {
+                dataset.type = 'bar';
+            }
+            return dataset;
         });
         myChart = new Chart(ctx, {
             type: 'line',
