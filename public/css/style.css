@@ -346,3 +346,13 @@ position: relative;
 #calendar {
   height: 100%;
 }
+
+
+/* Modal-red*/
+.modal-head-color-red {
+  background-color: #C73E3A;
+}
+
+.modal-head-color-red-transparent{
+  background-color: #F2D3D3;
+}
