@@ -10,4 +10,8 @@ class AdminsController extends Controller
     public function showAdmins() {
         return view('admin.admins.show');
     }
+    
+    public function registerAdmin() {
+        return view('admin.admins.register');
+    }
 }

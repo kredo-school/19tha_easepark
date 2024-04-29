@@ -3,6 +3,10 @@
 @section('title', 'Admin: Registered Admins')
 
 @section('content')
+    <a class="btn btn-green my-2" role="button">
+        <i class="fa-solid fa-circle-plus me-2 btn-lg"></i>Register New Admin
+    </a>
+
     <div class="card">
         <div class="card-header bg-light">
             <div class="row d-flex justify-content-center">
@@ -13,7 +17,7 @@
                 <div class="col-md-5 me-1">
                     <form action="#" class="ms-auto my-3">
                         <div class="input-group">
-                            <input type="search" name="search" placeholder="Search Users" value=""
+                            <input type="search" name="search" placeholder="Search Admins" value=""
                                 class="form-control form-control-sm">
                             <button type="submit" class="btn bg-dark text-white border" aria-label="Search Users"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>

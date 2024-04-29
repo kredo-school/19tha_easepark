@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\admin\AdminsController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\admin\AttributesController;
+use App\Http\Controllers\admin\FeesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,5 +34,7 @@ Route::get('/reservation/completion', [ReservationController::class, 'showComple
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/attribute/edit', [AttributesController::class, 'editAttribute'])->name('admin.attributes.edit');
     Route::get('/showusers', [UsersController::class, 'showUsers'])->name('showusers');
+    Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
+    Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('admin.fees.edit');
     Route::get('/admins/show', [AdminsController::class, 'showAdmins'])->name('admin.admins.show');
 });
