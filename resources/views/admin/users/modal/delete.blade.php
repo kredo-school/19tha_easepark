@@ -10,7 +10,7 @@
                         Confirmation</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body text-dark text-center mt-3">
+                <div class="modal-body fs-5 text-dark text-center mt-3">
                     Are you sure you want to delete the following user?
                     <br>All associated data will be permanently removed.
                     <div class="my-4">
