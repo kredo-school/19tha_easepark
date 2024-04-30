@@ -55,7 +55,6 @@
                 <div class="statical-table-range" id="registrations-num" role="tabpanel">
                     <x-admin_statistic_table :data="$data"/>
                     <x-admin_statistic_chart :data="$data" chartId="registrations-num-chart" />
-                    
                 </div>
             
                 <div class="statical-table-range" id="deletions-num" role="tabpanel">

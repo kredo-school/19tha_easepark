@@ -260,7 +260,7 @@ $(document).ready(function() {
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
                     }
                 },
                 plugins: {

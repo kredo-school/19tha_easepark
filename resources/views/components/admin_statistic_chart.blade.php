@@ -1,3 +1,3 @@
 <div class="">
-    <canvas class="myChart" id="{{ $chartId }}"></canvas>
+    <canvas id="{{ $chartId }}"></canvas>
 </div>
