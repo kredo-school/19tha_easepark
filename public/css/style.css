@@ -356,3 +356,6 @@ position: relative;
 .modal-head-color-red-transparent{
   background-color: #F2D3D3;
 }
+.modal-header .btn-close {
+  filter: invert(1);
+}
