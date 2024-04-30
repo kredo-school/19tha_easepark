@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class AreasController extends Controller
 {
-    //
+    public function editRegisteredAreas(){
+        return view('admin.areas.edit');
+    }
 }

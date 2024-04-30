@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\admin\AreasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -32,10 +34,10 @@ Route::get('/reservation/completion', [ReservationController::class, 'showComple
 //Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/attribute/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
-    Route::get('/showusers', [UsersController::class, 'showUsers'])->name('showusers');
     Route::get('/admins/edit', [AdminsController::class, 'editAdmin'])->name('edit');
     Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('register');
     Route::get('/users/show', [UsersController::class, 'showUsers'])->name('users.show');
     Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
     Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('fees.edit');
+    Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('edit');
 });
