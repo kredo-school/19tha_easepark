@@ -13,4 +13,8 @@ class FeesController extends Controller
 
         return view('admin.fees.edit');
     }
+
+    public function default(){
+        return view('admin.fees.show');
+    }
 }
