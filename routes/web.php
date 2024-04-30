@@ -39,4 +39,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
     Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('admin.fees.edit');
     Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('areas.edit');
+    Route::get('/attributes/default',[AttributesController::class,'default'])->name('attributes.show');
 });
