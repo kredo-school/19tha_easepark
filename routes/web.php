@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\admin\AreasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -36,4 +38,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/admins/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
     Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
     Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('admin.fees.edit');
+    Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('areas.edit');
 });
