@@ -1,7 +1,7 @@
 {{-- register --}}
 <div class="modal fade" id="register-attribute">
     <div class="modal-dialog">
-        <form action="#">
+        <form method="POST" action="#">
             @csrf
             <div class="modal-content">
                 <div class="modal-header justify-content-between modal-head-color">
@@ -11,8 +11,8 @@
                 <div class="modal-body fs-5 text-dark mt-3">
                     <form action="#">
                         <div class="form-group">
-                            <label for="attribute" class="ms-3">Attribute</label>
-                            <input type="text" class="form-control" id="attribute" placeholder="Enter Attribute">
+                            <label for="name" class="ms-3">Attribute</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                         </div>
                         <div class="modal-footer border-0 text-center justify-content-center">
                             <button type="button" class="btn text-dark btn-cancel" data-bs-dismiss="modal">Cancel</button>
