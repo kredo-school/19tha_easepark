@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class ReservationsController extends Controller
 {
-    //
+    public function default(){
+        return view('admin.reservations.show');
+    }
 }

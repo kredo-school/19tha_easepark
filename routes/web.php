@@ -10,6 +10,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\admin\AdminsController;
 use App\Http\Controllers\admin\AttributesController;
 use App\Http\Controllers\admin\FeesController;
+use App\Http\Controllers\admin\ReservationsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,4 +40,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
     Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('admin.fees.edit');
     Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('areas.edit');
+
+    Route::get('/reservations/default',[ReservationsController::class,'default'])->name('default');
 });
