@@ -34,7 +34,8 @@ Route::get('/reservation/completion', [ReservationController::class, 'showComple
 
 //Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/attribute/edit', [AttributesController::class, 'editAttribute'])->name('admin.attributes.edit');
+    Route::get('/attribute/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
+    Route::get('/attribute/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
     Route::get('/showusers', [UsersController::class, 'showUsers'])->name('showusers');
     Route::get('/admins/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
     Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
