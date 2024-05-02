@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\admin\AreasController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\admin\FeesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\AreasController;

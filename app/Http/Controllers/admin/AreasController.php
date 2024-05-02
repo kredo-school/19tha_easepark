@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class AreasController extends Controller
 {
-<<<<<<< HEAD
     public function showAreas(){
         $areas = [
             [
@@ -42,9 +41,7 @@ class AreasController extends Controller
         return view('admin.areas.show', ['areas' => $areas]);
     }
 
-=======
     public function editRegisteredAreas(){
         return view('admin.areas.edit');
     }
->>>>>>> main
 }
