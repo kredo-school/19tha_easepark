@@ -16,7 +16,7 @@
                         </div>
                         <div class="modal-footer border-0 text-center justify-content-center">
                             <button type="button" class="btn text-dark btn-cancel" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn text-white btn-confirm">Register</button>
+                            <button type="submit" class="btn text-white btn-blue">Register</button>
                         </div>
                     </form>
                 </div>
