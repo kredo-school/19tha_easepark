@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\admin\AreasController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\FeesController;
 use App\Http\Controllers\Admin\StatisticsController;
+use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\admin\AdminsController;
 use App\Http\Controllers\admin\AttributesController;
@@ -19,9 +20,7 @@ Route::get('/', function () {
 //Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
+Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
 Route::get('/login', [LoginController::class, 'userLogin'])->name('login');
 
 Route::get('/profile/show', [ProfileController::class, 'showProfile'])->name('profile.show');
@@ -34,6 +33,7 @@ Route::get('/reservation/completion', [ReservationController::class, 'showComple
 
 //Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/attribute/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
     Route::get('/attribute/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
     Route::get('/admins/edit', [AdminsController::class, 'editAdmin'])->name('edit');
     Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('register');
@@ -51,3 +51,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/statistics/test/sales-num/data', [StatisticsController::class, 'fetchSaleDataTest']);
     // End of test routes for the StatisticsController
 });
+
+Route::get('/test/registration', [RegisterController::class, 'showRegistrationFormTest']);
