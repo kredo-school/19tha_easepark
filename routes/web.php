@@ -4,15 +4,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\admin\FeesController;
+use App\Http\Controllers\Admin\FeesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\FeesController;
 use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\admin\AdminsController;
 use App\Http\Controllers\admin\AttributesController;
-use App\Http\Controllers\admin\FeesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,7 +38,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/admins/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
     Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
     Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('admin.fees.edit');
+    Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');
     Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('areas.edit');
+    Route::get('/areas/register',[AreasController::class,'showRegisterArea'])->name('areas.register');
 });
 
 Route::get('/test/registration', [RegisterController::class, 'showRegistrationFormTest']);
