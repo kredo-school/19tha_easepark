@@ -1,16 +1,18 @@
 <?php
 
-use App\Http\Controllers\admin\AreasController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\admin\FeesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\FeesController;
+use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\admin\AdminsController;
 use App\Http\Controllers\admin\AttributesController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\admin\FeesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,13 +34,12 @@ Route::get('/reservation/completion', [ReservationController::class, 'showComple
 
 //Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/attribute/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
-    Route::get('/admins/edit', [AdminsController::class, 'editAdmin'])->name('edit');
-    Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('register');
+    Route::get('/attribute/edit', [AttributesController::class, 'editAttribute'])->name('admin.attributes.edit');
+    Route::get('/showusers', [UsersController::class, 'showUsers'])->name('showusers');
+    Route::get('/admins/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
+    Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
+    Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('admin.fees.edit');
     Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('areas.edit');
-    Route::get('/users/show', [UsersController::class, 'showUsers'])->name('users.show');
-    Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
-    Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('fees.edit');
 });
 
 Route::get('/test/registration', [RegisterController::class, 'showRegistrationFormTest']);
