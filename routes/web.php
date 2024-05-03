@@ -3,20 +3,15 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-// use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\Admin\AttributesController;
 use App\Http\Controllers\Admin\AdminsController;
-// use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\AdminRegisterController;
 use App\Http\Controllers\Admin\FeesController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/homepage', function () {
     return view('users.home.index');
@@ -25,10 +20,6 @@ Route::get('/homepage', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-
-    // Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-    // Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
 
     // for Profile
     Route::get('/profile/show', [ProfileController::class, 'showProfile'])->name('profile.show');
@@ -41,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 // Admin registration routes
 Route::prefix('admin')->name('admin.')->group(function () {
+    // Routes accessible to guests (not logged in)
     Route::middleware('guest:admin')->group(function () {
         // Existing login routes
         Route::get('login', [AdminLoginController::class, 'adminLogin'])->name('login');
@@ -50,7 +42,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('register', [AdminRegisterController::class, 'showRegistrationForm'])->name('register');
         Route::post('register', [AdminRegisterController::class, 'register'])->name('register.submit');
     });
-
+    // Routes accessible to authenticated admin users
     Route::middleware('auth:admin')->group(function () {
         // Existing logout route
         Route::post('logout', [AdminLoginController::class, 'logout'])->name('logout');
@@ -77,6 +69,3 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/areas/edit', [AreasController::class, 'editRegisteredAreas'])->name('areas.edit');
     });
 });
-
-
-

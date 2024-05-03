@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin:Users')
+@section('title', 'Admin | Users')
 
 @section('content')
     <div class="card border">
