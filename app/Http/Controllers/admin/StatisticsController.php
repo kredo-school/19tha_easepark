@@ -1,5 +1,6 @@
 <?php
-namespace App\Http\Controllers\admin;
+
+namespace App\Http\Controllers\Admin;
 
 include __DIR__ . '/../../../../resources/views/admin/statistics/SampleData.php';
 
