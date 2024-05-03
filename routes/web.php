@@ -4,7 +4,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\admin\FeesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\FeesController;
@@ -12,7 +11,6 @@ use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\admin\AdminsController;
 use App\Http\Controllers\admin\AttributesController;
-use App\Http\Controllers\admin\FeesController;
 
 Route::get('/', function () {
     return view('welcome');
