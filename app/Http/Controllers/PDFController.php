@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PDFController extends Controller
 {
@@ -15,16 +15,16 @@ class PDFController extends Controller
 
 
 
-        // $users = User::get();
+        $users = User::get();
 
-        // $data = [
-        //     'title' => 'PDF',
-        //     'date' => 'date(m/d/y)',
-        //     'users' => $users
+        $data = [
+            'title' => 'PDF',
+            'date' => 'date(m/d/y)',
+            'users' => $users
 
-        // ];
-        // $pdf = PDF::loadView('users.reservation.pdf', $data);
-        // return $pdf->download('reservation_list.pdf');
+        ];
+        $pdf = PDF::loadView('users.reservation.pdf', $data);
+        return $pdf->download('reservation_list.pdf');
 
         return view('users.reservation.pdf');
     }
