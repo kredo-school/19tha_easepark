@@ -8,10 +8,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body mx-5">
-                <form method="POST" action="#">
-                @csrf
-
-            {{-- Add action --}}
                 <form method="POST" action="{{route('admin.areas.register')}}">
                     @csrf
         
@@ -116,8 +112,6 @@
                             <button type="submit" class="btn text-white btn-blue">Register</button>
                         </div>
                     </div>
-                </form>
-
                 </form>
             </div>
         </div>
