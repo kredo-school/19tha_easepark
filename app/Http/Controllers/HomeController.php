@@ -28,7 +28,12 @@ class HomeController extends Controller
 
     public function homePage()
     {
-        return view('users.home.index');
+        $data = [
+            'type' => 'attribute',
+            'availableDate' => ['2024-05-01', '2024-05-05'] // replace with actual dates
+        ];
+
+        return view('users.home.index', ['data' => $data]);
     }
 
 
