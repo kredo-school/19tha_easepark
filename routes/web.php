@@ -18,13 +18,13 @@ Route::get('/', function () {
 //Auth::routes();
 
 // for Home Page
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/homepage', [HomeController::class, 'homePage'])->name('homepage');
 
 // for Login & Registration
-Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
+// Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
 Route::get('/login', [LoginController::class, 'userLogin'])->name('login');
-Route::get('/test/registration', [RegisterController::class, 'showRegistrationFormTest']);
+// Route::get('/test/registration', [RegisterController::class, 'showRegistrationFormTest']);
 
 // for Profile
 Route::get('/profile/show', [ProfileController::class, 'showProfile'])->name('profile.show');
@@ -41,8 +41,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/users/show', [UsersController::class, 'showUsers'])->name('users.show');
 
     // For Attributes
-    Route::get('/attribute/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
-    Route::get('/attribute/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
+    Route::get('/attributes/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
+    Route::get('/attributes/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
 
     //For Admins
     Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');

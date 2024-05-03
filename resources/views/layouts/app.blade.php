@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-md navbar-light navbar-color shadow-sm">
             <div class="container">
                 <a class="text-white navbar-brand" href="{{ url('/') }}">
@@ -87,11 +87,11 @@
             </div>
         </nav>
 
-        <main class="content">
+        <main class="flex-grow-1">
             @yield('content')
         </main>
 
-        <footer class="footer navbar-color mt-6">
+        <footer class="footer navbar-color">
             <div class="container">
                 <div class="row justify-content-center align-items-center footer-content">
                     <div class="fs-3 col-md-3 text-center">

@@ -78,7 +78,7 @@ body {
     bottom: 0;
     height: 100px;
     width: 100%;
-    position: fixed;
+    /* position: fixed; */
 }
 .footer-content {
     bottom: 0;
@@ -309,11 +309,12 @@ fieldset[disabled] .btn-yellow.focus {
     font-weight: bold;
 }
 .details-box {
-    background-color: #DFDEDE;
+    background-color: #f7f4f4;
     padding: 20px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
+    border: 1px solid #000000;
 }
 
 .index-background {

@@ -24,7 +24,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-md navbar-light navbar-color shadow-sm">
             <div class="container">
                 <a class="text-white navbar-brand" href="{{ url('/') }}">
@@ -85,18 +85,18 @@
             </div>
         </nav>
 
-        <main class="py-5">
+        <main class="flex-grow-1 mt-5">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-2">
                         <div class="list-group text-center">
-                            <a href="#" class="list-group-item">Users</a>
-                            <a href="#" class="list-group-item">Areas</a>
-                            <a href="#" class="list-group-item">Attributes</a>
-                            <a href="#" class="list-group-item">Fees</a>
+                            <a href="{{route('admin.users.show')}}" class="list-group-item">Users</a>
+                            <a href="{{route('admin.areas.show')}}" class="list-group-item">Areas</a>
+                            <a href="{{route('admin.attributes.show')}}" class="list-group-item">Attributes</a>
+                            <a href="{{route('admin.fees.show')}}" class="list-group-item">Fees</a>
                             <a href="#" class="list-group-item">Reservations</a>
                             <a href="#" class="list-group-item">Statistics</a>
-                            <a href="#" class="list-group-item">Admin</a>
+                            <a href="{{route('admin.admins.show')}}" class="list-group-item">Admin</a>
                         </div>
                     </div>
 

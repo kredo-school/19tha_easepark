@@ -4,15 +4,15 @@
 
 @section('content')
 
-    <div class="mt-3">
-        <div class="row justify-content-center">
+    <div class="mt-5 d-flex justify-content-center">
+        <div class="row justify-content-between">
             <div class="col-auto card shadow-sm mx-auto">
                 <div class="row mx-auto my-3">
                     <h2 class="col-auto lato-bold">
                         <i class="fa-solid fa-user"></i>
                         Your Profile
                     </h2>
-                    <a href="#" class="col btn btn-blue">
+                    <a href="{{route('profile.edit')}}" class="col btn btn-blue">
                         <i class="fa-solid fa-pen-to-square"></i>
                         Edit Profile
                     </a>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-auto me-3 my-3">
+            <div class="col-auto ps-5 me-3 my-3">
                 <a href="#" class="btn btn-red">
                     <i class="fa-solid fa-trash-can"></i>
                     Delete Account

@@ -42,28 +42,12 @@
                     <tbody>
                         {{-- Add: backend --}}
                         <tr class="">
-                            <td class="text-center">1</td>
-                            <td>Handicap</td>
-                            <td class="text-center"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
-                            <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></td>
-                        </tr>
-                        <tr class="">
-                            <td class="text-center">2</td>
-                            <td>Electric Vehicle Charging Station</td>
-                            <td class="text-center"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
-                            <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></td>
-                        </tr>
-                        <tr class="">
-                            <td class="text-center">3</td>
-                            <td>General</td>
-                            <td class="text-center"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
-                            <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></td>
-                        </tr>
-                        <tr class="">
                             <td class="text-center">4</td>
                             <td>General</td>
-                            <td class="text-center"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
-                            <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></td>
+                            <td class="text-center">
+                                <a href="{{route('admin.attributes.edit')}}"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
+                                <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

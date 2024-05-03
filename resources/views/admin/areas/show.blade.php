@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="my-1">
-        <button type="button" class="btn btn-green">
+        <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#">
             <i class="fa-solid fa-circle-plus"></i> Register New Area
         </button>
     </div>
@@ -54,11 +54,10 @@
                                 <td>{{ $area['fee_name'] }}</td>
                                 <td>{{ $area['address'] }}</td>
                                 <td>{{ $area['max_number'] }}</td>
-                                <td>
-                                    <span class="text-warning"><i class="fa-solid fa-pen-to-square mx-1"></i></span>
-                                    <span class="text-danger"><i class="fa-solid fa-trash-can mx-1"></i></span>
-                                </td>
-                                
+                                <td class="text-center">
+                                    <a href="{{route('admin.areas.edit')}}"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
+                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
+                                </td>                                
                             </tr>
                         @endforeach
                     </tbody>

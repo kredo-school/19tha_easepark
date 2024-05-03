@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="my-3">
+<div class="my-5">
     <div class="row w-25 mx-auto">
         <div class="col card shadow-sm mx-auto py-2">
             <h2 class="lato-bold mx-auto my-2">
@@ -72,7 +72,7 @@
     </div>
 </div>
 
-<div class="mt-3 mb-5">
+<div class="my-2">
     <div class="row w-25 mx-auto">
         <div class="col card shadow-sm mx-auto py-2">
             <h2 class="lato-bold mx-auto my-2">

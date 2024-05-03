@@ -3,10 +3,10 @@
 @section('title', 'index')
 
 @section('content')
-    <div class="index-background">
+    <div class="index-background py-3">
         <main class="container">
             <div class="row justify-content-center">
-                <div class="col-md-10 my-5">
+                <div class="col-md-10">
                     <form action="#" method="post">
                         @csrf
                         <div class="row mb-3">
