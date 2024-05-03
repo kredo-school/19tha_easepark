@@ -45,7 +45,12 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></td>
+                        <td> <button class="dropdown-item text-danger" data-bs-toggle="modal"
+                                data-bs-target="#delete-user">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                        @include('admin.users.modal.delete')
                     </tr>
                 </tbody>
             </table>
