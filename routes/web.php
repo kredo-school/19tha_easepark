@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\FeesController;
+use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\admin\AdminsController;
@@ -34,11 +35,21 @@ Route::get('/reservation/completion', [ReservationController::class, 'showComple
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/attribute/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
     Route::get('/attribute/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
-    Route::get('/showusers', [UsersController::class, 'showUsers'])->name('showusers');
-    Route::get('/admins/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
-    Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
-    Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('admin.fees.edit');
-    Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('areas.edit');
+    Route::get('/admins/edit', [AdminsController::class, 'editAdmin'])->name('edit');
+    Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('register');
+    Route::get('/users/show', [UsersController::class, 'showUsers'])->name('users.show');
+    Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
+    Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('fees.edit');
+    Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('edit');
+    
+    // Following routes are test routes for the StatisticsController
+    Route::get('/statistics/show/test', [StatisticsController::class, 'showStatisticsTest']);
+    Route::get('/statistics/test/registrations-num/data', [StatisticsController::class, 'fetchRegistrationDataTest']);
+    Route::get('/statistics/test/deletions-num/data', [StatisticsController::class, 'fetchDeletionDataTest']);
+    Route::get('/statistics/test/reservations-num/data', [StatisticsController::class, 'fetchReservationDataTest']);
+    Route::get('/statistics/test/cancellations-num/data', [StatisticsController::class, 'fetchCancellationDataTest']);
+    Route::get('/statistics/test/sales-num/data', [StatisticsController::class, 'fetchSaleDataTest']);
+    // End of test routes for the StatisticsController
 });
 
 Route::get('/test/registration', [RegisterController::class, 'showRegistrationFormTest']);
