@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\HomeController;
+// use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\AreasController;
@@ -26,7 +26,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     // Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
 
@@ -77,3 +77,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/areas/edit', [AreasController::class, 'editRegisteredAreas'])->name('areas.edit');
     });
 });
+
+
+
