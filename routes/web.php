@@ -11,6 +11,8 @@ use App\Http\Controllers\admin\AdminsController;
 use App\Http\Controllers\admin\AttributesController;
 use App\Http\Controllers\admin\FeesController;
 
+use App\Http\Controllers\PDFController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,6 +32,7 @@ Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('l
 Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
 Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
 Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
+Route::get('/reservation/pdf',[PDFController::class,'pdf_generator_get'])->name('pdf_generator');
 
 //Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
