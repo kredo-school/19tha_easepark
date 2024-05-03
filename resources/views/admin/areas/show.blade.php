@@ -41,6 +41,7 @@
                             <th>Address</th>
                             <th>Max Number</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,9 +56,15 @@
                                 <td>{{ $area['address'] }}</td>
                                 <td>{{ $area['max_number'] }}</td>
                                 <td>
-                                    <span class="text-warning"><i class="fa-solid fa-pen-to-square mx-1"></i></span>
-                                    <span class="text-danger"><i class="fa-solid fa-trash-can mx-1"></i></span>
+                                    <span class="text-warning"><i class="fa-solid fa-pen-to-square"></i></span>
+                                    {{-- <span class="text-danger"><i class="fa-solid fa-trash-can mx-1"></i></span> --}}
                                 </td>
+                                <td> <button class="dropdown-item text-danger" data-bs-toggle="modal"
+                                    data-bs-target="#delete-area">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+                            @include('admin.areas.modal.delete')
                                 
                             </tr>
                         @endforeach
@@ -66,4 +73,5 @@
             </div>
         </div>
     </div>
+
 @endsection
