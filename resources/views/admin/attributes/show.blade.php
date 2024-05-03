@@ -7,7 +7,9 @@
 <div class="container">
     <!-- <div class="row justify-content-center"> -->
         <div class="col-4 mb-3">
-            <a href="#" role="button" class="btn btn-green w-100"><i class="fa-solid fa-circle-plus pe-2"></i>Register New Attribute</a>
+            <button type="button" class="btn btn-green w-100" data-bs-toggle="modal" data-bs-target="#register-attribute">
+                <i class="fa-solid fa-circle-plus pe-2"></i>Register New Attribute
+            </button>
         </div>
         
         <div class="card col-10 border">
@@ -67,7 +69,7 @@
                 </table>
             </div>
         </div>
-                            
+        @include('admin.attributes.modal.register')
                             
         
     </div>
