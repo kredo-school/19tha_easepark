@@ -37,7 +37,6 @@
                             <th>Fee Name</th>
                             <th>Amount of Fee</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,14 +48,11 @@
                                 <td>${{ $fee['amount_of_fee'] }}</td>
                                 <td>
                                     <span class="text-warning"><i class="fa-solid fa-pen-to-square mx-1"></i></span>
-                                </td>
-                                <td> <span class="text-danger"><button class="dropdown-item text-danger"
-                                            data-bs-toggle="modal" data-bs-target="#delete-fee">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button></span>
+                                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                                        data-bs-target="#delete-fee"><span class="text-danger"><i
+                                                class="fa-solid fa-trash-can"></i></span></button>
                                 </td>
                                 @include('admin.fees.modal.delete')
-
                             </tr>
                         @endforeach
                     </tbody>
