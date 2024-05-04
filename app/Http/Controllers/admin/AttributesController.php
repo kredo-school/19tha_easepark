@@ -17,6 +17,7 @@ class AttributesController extends Controller
     {
         return view('admin.attributes.edit');
     }
+
     public function default()
     {
         return view('admin.attributes.show');
