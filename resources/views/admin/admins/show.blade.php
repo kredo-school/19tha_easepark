@@ -1,8 +1,62 @@
-@extends('layouts.app')
-@section('title', 'default')
+@extends('layouts.admin')
+
+@section('title', 'Admin: Registered Admins')
+
 @section('content')
-<div class="col-md-2">
-    <button type="button" class="btn btn-blue" data-bs-toggle="modal" data-bs-target="#delete-admin">delete (default)</button>
-</div>
-@include('admin.admins.modal.delete')
+    <a class="btn btn-green my-2" role="button" href="{{ route('admin.admins.register') }}">
+        <i class="fa-solid fa-circle-plus me-2 btn-lg"></i>Register New Admin
+    </a>
+    <div class="card">
+        <div class="card-header bg-light">
+            <div class="row d-flex justify-content-center">
+
+                <h3 class="col-md-6 card-title my-3">
+                    <i class="fa-solid fa-users-gear me-3 fa-lg"></i>Registered Admins
+                </h3>
+                <div class="col-md-5 me-1">
+                    <form action="#" class="ms-auto my-3">
+                        <div class="input-group">
+                            <input type="search" name="search" placeholder="Search Admins" value=""
+                                class="form-control form-control-sm">
+                            <button type="submit" class="btn bg-dark text-white border" aria-label="Search Users"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-body px-0 py-0 mb-2">
+            <table class="table table-hover align-middle border-0 text-center">
+                <thead class="small table-info">
+                    <tr>
+                        <th class="col-2">ID</th>
+                        <th class="col-4">Full Name</th>
+                        <th class="col-4">E-mail</th>
+                        <th class="col-1"></th>
+                        <th class="col-1"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{-- Add: backend --}}
+                    <tr>
+                        <td class="col-2">{{ 1 }}</td>
+                        <td class="col-4">Tom Cruise</td>
+                        <td class="col-4">tom@cruise.com</td>
+                        <td  class="col-1">
+                            <a href="#"><i class="text-warning fa-solid fa-pen-to-square fa-lg me-4"></i></a>
+
+                        </td>
+                        <td class="col-1"> <button class="dropdown-item text-danger" data-bs-toggle="modal"
+                                data-bs-target="#delete-admin">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    @include('admin.admins.modal.delete')
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 @endsection
