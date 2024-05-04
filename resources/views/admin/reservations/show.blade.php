@@ -79,11 +79,12 @@
                                 <td>{{ $reservation['type'] }}</td>
                                 <td>${{ $reservation['fee'] }}</td>
                                 <td>
-                                    <button type="button" class="btn btn-sm text-danger" data-bs-toggle="modal" data-bs-target="#">
+                                    <button type="button" class="btn btn-sm text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation">
                                         <i class="fa-solid fa-trash-can mx-1"></i>
                                     </button>
                                 </td>
                             </tr>
+                            @include('admin.reservations.modal.delete')
                         @endforeach
                     </tbody>
                 </table>
