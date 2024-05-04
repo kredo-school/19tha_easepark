@@ -56,9 +56,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     //For Areas
     Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');
     Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('areas.edit');
-<<<<<<< HEAD
     Route::get('/default/manegeAttributes', [AttributesController::class, 'default'])->name('default');
-=======
-
->>>>>>> main
 });
