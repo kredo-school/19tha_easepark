@@ -69,4 +69,10 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function showRegistrationFormTest()
+    {
+        $attributes = ['General', 'EV', 'Disability'];
+        return view('auth.register')->with('attributes', $attributes);
+    }
 }
