@@ -9,6 +9,15 @@ use Apps\Models\User;
 use Apps\Models\Reservation;
 use Apps\Models\Attribute;
 */
+namespace App\Http\Controllers\admin;
+
+include __DIR__ . '/../../../../resources/views/admin/statistics/SampleData.php';
+
+/* Following namespace import statement will be used at the phase of backend
+use Apps\Models\User;
+use Apps\Models\Reservation;
+use Apps\Models\Attribute;
+*/
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
