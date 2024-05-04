@@ -20,6 +20,7 @@ Route::get('/', function () {
 // for Home Page
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/homepage', [HomeController::class, 'homePage'])->name('homepage');
+Route::get('/homepage/available-dates', [HomeController::class, 'passAvailableDates']);
 
 // for Login & Registration
 Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('login-admin');
