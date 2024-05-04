@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('address', 50);
             $table->unsignedInteger('max_num');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
             $table->foreign('fee_id')->references('id')->on('fees')->onDelete('cascade');
@@ -31,5 +32,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('areas');
+        Schema::table('areas', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

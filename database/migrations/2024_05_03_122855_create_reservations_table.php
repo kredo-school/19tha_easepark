@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->integer('fee_log');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
@@ -30,5 +31,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('reservations');
+        Schema::table('reservations', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

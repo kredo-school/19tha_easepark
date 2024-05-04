@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('attribute_id');
             // $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
         });
@@ -50,5 +51,8 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };
