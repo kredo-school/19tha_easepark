@@ -64,7 +64,7 @@
                     @enderror
 
                 <div class="mt-4 button-group text-center">
-                    <button type="button" class="btn btn-cancel me-2">Cancel</button>
+                    <a href="{{ route('profile.show') }}" class="btn btn-cancel me-2">Cancel</a>
                     <button type="submit" class="btn btn-blue">Save</button>
                 </div>
             </form>
@@ -106,7 +106,7 @@
                 @enderror
 
                 <div class="mt-4 button-group text-center">
-                    <button type="button" class="btn btn-cancel me-2">Cancel</button>
+                    <a href="{{ route('profile.show') }}" class="btn btn-cancel me-2">Cancel</a>
                     <button type="submit" class="btn btn-blue">Update Password</button>
                 </div>
             </form>
