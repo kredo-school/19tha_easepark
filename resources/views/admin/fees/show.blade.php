@@ -3,11 +3,12 @@
 @section('title', 'Admin:Fees')
 
 @section('content')
-    <div class="my-1">
-        <button type="button" class="btn btn-green">
+    <div class="my-1 dropdown-item" data-bs-toggle="modal" data-bs-target="#register-fee">
+        <button class="btn btn-green">
             <i class="fa-solid fa-circle-plus"></i> Register New Fee
         </button>
     </div>
+    @include('admin.fees.modal.register')
     <div class="card border w-75">
         <div class="card-header bg-light">
             <div class="row d-flex justify-content-center align-items-center">

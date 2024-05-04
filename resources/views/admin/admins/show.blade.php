@@ -44,9 +44,10 @@
                         <td>tom@cruise.com</td>
                         <td>
                             <a href="#"><i class="text-warning fa-solid fa-pen-to-square fa-lg me-4"></i></a>
-                            <a href="#"><i class="fa-solid fa-trash-can text-danger fa-lg"></i></a>
+                            <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#delete-admin"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
                         </td>
                     </tr>
+                    @include('admin.admins.modal.delete')
                 </tbody>
             </table>
         </div>
