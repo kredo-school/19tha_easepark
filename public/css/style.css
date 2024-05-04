@@ -356,3 +356,39 @@ fieldset[disabled] .btn-yellow.focus {
 .modal-head-color-red-transparent{
   background-color: #F2D3D3;
 }
+
+<<<<<<< Updated upstream
+/*
+  styles for statistical pages
+*/
+.statistic-db-choice-range{
+    background-color: rgba(225, 225, 225, 0.8);
+  }
+  .statistic-each-db:hover {
+    transform: translateY(-5px); /* Moves the element up by 5 pixels */
+    transition: all 0.3s ease; /* Smooth transition */
+  }
+  .statistic-extract-condition:hover{
+    transform: translateX(-5px); /* Moves the element up by 5 pixels */
+    transition: all 0.3s ease; /* Smooth transition */
+    color: black;
+  }
+  .statistic-extract-condition-clicked {
+    background-color: #124DAB;
+    color: white;
+  }
+  .statistic-extract-condition-clicked:hover {
+    color: white;
+  }
+  .year-selection {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-size: 8px 10px;
+  }
+=======
+.selected-date{
+    background-color: #51b8ec;
+}
+>>>>>>> Stashed changes
