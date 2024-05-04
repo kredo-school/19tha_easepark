@@ -3,9 +3,9 @@
 @section('title', 'Admin: Registered Admins')
 
 @section('content')
-    <a class="btn btn-green my-2" role="button" href="{{ route('admin.admins.register') }}">
-        <i class="fa-solid fa-circle-plus me-2 btn-lg"></i>Register New Admin
-    </a>
+<a class="btn btn-green my-2" role="button" href="{{ route('admin.admins.register') }}">
+    <i class="fa-solid fa-circle-plus me-2 btn-lg"></i>Register New Admin
+</a>
     <div class="card">
         <div class="card-header bg-light">
             <div class="row d-flex justify-content-center">
@@ -30,31 +30,24 @@
             <table class="table table-hover align-middle border-0 text-center">
                 <thead class="small table-info">
                     <tr>
-                        <th class="col-2">ID</th>
-                        <th class="col-4">Full Name</th>
-                        <th class="col-4">E-mail</th>
-                        <th class="col-1"></th>
-                        <th class="col-1"></th>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>E-mail</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {{-- Add: backend --}}
                     <tr>
-                        <td class="col-2">{{ 1 }}</td>
-                        <td class="col-4">Tom Cruise</td>
-                        <td class="col-4">tom@cruise.com</td>
-                        <td  class="col-1">
+                        <td>{{ 1 }}</td>
+                        <td>Tom Cruise</td>
+                        <td>tom@cruise.com</td>
+                        <td>
                             <a href="#"><i class="text-warning fa-solid fa-pen-to-square fa-lg me-4"></i></a>
-
-                        </td>
-                        <td class="col-1"> <button class="dropdown-item text-danger" data-bs-toggle="modal"
-                                data-bs-target="#delete-admin">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
+                            <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#delete-admin"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
                         </td>
                     </tr>
                     @include('admin.admins.modal.delete')
-                    </tr>
                 </tbody>
             </table>
         </div>
