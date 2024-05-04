@@ -6,6 +6,7 @@
 <h3 class="my-1 fw-bold">
     <i class="fa-solid fa-chart-simple"></i> Statistics
 </h3>
+
 <div class="card border">
     <div class="card-header bg-light">
         {{-- PartA: This is the container where the tabs for database (users or reservations) are listed. --}}
