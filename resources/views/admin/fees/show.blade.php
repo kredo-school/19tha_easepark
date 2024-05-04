@@ -22,7 +22,7 @@
                             <input type="search" name="search" placeholder="Search Fees" value=""
                                 class="form-control form-control-sm">
                             <button type="submit" class="btn bg-dark text-white border" aria-label="Search Fees"><i
-                            class="fa-solid fa-magnifying-glass"></i></button>
+                                    class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
                 </div>
@@ -49,9 +49,11 @@
                                 <td>${{ $fee['amount_of_fee'] }}</td>
                                 <td>
                                     <span class="text-warning"><i class="fa-solid fa-pen-to-square mx-1"></i></span>
-                                    <span class="text-danger"><i class="fa-solid fa-trash-can mx-1"></i></span>
+                                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                                        data-bs-target="#delete-fee"><span class="text-danger"><i
+                                                class="fa-solid fa-trash-can"></i></span></button>
                                 </td>
-                                
+                                @include('admin.fees.modal.delete')
                             </tr>
                         @endforeach
                     </tbody>

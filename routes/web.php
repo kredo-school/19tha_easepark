@@ -10,8 +10,8 @@ use App\Http\Controllers\Admin\FeesController;
 use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\admin\AdminsController;
-use App\Http\Controllers\admin\AttributesController;
+use App\Http\Controllers\Admin\AdminsController;
+use App\Http\Controllers\Admin\AttributesController;
 use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Controllers\Admin\ReservationsController;
 
