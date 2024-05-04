@@ -357,7 +357,6 @@ fieldset[disabled] .btn-yellow.focus {
   background-color: #F2D3D3;
 }
 
-<<<<<<< Updated upstream
 /*
   styles for statistical pages
 */
@@ -387,8 +386,6 @@ fieldset[disabled] .btn-yellow.focus {
     background-position: right .75rem center;
     background-size: 8px 10px;
   }
-=======
 .selected-date{
     background-color: #51b8ec;
 }
->>>>>>> Stashed changes
