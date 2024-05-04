@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="my-1">
-        <button type="button" class="btn btn-green">
+        <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#registerArea">
             <i class="fa-solid fa-circle-plus"></i> Register New Area
         </button>
     </div>
@@ -72,6 +72,7 @@
                 </table>
             </div>
         </div>
+        @include('admin.areas.modal.register')
     </div>
 
 @endsection
