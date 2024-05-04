@@ -357,6 +357,12 @@ fieldset[disabled] .btn-yellow.focus {
   background-color: #F2D3D3;
 }
 
+.modal-header .btn-close {
+    filter: invert(1);
+  }
+
+
+/* 
 /*
   styles for statistical pages
 */
