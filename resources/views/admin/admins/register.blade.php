@@ -26,7 +26,7 @@
                     </span>
                 @enderror
             </div>
-
+            
             {{-- E-MAIL --}}
             <div class="row">
                 <label for="email" class="form-label">{{ __('E-mail') }}</label>
@@ -103,5 +103,4 @@
         </div>
     </div>
 </div>
-<br><br><br><br>
 @endsection

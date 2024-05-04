@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -43,5 +43,8 @@ class AreasController extends Controller
 
     public function editRegisteredAreas(){
         return view('admin.areas.edit');
+    }
+    public function registerArea(){
+        return view('admin.areas.show');
     }
 }
