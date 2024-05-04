@@ -44,16 +44,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/users/show', [UsersController::class, 'showUsers'])->name('users.show');
     Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
     Route::get('/fees/edit',[FeesController::class,'updateRegisteredFees'])->name('fees.edit');
-    Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('edit');
-    
-    // Following routes are test routes for the StatisticsController
-    Route::get('/statistics/show/test', [StatisticsController::class, 'showStatisticsTest']);
-    Route::get('/statistics/test/registrations-num/data', [StatisticsController::class, 'fetchRegistrationDataTest']);
-    Route::get('/statistics/test/deletions-num/data', [StatisticsController::class, 'fetchDeletionDataTest']);
-    Route::get('/statistics/test/reservations-num/data', [StatisticsController::class, 'fetchReservationDataTest']);
-    Route::get('/statistics/test/cancellations-num/data', [StatisticsController::class, 'fetchCancellationDataTest']);
-    Route::get('/statistics/test/sales-num/data', [StatisticsController::class, 'fetchSaleDataTest']);
-    // End of test routes for the StatisticsController
+
+    //For Areas
+    Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');
+    Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('areas.edit');
+
 });
 
 Route::get('/test/registration', [RegisterController::class, 'showRegistrationFormTest']);

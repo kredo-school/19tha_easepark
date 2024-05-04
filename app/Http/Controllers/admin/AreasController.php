@@ -44,4 +44,5 @@ class AreasController extends Controller
     public function editRegisteredAreas(){
         return view('admin.areas.edit');
     }
+
 }
