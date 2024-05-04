@@ -48,7 +48,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     //For Areas
     Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');
     Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('areas.edit');
-
+    Route::get('/areas/register',[AreasController::class,'showRegisterArea'])->name('areas.register');
 });
 
 Route::get('/test/registration', [RegisterController::class, 'showRegistrationFormTest']);
