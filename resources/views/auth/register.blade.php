@@ -82,14 +82,14 @@
                         <div class="mb-3">
                             <label class="form-label text-muted">{{ __('Attribute') }}</label>
                             <div class="d-flex flex-wrap">
-                                @foreach ($attributes as $attribute)
+                                {{-- @foreach ($attributes as $attribute)
                                     <div class="form-check mx-3">
                                         <input class="form-check-input" type="radio" name="attribute" id="attribute-{{ $attribute }}" value="{{ $attribute }}">
                                         <label class="form-check-label" for="attribute-{{ $attribute }}">
                                             {{ $attribute }}
                                         </label>
                                     </div>
-                                @endforeach
+                                @endforeach --}}
                             </div>
                         </div>
 
