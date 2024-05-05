@@ -47,6 +47,7 @@
                             <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
                         </td>
                     </tr>
+                    @include('admin.admins.modal.delete')
                 </tbody>
             </table>
         </div>

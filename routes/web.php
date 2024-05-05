@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\Admin\AttributesController;
 use App\Http\Controllers\Admin\FeesController;
 use App\Http\Controllers\Admin\AdminsController;
+use App\Http\Controllers\Admin\ReservationsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,4 +57,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     //For Areas
     Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');
     Route::get('/areas/edit',[AreasController::class,'editRegisteredAreas'])->name('areas.edit');
+
+    //For Reservations
+    Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
 });

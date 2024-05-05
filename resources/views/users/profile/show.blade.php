@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'show profile')
+@section('title', 'Show Profile')
 
 @section('content')
 
@@ -12,7 +12,7 @@
                         <i class="fa-solid fa-user"></i>
                         Your Profile
                     </h2>
-                    <a href="{{route('profile.edit')}}" class="col btn btn-blue">
+                    <a href="{{ route('profile.edit') }}" class="col btn btn-blue my-auto">
                         <i class="fa-solid fa-pen-to-square"></i>
                         Edit Profile
                     </a>
@@ -34,12 +34,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-auto ps-5 me-3 my-3">
-                <a href="#" class="btn btn-red">
+            <div class="col-auto me-3 my-3">
+                <button class="btn btn-red" data-bs-toggle="modal" data-bs-target="#delete-profile">
                     <i class="fa-solid fa-trash-can"></i>
                     Delete Account
-                </a>
+                </button>
             </div>
+            @include('users.profile.modal.delete')
         </div>
     </div>
 
