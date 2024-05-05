@@ -90,13 +90,34 @@
                 <div class="row justify-content-center">
                     <div class="col-md-2">
                         <div class="list-group text-center">
-                            <a href="{{route('admin.users.show')}}" class="list-group-item">Users</a>
-                            <a href="{{route('admin.areas.show')}}" class="list-group-item">Areas</a>
-                            <a href="{{route('admin.attributes.show')}}" class="list-group-item">Attributes</a>
-                            <a href="{{route('admin.fees.show')}}" class="list-group-item">Fees</a>
-                            <a href="#" class="list-group-item">Reservations</a>
-                            <a href="#" class="list-group-item">Statistics</a>
-                            <a href="{{route('admin.admins.show')}}" class="list-group-item">Admin</a>
+                            
+                            <a href="{{route('admin.users.show')}}" class="list-group-item {{ request()->is('admin/users*') ? 'active' : '' }}">
+                                <i class="fa-solid fa-people-group me-1"></i>Users
+                            </a>
+
+                            <a href="{{route('admin.areas.show')}}" class="list-group-item {{ request()->is('admin/areas*') ? 'active' : '' }}">
+                                <i class="fa-solid fa-map-marked-alt me-1"></i>Areas
+                            </a>
+                            <a href="{{route('admin.attributes.show')}}" class="list-group-item {{ request()->is('admin/attributes*') ? 'active' : '' }}">
+                                <i class="fa-solid fa-wheelchair me-1"></i>Attribute
+                            </a>
+                            
+                            <a href="{{route('admin.fees.show')}}" class="list-group-item {{ request()->is('admin/fees*') ? 'active' : '' }}">
+                                <i class="fa-regular fa-credit-card me-1"></i>Fees
+                            </a>
+
+                            <a href="{{route('admin.reservations.show')}}" class="list-group-item {{ request()->is('admin/reservations*') ? 'active' : '' }}">
+                                <i class="fa-solid fa-car me-1"></i>Reservations
+                            </a>
+
+                            {{-- Route name for statistics should be 'admin.statistics.show' later --}}
+                            <a href="{{route('admin.statistics.show.test')}}" class="list-group-item {{ request()->is('admin/statistics*') ? 'active' : '' }}">
+                                <i class="fa-solid fa-chart-simple me-1"></i>Statistics
+                            </a>
+
+                            <a href="{{route('admin.admins.show')}}" class="list-group-item {{ request()->is('admin/admins*') ? 'active' : '' }}">
+                                <i class="fa-solid fa-users-gear me-1"></i>Admins
+                            </a>
                         </div>
                     </div>
 

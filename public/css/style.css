@@ -72,7 +72,7 @@ body {
 
 /* footer */
 .content {
-    min-height: 100vh;
+    min-height: calc(100vh - 100px);
 }
 .footer {
     bottom: 0;
@@ -127,6 +127,7 @@ fieldset[disabled] .btn-blue:focus,
 fieldset[disabled] .btn-blue.focus {
     background: #003399;
     color: #ffff;
+    text-decoration: none;
 }
 
 .btn-red {
@@ -161,6 +162,7 @@ fieldset[disabled] .btn-red:focus,
 fieldset[disabled] .btn-red.focus {
     background: #B31712;
     color: #ffff;
+    text-decoration: none;
 }
 
 .btn-green {
@@ -195,6 +197,7 @@ fieldset[disabled] .btn-green:focus,
 fieldset[disabled] .btn-green.focus {
     background: #2E7157;
     color: #ffff;
+    text-decoration: none;
 }
 .btn-yellow {
     background: #FFB11B;
@@ -228,37 +231,30 @@ fieldset[disabled] .btn-yellow:focus,
 fieldset[disabled] .btn-yellow.focus {
     background: #CC8C16;
     color: #ffff;
+    text-decoration: none;
 }
 
 .btn-cancel {
     background: #ffff;
-    color: #003399;
-    border: solid 1px #003399;
+    color: #606060;
+    border: solid 1px #606060;
 }
 
 .btn-cancel:hover,
 .btn-cancel:focus,
 .btn-cancel:active,
-.btn-yellow:active:focus,
+.btn-cancel:active:focus,
 .btn-cancel:active:hover,
-.btn-yellow:active.focus,
-.btn-cancel.active,
-.btn-yelcancellow.active:focus,
-.btn-cancel.active:hover,
-.btn-yellow.active.focus,
-.open > .dropdown-toggle.btn-yellow,
-.open > .dropdown-toggle.btn-yellow:hover,
-.open > .dropdown-toggle.btn-yellow:focus,
-.open > .dropdown-toggle.btn-yellow.focus,
-.btn-yellow.disabled:hover,
-.btn-yellow[disabled]:hover,
-fieldset[disabled] .btn-yellow:hover,
-.btn-yellow.disabled:focus,
-.btn-yellow[disabled]:focus,
-fieldset[disabled] .btn-yellow:focus,
-.btn-yellow.disabled.focus,
-.btn-yellow[disabled].focus,
-fieldset[disabled] .btn-yellow.focus {
+.open > .dropdown-toggle.btn-cancel,
+.open > .dropdown-toggle.btn-cancel:hover,
+.open > .dropdown-toggle.btn-cancel:focus,
+.btn-cancel.disabled:hover,
+.btn-cancel[disabled]:hover,
+fieldset[disabled] .btn-cancel:hover,
+.btn-cancel.disabled:focus,
+.btn-cancel[disabled]:focus,
+fieldset[disabled] .btn-cancel:focus,
+.btn-cancel[disabled].focus {
     background: #D9D9D9;
     color: #003399;
     border: solid 1px #999999;

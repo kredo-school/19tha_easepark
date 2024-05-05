@@ -11,8 +11,8 @@
                 <i class="fa-solid fa-circle-plus pe-2"></i>Register New Attribute
             </button>
         </div>
-        
-        <div class="card col-10 border">
+        @include('admin.attributes.modal.register')
+        <div class="card col-8 border">
             <div class="card-header bg-light">
                 <div class="row">
                     <h3 class="col card-title mt-1">
@@ -46,16 +46,14 @@
                             <td>General</td>
                             <td class="text-center">
                                 <a href="{{route('admin.attributes.edit')}}"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
-                                <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
+                                <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                @include('admin.attributes.modal.delete')
             </div>
         </div>
-        @include('admin.attributes.modal.register')
-                            
-        
     </div>
 </div>     
 @endsection

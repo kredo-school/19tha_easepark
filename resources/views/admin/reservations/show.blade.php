@@ -8,6 +8,7 @@
 <script type="text/javascript" src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/moment.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/daterangepicker.min.js') }}"></script>
+@vite(['resources/js/managePeriod.js'])
 <link rel="stylesheet" type="text/css" href="{{ asset('css/daterangepicker.css') }}" >
 
     <div class="card border">
@@ -29,26 +30,6 @@
                             </button>
                         </div>
                     </form>
-
-                    <script>
-                        $(function() {
-                            $('input[name="daterange"]').daterangepicker({
-                                autoUpdateInput: false,
-                                applyButtonClasses: "btn-blue",
-                                cancelButtonClasses: "btn-cancel"
-                            });
-
-                            $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
-                                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-                                $('#start-date').val(picker.startDate.format('YYYY/MM/DD'));
-                                $('#end-date').val(picker.endDate.format('YYYY/MM/DD'));
-                            });
-
-                            $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
-                                $(this).val('');
-                            });
-                        });
-                    </script>
                 </div>
             </div>
         </div>
@@ -84,10 +65,10 @@
                                     </button>
                                 </td>
                             </tr>
-                            @include('admin.reservations.modal.delete')
                         @endforeach
                     </tbody>
                 </table>
+                @include('admin.reservations.modal.delete')
             </div>
         </div>
     </div>

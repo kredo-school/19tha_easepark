@@ -8,10 +8,10 @@
             <i class="fa-solid fa-circle-plus"></i> Register New Area
         </button>
     </div>
+    @include('admin.areas.modal.register')
     <div class="card border">
         <div class="card-header bg-light">
             <div class="row d-flex justify-content-center align-items-center">
-
                 <h3 class="col-md-6 card-title mt-1">
                     <i class="fa-solid fa-map-marked-alt"></i> Areas
                 </h3>
@@ -25,7 +25,6 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
         <div class="card-body px-0 py-0 mb-2">
@@ -57,15 +56,15 @@
                                 <td>{{ $area['max_number'] }}</td>
                                 <td class="text-center">
                                     <a href="{{route('admin.areas.edit')}}"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
-                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
+                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-area"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
                                 </td>                                
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                @include('admin.areas.modal.delete')
             </div>
         </div>
-        @include('admin.areas.modal.register')
     </div>
 
 @endsection

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AttributesController;
 use App\Http\Controllers\Admin\FeesController;
 use App\Http\Controllers\Admin\AdminsController;
 use App\Http\Controllers\Admin\ReservationsController;
+use App\Http\Controllers\Admin\StatisticsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -60,4 +61,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     //For Reservations
     Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
+
+
+    // Following routes are test routes for the StatisticsController
+    Route::get('/statistics/show/test', [StatisticsController::class, 'showStatisticsTest'])->name('statistics.show.test');
+    Route::get('/statistics/test/registrations-num/data', [StatisticsController::class, 'fetchRegistrationDataTest']);
+    Route::get('/statistics/test/deletions-num/data', [StatisticsController::class, 'fetchDeletionDataTest']);
+    Route::get('/statistics/test/reservations-num/data', [StatisticsController::class, 'fetchReservationDataTest']);
+    Route::get('/statistics/test/cancellations-num/data', [StatisticsController::class, 'fetchCancellationDataTest']);
+    Route::get('/statistics/test/sales-num/data', [StatisticsController::class, 'fetchSaleDataTest']);
+    // End of test routes for the StatisticsController
 });

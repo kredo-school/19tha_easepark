@@ -1,7 +1,18 @@
 @extends('layouts.admin')
 @section('title', 'Admin:Statistics')
 @section('content')
+
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+{{-- CDN for jQeury (NOT USED)--}}
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+{{-- Downloaded jQuery --}}
+<script type="text/javascript" src="{{ asset('js/jquery-3.7.1.min.js')}}"></script>
+
+{{-- CDN for Chart.js --}}
+{{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
+{{-- Downloaded Chart.js --}}
+<script type="text/javascript" src="{{ asset('js/chart.min.js')}}"></script>
+@vite(['resources/js/manageStatistics.js'])
 
 <h3 class="my-1 fw-bold">
     <i class="fa-solid fa-chart-simple"></i> Statistics
@@ -81,14 +92,4 @@
         </div>
         
     </div>
-
-    {{-- CDN for jQeury (NOT USED)--}}
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-    {{-- Downloaded jQuery --}}
-    <script type="text/javascript" src="{{ asset('js/jquery-3.7.1.min.js')}}"></script>
-
-    {{-- CDN for Chart.js --}}
-    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
-    {{-- Downloaded Chart.js --}}
-    <script type="text/javascript" src="{{ asset('js/chart.min.js')}}"></script>
 @endsection

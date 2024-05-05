@@ -24,7 +24,7 @@
                 <span>${{ array_sum(array_column($tentativeReservations, 'fee')) }}</span>
             </div>
             <div class="mt-5 button-group">
-                <button type="button" class="btn btn-cancel me-2">Cancel</button>
+                <a href="{{route('homepage')}}" class="btn btn-cancel me-2">Cancel</a>
                 <button type="button" class="btn btn-blue">Confirm</button>
             </div>
         </div>
