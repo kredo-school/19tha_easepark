@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="my-3">
+<div class="my-5">
     <div class="row w-25 mx-auto">
         <div class="col card shadow-sm mx-auto py-2">
             <h2 class="lato-bold mx-auto my-2">
@@ -72,7 +72,7 @@
     </div>
 </div>
 
-<div class="mt-3 mb-5">
+<div class="my-2">
     <div class="row w-25 mx-auto">
         <div class="col card shadow-sm mx-auto py-2">
             <h2 class="lato-bold mx-auto my-2">
@@ -97,8 +97,8 @@
                 <span class="d-block small text-danger">{{ $message }}</span>
                 @enderror
 
-                <label for="new-password-confirm" class="form-label fw-bold">Confirm New Password</label>
-                <input type="password" name="new_password_confirm" id="new-password-confirm" class="form-control mb-3">
+                <label for="new-password-confirmation" class="form-label fw-bold">Confirm New Password</label>
+                <input type="password" name="new_password_confirmation" id="new-password-confirmation" class="form-control mb-3">
                 @error('phone-number')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>

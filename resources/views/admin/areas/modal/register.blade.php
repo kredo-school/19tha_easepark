@@ -8,7 +8,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body mx-5">
-                <form method="POST" action="{{route('admin.areas.register')}}">
+                {{-- Will be included {{route('admin.areas.register')}} later --}}
+                <form method="POST" action="#">
                     @csrf
         
                     {{-- Name --}}
