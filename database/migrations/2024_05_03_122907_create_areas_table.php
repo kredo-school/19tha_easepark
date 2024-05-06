@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 50);
             $table->unsignedBigInteger('attribute_id');
             $table->unsignedBigInteger('fee_id');
-            $table->string('address', 50);
+            $table->string('address', 255);
             $table->unsignedInteger('max_num');
             $table->timestamps();
             $table->softDeletes();

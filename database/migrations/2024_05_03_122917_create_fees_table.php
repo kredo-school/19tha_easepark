@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('fees', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
-            $table->unsignedInteger('fee');
+            $table->double('fee', 5, 2);
             $table->timestamps();
         });
     }
