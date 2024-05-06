@@ -11,7 +11,7 @@
                 <i class="fa-solid fa-circle-plus pe-2"></i>Register New Attribute
             </button>
         </div>
-        
+
         <div class="card col-10 border">
             <div class="card-header bg-light">
                 <div class="row">
@@ -27,7 +27,7 @@
                             </div>
                         </form>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="card-body px-0 py-0">
@@ -70,8 +70,6 @@
             </div>
         </div>
         @include('admin.attributes.modal.register')
-                            
-        
     </div>
-</div>     
+</div>
 @endsection

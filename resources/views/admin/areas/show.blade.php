@@ -41,7 +41,6 @@
                             <th>Address</th>
                             <th>Max Number</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,14 +64,12 @@
                                 </button>
                             </td>
                             @include('admin.areas.modal.delete')
-                                
+
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
-        @include('admin.areas.modal.register')
     </div>
-
 @endsection

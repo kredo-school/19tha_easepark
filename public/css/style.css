@@ -148,7 +148,6 @@ fieldset[disabled] .btn-blue.focus {
 .open > .dropdown-toggle.btn-red,
 .open > .dropdown-toggle.btn-red:hover,
 .open > .dropdown-toggle.btn-red:focus,
-.open > .dropdown-toggle.btn-red:focus,
 .open > .dropdown-toggle.btn-red.focus,
 .btn-red.disabled:hover,
 .btn-red[disabled]:hover,
@@ -182,7 +181,6 @@ fieldset[disabled] .btn-red.focus {
 .open > .dropdown-toggle.btn-green,
 .open > .dropdown-toggle.btn-green:hover,
 .open > .dropdown-toggle.btn-green:focus,
-.open > .dropdown-toggle.btn-green:focus,
 .open > .dropdown-toggle.btn-green.focus,
 .btn-green.disabled:hover,
 .btn-green[disabled]:hover,
@@ -214,7 +212,6 @@ fieldset[disabled] .btn-green.focus {
 .btn-yellow.active.focus,
 .open > .dropdown-toggle.btn-yellow,
 .open > .dropdown-toggle.btn-yellow:hover,
-.open > .dropdown-toggle.btn-yellow:focus,
 .open > .dropdown-toggle.btn-yellow:focus,
 .open > .dropdown-toggle.btn-yellow.focus,
 .btn-yellow.disabled:hover,
@@ -362,7 +359,7 @@ fieldset[disabled] .btn-yellow.focus {
   }
 
 
-/* 
+/*
 /*
   styles for statistical pages
 */

@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Admin | Edit Profile')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -28,7 +30,7 @@
                             </span>
                         @enderror
                     </div>
-                    
+
                     {{-- E-MAIL --}}
                     <div class="row">
                         <label for="email" class="form-label">{{ __('E-mail') }}</label>
@@ -77,9 +79,9 @@
                     </div>
 
                     <div class="row mb-4">
-                        <input id="current-password" type="password" class="form-control @error('current-password') is-invalid @enderror" name="current-password" required autocomplete="current-password">
+                        <input id="current-password" type="password" class="form-control @error('current-password') is-invalid @enderror" name="current_password" required autocomplete="current-password">
 
-                        @error('current-password')
+                        @error('current_password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -91,9 +93,9 @@
                     </div>
 
                     <div class="row mb-4">
-                        <input id="new-password" type="password" class="form-control @error('new-password') is-invalid @enderror" name="new-password" required autocomplete="">
+                        <input id="new-password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" required autocomplete="">
 
-                        @error('new-password')
+                        @error('new_password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -105,9 +107,9 @@
                     </div>
 
                     <div class="row mb-5">
-                        <input id="confirm-new-password" type="password" class="form-control @error('confirm-new-password') is-invalid @enderror" name="confirm-new-password" required autocomplete="">
+                        <input id="confirm-new-password" type="password" class="form-control @error('new_password_confirmation') is-invalid @enderror" name="new_password_confirmation" required autocomplete="">
 
-                        @error('confirm-new-password')
+                        @error('new_password_confirmation')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
