@@ -27,17 +27,13 @@ class AdminLoginController extends Controller
     {
         $this->validateLogin($request);
 
-        // Request check if the request is for an admin user.
         if (Auth::guard('admin')->attempt(
             $request->only('email', 'password'),
             $request->filled('remember')
         )) {
-            // If successful login
-            // return redirect()->intended($this->redirectPath());
             return redirect(route('admin.users.show'));
         }
 
-        // If login failed
         return back()->withErrors([
             'email' => trans('auth.failed'),
         ]);
