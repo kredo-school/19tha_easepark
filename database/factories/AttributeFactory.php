@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Attribute>
  */
 class AttributeFactory extends Factory
 {
@@ -17,7 +17,7 @@ class AttributeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->unique()->randomElement(["General", "EV", "Disability"]),
         ];
     }
 }

@@ -26,7 +26,7 @@ class ReservationFactory extends Factory
                 return Area::all()->random()->id;
             },
             'date' => fake()->date(),
-            'fee_log' => fake()->randomNumber(),
+            'fee_log' => fake()->randomNumber(4),
         ];
     }
 }

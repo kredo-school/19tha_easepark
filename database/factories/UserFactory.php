@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+use App\Models\Attribute;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
@@ -26,9 +28,12 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => null,
             'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'phone_number' => fake()->phoneNumber(),
+            'plate_number' => fake()->regexify('[A-Z]{3}-[0-9]{3}'),
+            'attribute_id' => function() {
+                return Attribute::all()->random()->id;
+            },
         ];
     }
 

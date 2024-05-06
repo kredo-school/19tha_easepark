@@ -12,10 +12,13 @@ class AdminTest extends TestCase
     /**
      * A basic feature test example.
      */
+    public function test_example(): void
+    {
     Admin::factory(10)->create();
 
     $admin = Admin::select()
         ->orderByDesc('id')
         ->first();
         print_r($admin->toArray());
+    }
 }

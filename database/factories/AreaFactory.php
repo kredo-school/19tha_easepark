@@ -19,14 +19,14 @@ class AreaFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->words(3, true),
+            'name' => fake()->unique()->randomElement(["Area A, 1F", "Area B, 1F", "Area C, 1F", "Area B, 2F"]),
             'attribute_id' => function() {
                 return Attribute::all()->random()->id;
             },
             'fee_id' => function() {
                 return Fee::all()->random()->id;
             },
-            'address' => fake()->address,
+            'address' => "123 Main Street Anytown",
             'max_num' => fake()->numberBetween(1, 50),
         ];
     }

@@ -17,7 +17,7 @@ class FeeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->words(3, true),
+            'name' => fake()->unique()->randomElement(["Normal Season", "Peak", "Promotion"]),
             'fee' => fake()->randomNumber(3),
         ];
     }

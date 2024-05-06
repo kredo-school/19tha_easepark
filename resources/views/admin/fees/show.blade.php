@@ -45,8 +45,8 @@
                         @foreach ($fees as $fee)
                             <tr>
                                 <td>{{ $fee['id'] }}</td>
-                                <td>{{ $fee['fee_name'] }}</td>
-                                <td>${{ $fee['amount_of_fee'] }}</td>
+                                <td>{{ $fee['name'] }}</td>
+                                <td>${{ $fee['fee'] }}</td>
                                 <td class="text-center">
                                     <a href="{{route('admin.fees.edit')}}"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
                                     <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-fee"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
