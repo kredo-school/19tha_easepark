@@ -21,8 +21,6 @@
     <link rel="stylesheet" href="{{ asset('css/custom-font.css') }}">
     <!-- FW -->
     <link rel ="stylesheet" href="{{ asset('css/all.min.css') }}">
-
-    
 </head>
 
 <body>
