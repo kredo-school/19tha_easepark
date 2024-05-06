@@ -392,3 +392,6 @@ fieldset[disabled] .btn-yellow.focus {
     background-position: right .75rem center;
     background-size: 8px 10px;
   }
+.selected-date{
+    background-color: #51b8ec;
+}
