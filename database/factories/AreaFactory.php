@@ -20,8 +20,12 @@ class AreaFactory extends Factory
     {
         return [
             'name' => fake()->words(3, true),
-            'attribute_id' => Attribute::factory(),
-            'fee_id' => Fee::factory(),
+            'attribute_id' => function() {
+                return Attribute::all()->random()->id;
+            },
+            'fee_id' => function() {
+                return Fee::all()->random()->id;
+            },
             'address' => fake()->address,
             'max_num' => fake()->numberBetween(1, 50),
         ];

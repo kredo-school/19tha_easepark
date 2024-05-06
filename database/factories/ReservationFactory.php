@@ -19,10 +19,14 @@ class ReservationFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'area_id' => Area::factory(),
-            'date' => $this->faker->date(),
-            'fee_log' => $this->faker->randomNumber(),
+            'user_id' => function() {
+                return User::all()->random()->id;
+            },
+            'area_id' => function() {
+                return Area::all()->random()->id;
+            },
+            'date' => fake()->date(),
+            'fee_log' => fake()->randomNumber(),
         ];
     }
 }
