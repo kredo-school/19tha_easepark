@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('area_id');
             $table->date('date');
-            $table->integer('fee_log');
+            $table->double('fee_log', 5, 2);
             $table->timestamps();
             $table->softDeletes();
 
