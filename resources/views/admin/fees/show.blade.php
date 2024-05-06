@@ -3,11 +3,12 @@
 @section('title', 'Admin:Fees')
 
 @section('content')
-    <div class="my-1">
-        <button type="button" class="btn btn-green">
+    <div class="my-1 dropdown-item" data-bs-toggle="modal" data-bs-target="#register-fee">
+        <button class="btn btn-green">
             <i class="fa-solid fa-circle-plus"></i> Register New Fee
         </button>
     </div>
+    @include('admin.fees.modal.register')
     <div class="card border w-75">
         <div class="card-header bg-light">
             <div class="row d-flex justify-content-center align-items-center">
@@ -46,15 +47,15 @@
                                 <td>{{ $fee['id'] }}</td>
                                 <td>{{ $fee['fee_name'] }}</td>
                                 <td>${{ $fee['amount_of_fee'] }}</td>
-                                <td>
-                                    <span class="text-warning"><i class="fa-solid fa-pen-to-square mx-1"></i></span>
-                                    <span class="text-danger"><i class="fa-solid fa-trash-can mx-1"></i></span>
+                                <td class="text-center">
+                                    <a href="{{route('admin.fees.edit')}}"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
+                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-fee"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
                                 </td>
-                                
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                @include('admin.fees.modal.delete')
             </div>
         </div>
     </div>

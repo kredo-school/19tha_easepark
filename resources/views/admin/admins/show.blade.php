@@ -17,9 +17,9 @@
                     <form action="#" class="ms-auto my-3">
                         <div class="input-group">
                             <input type="search" name="search" placeholder="Search Admins" value=""
-                                class="form-control form-control-sm">
+                            class="form-control form-control-sm">
                             <button type="submit" class="btn bg-dark text-white border" aria-label="Search Users"><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
+                            class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
                 </div>
@@ -43,12 +43,13 @@
                         <td>Tom Cruise</td>
                         <td>tom@cruise.com</td>
                         <td>
-                            <a href="#"><i class="text-warning fa-solid fa-pen-to-square fa-lg me-4"></i></a>
-                            <a href="#"><i class="fa-solid fa-trash-can text-danger fa-lg"></i></a>
+                            <a href="{{route('admin.admins.edit')}}"><i class="text-warning fa-solid fa-pen-to-square fa-lg me-4"></i></a>
+                            <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-admin"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        @include('admin.admins.modal.delete')
     </div>
 @endsection
