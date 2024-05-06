@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Admin\UsersController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Admin\StatisticsController;
 Route::get('/homepage', function () {
     return view('users.home.index');
 })->name('homepage');
+Route::get('/homepage/available-dates', [HomeController::class, 'passAvailableDates']);
 
 Auth::routes();
 
