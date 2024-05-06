@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
+@section('title','admin|Admin_Resister')
+
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
         <div class="col-md-6">
             <div class="h3 mb-2"><i class="fa-solid fa-user-plus pe-3 fa-lg"></i>Register New Admin</div>
 
@@ -75,8 +77,7 @@
 
             <div class="row mb-3">
                 <input id="confirm-password" type="password" class="form-control @error('confirm-password') is-invalid @enderror" name="confirm-password" required autocomplete="current-password">
-
-                @error('confirm-password')
+                @error('password_confirmation')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>

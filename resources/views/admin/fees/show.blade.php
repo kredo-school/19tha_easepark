@@ -22,7 +22,7 @@
                             <input type="search" name="search" placeholder="Search Fees" value=""
                                 class="form-control form-control-sm">
                             <button type="submit" class="btn bg-dark text-white border" aria-label="Search Fees"><i
-                                    class="fa-solid fa-magnifying-glass"></i></button>
+                            class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
                 </div>

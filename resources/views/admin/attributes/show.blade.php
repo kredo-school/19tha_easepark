@@ -27,7 +27,7 @@
                             </div>
                         </form>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="card-body px-0 py-0">
@@ -55,5 +55,5 @@
             </div>
         </div>
     </div>
-</div>     
+</div>
 @endsection

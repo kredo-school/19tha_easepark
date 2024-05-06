@@ -40,7 +40,6 @@
                             <th>Address</th>
                             <th>Max Number</th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,5 +65,4 @@
             </div>
         </div>
     </div>
-
 @endsection
