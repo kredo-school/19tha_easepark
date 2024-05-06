@@ -4,8 +4,8 @@
 
 @section('content')
 
-    <div class="mt-3">
-        <div class="row justify-content-center">
+    <div class="mt-5 d-flex justify-content-center">
+        <div class="row justify-content-between">
             <div class="col-auto card shadow-sm mx-auto">
                 <div class="row mx-auto my-3">
                     <h2 class="col-auto lato-bold">

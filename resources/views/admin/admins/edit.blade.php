@@ -49,7 +49,7 @@
                     <div class="row mb-1">
                         <div class="col">
                             {{-- Add Link --}}
-                            <a href="#" role="button" class="btn btn-cancel w-100">
+                            <a href="{{ route('admin.admins.show')}}" role="button" class="btn btn-cancel w-100">
                                 {{ __('Cancel') }}
                             </a>
                         </div>
@@ -119,7 +119,7 @@
                     <div class="row mb-1">
                         <div class="col">
                             {{-- Add Link --}}
-                            <a href="#" role="button" class="btn btn-cancel w-100">
+                            <a href="{{ route('admin.admins.show')}}" role="button" class="btn btn-cancel w-100">
                                 {{ __('Cancel') }}
                             </a>
                         </div>

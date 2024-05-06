@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-md navbar-light navbar-color shadow-sm">
             <div class="container">
                 <div class="text-white navbar-brand">
@@ -97,7 +97,7 @@
             </div>
         </nav>
 
-        <main class="">
+        <main class="flex-grow-1">
             @yield('content')
         </main>
 
