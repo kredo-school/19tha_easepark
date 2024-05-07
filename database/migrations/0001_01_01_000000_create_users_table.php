@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('name', 50);
+            $table->string('email', 50)->unique();
+            $table->string('password', 255);
+            $table->string('phone_number', 50);
+            $table->string('plate_number', 50);
+            $table->unsignedBigInteger('attribute_id');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -45,5 +49,8 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };
