@@ -37,8 +37,8 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-4">
-                                    <a href="#" role="button"
-                                        class="btn btn-outline-secondary w-100">{{ __('Cancel') }}</a>
+                                    <a href="{{ route('admin.fees.show')}}" role="button"
+                                        class="btn btn-cancel w-100">{{ __('Cancel') }}</a>
                                 </div>
                                 <div class="col-4">
                                     <button type="submit" class="btn btn-blue w-100">{{ __('Save') }}</button>

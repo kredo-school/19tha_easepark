@@ -43,7 +43,9 @@
                 <td class="text-center">Disability</td>
                 <td class="text-center">$20</td>
                 <td class="text-center"><a href="{{ route('pdf_view') }}"><i class="fa-solid fa-download"></i></a></td>
-                <td class="text-center"><span class="text-danger"><i class="fa-solid fa-trash-can"></span></td>
+                <td class="text-center">
+                    <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation"><i class="fa-solid fa-trash-can"></i></button>
+                </td>
             </tr>
             <tr>
                 <th scope="row" class="text-center">2</th>
@@ -52,7 +54,9 @@
                 <td class="text-center">Disability</td>
                 <td class="text-center">$20</td>
                 <td class="text-center"><i class="fa-solid fa-download"></i></td>
-                <td class="text-center"><span class="text-danger"><i class="fa-solid fa-trash-can"></span></td>
+                <td class="text-center">
+                    <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
             </tr>
             <tr>
                 <th scope="row" class="text-center">3</th>
@@ -61,7 +65,9 @@
                 <td class="text-center">Disability</td>
                 <td class="text-center">$20</td>
                 <td class="text-center"><i class="fa-solid fa-download"></i></td>
-                <td class="text-center"><span class="text-danger"><i class="fa-solid fa-trash-can"></span></td>
+                <td class="text-center">
+                    <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
             </tr>
             <tr>
                 <th scope="row" class="text-center">4</th>
@@ -70,9 +76,12 @@
                 <td class="text-center">Disability</td>
                 <td class="text-center">$20</td>
                 <td class="text-center"><i class="fa-solid fa-download"></i></td>
-                <td class="text-center"><span class="text-danger"><i class="fa-solid fa-trash-can"></span></td>
-            </tr>
+                <td class="text-center">
+                    <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
+                </tr>
         </tbody>
     </table>
+    @include('users.reservation.modal.delete')
 </div>
 @endsection

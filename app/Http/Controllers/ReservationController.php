@@ -53,7 +53,7 @@ class ReservationController extends Controller
     public function pdf()
     {
         $users = User::get();
-        $userNames = $users->pluck('name');
+        $userNames = 'John';
         $data = [
             'title' => 'PDF',
             'date' => date('m/d/y'),

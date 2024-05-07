@@ -10,10 +10,8 @@
                     <p>
                         If you want to make a reservation, please register as a member.
                     </p>
-                    <form action="" method="post">
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-blue fw-bold">Register</button>
-                    </form>
+                    {{-- Change to a href="#" to a href="{{ route('register') }}" later --}}
+                    <a href="#" class="btn btn-blue w-50 fw-bold">Register</a>
                 </div>
             </div>
         </div>
