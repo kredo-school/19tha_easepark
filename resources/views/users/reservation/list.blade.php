@@ -42,7 +42,7 @@
                 <td class="text-center">March 18(Sun)</td>
                 <td class="text-center">Disability</td>
                 <td class="text-center">$20</td>
-                <td class="text-center"><a href="{{ route('pdf_generator') }}"><i class="fa-solid fa-download"></i></a></td>
+                <td class="text-center"><a href="{{ route('pdf_view') }}"><i class="fa-solid fa-download"></i></a></td>
                 <td class="text-center"><span class="text-danger"><i class="fa-solid fa-trash-can"></span></td>
             </tr>
             <tr>

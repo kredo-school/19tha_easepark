@@ -32,7 +32,8 @@ Route::get('/test/login-admin', [LoginController::class, 'adminLogin'])->name('l
 Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
 Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
 Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
-Route::get('/reservation/pdf',[PDFController::class,'pdf_generator_get'])->name('pdf_generator');
+Route::get('/reservation/pdf_view',[ReservationController::class,'pdf'])->name('pdf_view');
+Route::get('/reservation/pdf_download',[PDFController::class,'pdf_generator_get'])->name('pdf_download');
 
 //Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {

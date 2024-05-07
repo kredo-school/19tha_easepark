@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-// use Barryvdh\DomPDF\PDF as DomPDFPDF;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
 use PDF;
@@ -49,11 +49,17 @@ class ReservationController extends Controller
             ->with('userAttribute', $userAttribute);
     }
 
-    // public function pdf_generator_get(Request $request)
-    // {
-    //     // echo "PDF";
-    //     // die();
-    //     // $pdf = PDF::loadView('myPDF'); // PDFを生成
-    //     return $pdf->stream('filename.pdf'); // ブラウザでPDFを表示
-    // }
+
+    public function pdf()
+    {
+        $users = User::get();
+        $userNames = $users->pluck('name');
+        $data = [
+            'title' => 'PDF',
+            'date' => date('m/d/y'),
+            'userNames' => $userNames
+        ];
+
+        return view('users.reservation.pdf_view', $data);
+    }
 }
