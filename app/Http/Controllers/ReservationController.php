@@ -62,12 +62,9 @@ class ReservationController extends Controller
     public function pdf()
     {
         if (Auth::check()) {
-            $reservations = Reservation::with('user')->get();
-    
             return view('users.reservation.pdf_view');
         } else {
             return redirect()->route('login');
         }
     }
-    
 }
