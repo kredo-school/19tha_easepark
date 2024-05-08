@@ -17,7 +17,6 @@ use App\Http\Controllers\Admin\ReservationsController;
 use App\Http\Controllers\Admin\StatisticsController;
 
 
-
 Route::get('/homepage', function () {
     return view('users.home.index');
 })->name('homepage');
@@ -36,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
     Route::get('/reservation/pdf_view', [ReservationController::class, 'pdf'])->name('pdf_view');
     Route::get('/reservation/pdf_download', [PDFController::class, 'pdf_generator_get'])->name('pdf_download');
+
 });
 
 // Admin registration routes
@@ -78,5 +78,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //For Reservations
         Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
+
+        // Following routes are test routes for the StatisticsController
+        Route::get('/statistics/show/test', [StatisticsController::class, 'showStatisticsTest'])->name('statistics.show.test');
+        Route::get('/statistics/test/registrations-num/data', [StatisticsController::class, 'fetchRegistrationDataTest']);
+        Route::get('/statistics/test/deletions-num/data', [StatisticsController::class, 'fetchDeletionDataTest']);
+        Route::get('/statistics/test/reservations-num/data', [StatisticsController::class, 'fetchReservationDataTest']);
+        Route::get('/statistics/test/cancellations-num/data', [StatisticsController::class, 'fetchCancellationDataTest']);
+        Route::get('/statistics/test/sales-num/data', [StatisticsController::class, 'fetchSaleDataTest']);
+        // End of test routes for the StatisticsController
     });
 });

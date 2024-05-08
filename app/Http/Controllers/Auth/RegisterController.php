@@ -51,6 +51,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone-number' => ['required', 'string', 'max:255'],
+            'plate-number' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -67,7 +69,11 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone_number' => $data['phone-number'],
+            'plate_number' => $data['plate-number'],
+            'attribute_id' => 1,
         ]);
+
     }
 
     public function showRegistrationFormTest()
@@ -75,4 +81,5 @@ class RegisterController extends Controller
         $attributes = ['General', 'EV', 'Disability'];
         return view('auth.register')->with('attributes', $attributes);
     }
+
 }

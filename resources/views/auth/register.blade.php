@@ -10,7 +10,7 @@
                 <div class="card-header border-0 bg-light" style="font-size: 1.5rem; font-weight: bold;">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('register') }}">
                         {{-- "{{ route('register') }}" will be include in the above action later --}}
                         @csrf
 
