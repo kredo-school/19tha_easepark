@@ -21,6 +21,18 @@ class AttributesController extends Controller
         return view('admin.attributes.show')->with('all_attributes', $all_attributes);
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:1|max:50|unique:attributes,name'
+        ]);
+
+        $this->attribute->name = ucwords(strtolower($request->name));
+        $this->attribute->save();
+
+        return redirect()->back();
+    }
+
 
     public function editAttribute($id)
     {
