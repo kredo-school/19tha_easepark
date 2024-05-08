@@ -4,8 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Reservation extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
+    function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
 }

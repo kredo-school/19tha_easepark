@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Fee extends Model
 {
     use HasFactory;
+
+    function areas()
+    {
+        return $this->hasMany(Area::class);
+    }
 }
