@@ -50,7 +50,7 @@
                                     {{ ($attribute->name)}}
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{route('admin.attributes.edit')}}"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
+                                    <a href="{{route('admin.attributes.edit', $attribute->id)}}"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
                                     <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
                                 </td>
                             </tr>

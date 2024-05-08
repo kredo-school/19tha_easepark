@@ -57,7 +57,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // For Attributes
         Route::get('/attributes/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
-        Route::get('/attributes/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
+        Route::get('/attributes/{id}/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
 
         //For Admins
         Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');

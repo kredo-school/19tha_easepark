@@ -22,8 +22,22 @@ class AttributesController extends Controller
     }
 
 
-    public function editAttribute()
+    public function editAttribute($id)
     {
-        return view('admin.attributes.edit');
+        $attribute = $this->attribute->findOrFail($id);
+        return view('admin.attributes.edit')->with('attribute', $attribute);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name'  => 'required|min:1|max:50|unique:attributes,name,' . $id
+        ]);
+        
+        $attribute       = $this->attribute->findOrFail($id);
+        $attribute->name = ucwords(strtolower($request->name));
+        $attribute->save();
+        
+        return redirect()->back();
     }
 }
