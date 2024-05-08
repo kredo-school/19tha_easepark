@@ -41,14 +41,20 @@
                     </thead>
                     <tbody>
                         {{-- Add: backend --}}
-                        <tr class="">
-                            <td class="text-center">4</td>
-                            <td>General</td>
-                            <td class="text-center">
-                                <a href="{{route('admin.attributes.edit')}}"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
-                                <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
-                            </td>
-                        </tr>
+                        @foreach($all_attributes as $attribute)
+                            <tr class="">
+                                <td class="text-center">
+                                    {{ ($attribute->id)}}
+                                </td>
+                                <td>
+                                    {{ ($attribute->name)}}
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{route('admin.attributes.edit')}}"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
+                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 @include('admin.attributes.modal.delete')
