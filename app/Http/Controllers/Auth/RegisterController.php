@@ -81,5 +81,4 @@ class RegisterController extends Controller
         $attributes = ['General', 'EV', 'Disability'];
         return view('auth.register')->with('attributes', $attributes);
     }
-
 }

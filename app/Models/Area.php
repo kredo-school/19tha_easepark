@@ -4,8 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Area extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
+    function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+    
+    function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
+
+    function fee()
+    {
+        return $this->belongsTo(Fee::class);
+    }
 }
