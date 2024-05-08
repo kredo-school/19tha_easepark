@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
-use PDF;
+
 
 class ReservationController extends Controller
 {
+
+    private $reservation;
+
+    public function __construct(Reservation $reservation)
+    {
+        $this->reservation = $reservation;
+    }
+
     public function showAllConfirmationReservation()
     {
         $tentativeAllReservations = [
@@ -52,14 +61,13 @@ class ReservationController extends Controller
 
     public function pdf()
     {
-        $users = User::get();
-        $userNames = 'John';
-        $data = [
-            'title' => 'PDF',
-            'date' => date('m/d/y'),
-            'userNames' => $userNames
-        ];
-
-        return view('users.reservation.pdf_view', $data);
+        if (Auth::check()) {
+            $reservations = Reservation::with('user')->get();
+    
+            return view('users.reservation.pdf_view');
+        } else {
+            return redirect()->route('login');
+        }
     }
+    
 }
