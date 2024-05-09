@@ -26,7 +26,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 
     // for Profile
-    Route::get('/profile/show', [ProfileController::class, 'showProfile'])->name('profile.show');
+    Route::get('/profile/{id}/show', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
     // for Reservation
     Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
