@@ -18,10 +18,11 @@
                     <h3 class="col card-title mt-1">
                     <i class="fa-solid fa-wheelchair pe-2"></i>Attribute
                     </h3>
+                    <!-- Search Attributes -->
                     <div class="col justify-content-end me-1">
-                        <form action="#" class="ms-auto">
+                        <form action="{{ route('admin.attributes.search') }}" class="ms-auto">
                             <div class="input-group">
-                                <input type="search_attributes" name="search_attributes" placeholder="Search Attributes" value=""
+                                <input type="search" name="search_attributes" placeholder="Search Attributes" value=""
                                 class="form-control form-control-sm">
                                 <button type="submit" class="btn bg-dark text-white border" aria-label="Search Attributes"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
@@ -40,21 +41,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- Add: backend --}}
-                        @foreach($all_attributes as $attribute)
+                        @if(isset($attributes))
+                        @foreach($attributes as $attribute)
                             <tr class="">
+                                <td class="text-center">{{ $attribute->id }}</td>
+                                <td>{{ $attribute->name }}</td>
                                 <td class="text-center">
-                                    {{ ($attribute->id)}}
-                                </td>
-                                <td>
-                                    {{ ($attribute->name)}}
-                                </td>
-                                <td class="text-center">
-                                    <a href="{{route('admin.attributes.edit', $attribute->id)}}"><span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
-                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
+                                    <a href="{{ route('admin.attributes.edit', $attribute->id) }}">
+                                        <span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
+                                    </a>
+                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute">
+                                        <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                     </tbody>
                 </table>
                 @include('admin.attributes.modal.delete')

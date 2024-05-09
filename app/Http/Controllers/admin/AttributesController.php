@@ -18,7 +18,7 @@ class AttributesController extends Controller
     public function showAttribute()
     {
         $all_attributes = $this->attribute->latest()->get();
-        return view('admin.attributes.show')->with('all_attributes', $all_attributes);
+        return view('admin.attributes.show')->with('attributes', $all_attributes);
     }
 
     public function store(Request $request)
@@ -51,5 +51,31 @@ class AttributesController extends Controller
         $attribute->save();
         
         return redirect()->back();
+    }
+
+    public function search(Request $request)
+    {
+        // $all_attributes = Attribute::query();
+
+        // $searchAttribute = $request->input('search_attributes');
+        // $searchAttribute = $this->attribute->where('name', 'like', '%'.$request->search. '%')->get();
+
+        // return view('admin.attributes.show')->with('searchAttribute', $searchAttribute)->with('search', $request->search);
+
+        $searchTerm = $request->input('search_attributes');
+
+        if(!empty($searchTerm)) {
+            $attributes = Attribute::where('name', 'like', '%' . $searchTerm . '%')->get();
+
+        }else{
+            $attributes = Attribute::all();
+
+        }
+
+
+        return view('admin.attributes.show', [
+            'attributes' => $attributes,
+            'searchTerm' => $searchTerm
+        ]);
     }
 }
