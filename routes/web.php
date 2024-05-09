@@ -26,8 +26,12 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 
     // for Profile
-    Route::get('/profile/show', [ProfileController::class, 'showProfile'])->name('profile.show');
+    Route::get('/profile/{id}/show', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
+    Route::patch('profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::post('profile/password', [ProfileController::class, 'changePassword'])->name('profile.password');
+    Route::delete('/profile/{id}/deactivate', [ProfileController::class, 'deactivate'])->name('profile.deactivate');
+
     // for Reservation
     Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
     Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
