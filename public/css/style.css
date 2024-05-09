@@ -92,6 +92,16 @@ body {
     border: none;
 }
 
+.btn-outline-blue {
+    background: #ffff;
+    color: #3399CC;
+    border: 1px solid #3399CC;
+}
+.btn-outline-blue:hover {
+    background: #3399CC;
+    color: #ffff;
+}
+
 a:link {
     color: #3399CC;
     text-decoration: none;
