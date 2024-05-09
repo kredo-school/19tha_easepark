@@ -312,6 +312,8 @@ fieldset[disabled] .btn-cancel:focus,
 
 .index-background {
     position: relative;
+    width: 100%;
+    min-height: calc(100vh - 160px);
     background-image: url("/images/pexels-k-howard-2220292.jpg");
     background-size: cover;
     background-position: center;

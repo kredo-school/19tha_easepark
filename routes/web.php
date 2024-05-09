@@ -16,10 +16,8 @@ use App\Http\Controllers\Admin\ReservationsController;
 use App\Http\Controllers\Admin\StatisticsController;
 
 
-Route::get('/homepage', function () {
-    return view('users.home.index');
-})->name('homepage');
-Route::get('/homepage/available-dates', [HomeController::class, 'passAvailableDates']);
+Route::get('/homepage', [HomeController::class, 'showHomePage'])->name('homepage');
+Route::get('/homepage/available-dates/{attributeId}', [HomeController::class, 'fetchAttributeAndAvailableDates']);
 
 Auth::routes();
 
@@ -30,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
     // for Reservation
     Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
+    Route::post('/reservation/pass-to-confirmation', [ReservationController::class, 'passToConfirmation']);
     Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
 });
