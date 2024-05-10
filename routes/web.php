@@ -79,13 +79,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         //For Reservations
         Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
 
+        //For Statistics
+        Route::get('/statistics/show', [StatisticsController::class, 'showStatistics'])->name('statistics.show');
+        Route::get('/statistics/fetch-data', [StatisticsController::class, 'fetchStatisticalData']);
+        
         // Following routes are test routes for the StatisticsController
-        Route::get('/statistics/show/test', [StatisticsController::class, 'showStatisticsTest'])->name('statistics.show.test');
-        Route::get('/statistics/test/registrations-num/data', [StatisticsController::class, 'fetchRegistrationDataTest']);
-        Route::get('/statistics/test/deletions-num/data', [StatisticsController::class, 'fetchDeletionDataTest']);
-        Route::get('/statistics/test/reservations-num/data', [StatisticsController::class, 'fetchReservationDataTest']);
-        Route::get('/statistics/test/cancellations-num/data', [StatisticsController::class, 'fetchCancellationDataTest']);
-        Route::get('/statistics/test/sales-num/data', [StatisticsController::class, 'fetchSaleDataTest']);
+        // Route::get('/statistics/show/test', [StatisticsController::class, 'showStatisticsTest'])->name('statistics.show.test');
+        // Route::get('/statistics/test/registrations-num/data', [StatisticsController::class, 'fetchRegistrationDataTest']);
+        // Route::get('/statistics/test/registrations-num/data', [StatisticsController::class, 'fetchRegistrationDataTest']);
+        // Route::get('/statistics/test/deletions-num/data', [StatisticsController::class, 'fetchDeletionDataTest']);
+        // Route::get('/statistics/test/reservations-num/data', [StatisticsController::class, 'fetchReservationDataTest']);
+        // Route::get('/statistics/test/cancellations-num/data', [StatisticsController::class, 'fetchCancellationDataTest']);
+        // Route::get('/statistics/test/sales-num/data', [StatisticsController::class, 'fetchSaleDataTest']);
         // End of test routes for the StatisticsController
     });
 });

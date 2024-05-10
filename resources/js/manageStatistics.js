@@ -4,6 +4,9 @@ $(document).ready(function() {
     // Get the initial selected year
     var selectedYear = $('#year').val();
 
+    // Set selected statistical table id to null initially
+    var selectedStatisticalTableId = null;
+
     // Check if there's a database tab id, sidebar id, an statistical table id saved in localStorage
     var savedDbTabId = localStorage.getItem('selectedDbTabId');
     var savedSidebarId = localStorage.getItem('selectedSidebarId');
@@ -66,6 +69,10 @@ $(document).ready(function() {
 
         // Store the new selected year in localStorage
         localStorage.setItem('selectedYear', selectedYear);
+
+        selectedStatisticalTableId = localStorage.getItem('selectedStatisticalTableId');
+        // Fetch data for the selected table
+        fetchData(selectedStatisticalTableId);
     });
 
     // * End: Features for when the year is changed * //
@@ -97,7 +104,7 @@ $(document).ready(function() {
     // Attach a click event handler to button which has data-table-id to store the selected table id, hide tables other than the selected one, and show the selected table by fetching data from controller.
     $('button[data-table-id]').on('click', function () {
         // Get the table ID of the selected table from the 'data-table-id' attribute (associated with the id of the selected table)
-        var selectedStatisticalTableId = $(this).data('table-id');
+        selectedStatisticalTableId = $(this).data('table-id');
         // console.log(`The selected statistical table id is ${selectedStatisticalTableId}`);
 
         // Get the sidebar ID of the selected table
@@ -111,7 +118,8 @@ $(document).ready(function() {
         localStorage.setItem('selectedSidebarId', selectedSidebarId);
     
         // Hide all of the tables first
-        $('.statical-table-range').hide();
+        $('.statical-table-range').removeClass('show active').hide();
+        // $('.statical-table-range').hide();
 
         // Show the selected table
         $('#' + selectedStatisticalTableId).slideDown(function() {
@@ -146,32 +154,34 @@ $(document).ready(function() {
     /**
      * Fetches data for a specific table and updates the table with the fetched data.
      *
-     * @async
      * @function fetchData
-     * @param {string} tableId - The ID of the table for which to fetch data.
+     * @param {string} selectedTableId - The ID of the table for which to fetch data.
      * @throws Will throw an error if the AJAX request fails.
      */
-    async function fetchData(tableId) {
-        try {
-            // Get the selected year
-            var selectedYear = $('#year').val();
+    function fetchData(selectedTableId) {
+        // Get the selected year
+        selectedYear = $('#year').val();
+        // console.log(`The selected year is ${selectedYear} and selectedTableId is ${selectedTableId}`);
+        $.ajax({
+            url: '/admin/statistics/fetch-data',
+            method: 'GET',
+            data: {
+                selectedTableId: selectedTableId,
+                selectedYear: selectedYear
+            },
+            success: function(fetchedData) {
+                var chartId = selectedTableId + '-chart';
 
-            var fetchedData = await $.ajax({
-                url: '/admin/statistics/test/' + tableId + '/data',
-                method: 'GET',
-                data: { year: selectedYear } // Pass the selected year to the controller
-            });
+                // console.log('Fetched data:', fetchedData, 'Chart ID:', chartId);
 
-            var chartId = tableId + '-chart';
-
-            console.log('Fetched data:', fetchedData, 'Chart ID:', chartId);
-
-            updateTable('.table-responsive .table', fetchedData);
-            
-            updateChart('#' + chartId, fetchedData);
-        } catch (error) {
-            console.error('An error occurred:', error);
-        }
+                updateTable('.table-responsive', fetchedData);
+                
+                updateChart(chartId, fetchedData);
+            },
+            error: function(error) {
+                console.error('An error occurred:', error);
+            }
+        });
     }
     
     /**
@@ -194,8 +204,10 @@ $(document).ready(function() {
         // Start with an empty string.
         var tableHtml = '';
 
+        tableHtml += '<table class="table table-hover align-middle border-0">';
+
         // Add a header row for each month in the data.
-        tableHtml += '<thead class="small table-info"><tr><th scope="col">#</th>';
+        tableHtml += '<thead class="small table-info"><tr><th scope="col"></th>';
         data.months.forEach(function(month) {
             tableHtml += '<th scope="col">' + month + '</th>';
         });
@@ -206,7 +218,7 @@ $(document).ready(function() {
         data.attributes.forEach(function(attribute) {
             tableHtml += '<tr><th scope="row">' + attribute + '</th>';
             data.months.forEach(function(month) {
-                tableHtml += '<td>' + (data.numericalDataNumByAttribute[attribute][month] || 'N/A') + '</td>';
+                tableHtml += '<td>' + (data.numericalDataNumByAttribute[attribute][month] || '0') + '</td>';
             });
             tableHtml += '</tr>';
         });
@@ -231,7 +243,7 @@ $(document).ready(function() {
             // If a chart already exists, destroy it
             myChart.destroy();
         }
-        var ctx = document.querySelector(selector).getContext('2d');
+        var ctx = document.querySelector(`#${selector}`).getContext('2d');
         var colors = ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(54, 162, 235, 0.2)'];
         var borderColors = ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 206, 86, 1)', 'rgba(54, 162, 235, 1)'];
         var datasets = data['attributes'].map(function(attribute, index) {
@@ -246,7 +258,8 @@ $(document).ready(function() {
                 borderWidth: 1
             };
             // If the selector is "#sales-num-chart" and the attribute is "Total", set the type to 'bar'
-            if (selector === '#sales-num-chart' && attribute === 'Total') {
+            if (selector === 'sales-num-chart' && attribute === 'Total') {
+                console.log(`sales-num.`);
                 dataset.type = 'bar';
             }
             return dataset;
@@ -272,5 +285,4 @@ $(document).ready(function() {
             }
         });
     }
-    
 });
