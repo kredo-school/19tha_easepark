@@ -86,4 +86,5 @@ class ProfileController extends Controller
         $user->delete();
         return redirect()->route('homepage');
     }
+
 }
