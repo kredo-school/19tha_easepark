@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\AreasController;
 use App\Http\Controllers\Admin\AttributesController;
@@ -26,12 +27,15 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 
     // for Profile
-    Route::get('/profile/show', [ProfileController::class, 'showProfile'])->name('profile.show');
+    Route::get('/profile/{id}/show', [ProfileController::class, 'showProfile'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.edit');
     // for Reservation
     Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
     Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
+    Route::get('/reservation/pdf_view', [ReservationController::class, 'pdf'])->name('pdf_view');
+    Route::get('/reservation/pdf_download', [PDFController::class, 'pdf_generator_get'])->name('pdf_download');
+
 });
 
 // Admin registration routes

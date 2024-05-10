@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Reservation;
+
 
 class ReservationController extends Controller
 {
-    public function showAllConfirmationReservation(){
+
+    private $reservation;
+
+    public function __construct(Reservation $reservation)
+    {
+        $this->reservation = $reservation;
+    }
+
+    public function showAllConfirmationReservation()
+    {
         $tentativeAllReservations = [
             ['date' => '2022-04-01', 'area' => 'Area 1', 'fee' => 100],
             ['date' => '2022-04-02', 'area' => 'Area 2', 'fee' => 200],
@@ -14,9 +27,9 @@ class ReservationController extends Controller
         ];
 
         return view('users.reservation.list')
-            -> with('tentativeAllReservations', $tentativeAllReservations);
+            ->with('tentativeAllReservations', $tentativeAllReservations);
     }
-    
+
     public function showConfirmationReservation()
     {
         $tentativeReservations = [
@@ -28,7 +41,7 @@ class ReservationController extends Controller
 
         return view('users.reservation.confirmation')
             ->with('tentativeReservations', $tentativeReservations)
-            ->with ('userAttribute', $userAttribute);
+            ->with('userAttribute', $userAttribute);
     }
 
     public function showCompletionReservation()
@@ -42,6 +55,16 @@ class ReservationController extends Controller
 
         return view('users.reservation.completion')
             ->with('confirmedReservations', $confirmedReservations)
-            ->with ('userAttribute', $userAttribute);
+            ->with('userAttribute', $userAttribute);
+    }
+
+
+    public function pdf()
+    {
+        if (Auth::check()) {
+            return view('users.reservation.pdf_view');
+        } else {
+            return redirect()->route('login');
+        }
     }
 }
