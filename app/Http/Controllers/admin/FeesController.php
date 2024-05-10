@@ -52,4 +52,11 @@ class FeesController extends Controller
             ->with('fees', $fees)
             ->with('search', $search);
     }
+
+    public function  destroyFees($id)
+    {
+        $fee = $this->fee->findOrFail($id);
+        $fee->forceDelete();
+        return redirect()->route('admin.fees.show');
+    }
 }

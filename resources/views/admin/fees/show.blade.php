@@ -49,14 +49,14 @@
                                     <a href="{{ route('admin.fees.edit', ['id' => $fee->id]) }}"><span
                                             class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
                                     <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
-                                        data-bs-target="#delete-fee"><span class="text-danger"><i
+                                        data-bs-target="#delete-fee-{{ $fee->id }}"><span class="text-danger"><i
                                                 class="fa-solid fa-trash-can"></i></span></button>
+                                    @include('admin.fees.modal.delete')
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                @include('admin.fees.modal.delete')
             </div>
         </div>
     </div>
