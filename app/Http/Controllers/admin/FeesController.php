@@ -16,15 +16,40 @@ class FeesController extends Controller
         $this->fee = $fee;
     }
 
-    public function showFees(){
+    public function showFees()
+    {
         $fees = $this->fee->all();
-        return view('admin.fees.show',['fees'=>$fees]);
+        return view('admin.fees.show')
+            ->with('fees', $fees);
     }
 
-    public function updateRegisteredFees()
+    public function editRegisteredFees($id)
     {
-        $fee_name = ['Normal Season'];
+        $fee = $this->fee->findOrFail($id);
+        return view('admin.fees.edit', ['fee' => $fee]);
+    }
 
-        return view('admin.fees.edit');
+    public function updateRegisteredFees(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|min:1|max:50',
+            'fee' => 'required|numeric|min:1|max:999999.99'
+        ]);
+
+        $fee = $this->fee->findOrFail($id);
+        $fee->name = $request->name;
+        $fee->fee = $request->fee;
+        $fee->save();
+
+        return redirect()->route('admin.fees.show');
+    }
+
+    public function searchFees(Request $request)
+    {
+        $search = $request->input('search', '');
+        $fees = $this->fee->where('name', 'like', '%' . $search . '%')->paginate(5);
+        return view('admin.fees.show')
+            ->with('fees', $fees)
+            ->with('search', $search);
     }
 }
