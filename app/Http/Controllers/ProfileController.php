@@ -80,9 +80,9 @@ class ProfileController extends Controller
         return redirect()->route('profile.show', $user->id);
     }
 
-    public function deactivate(Request $request, User $user)
+    public function deactivate(Request $request)
     {
-        $user = $this->user->findOrFail(Auth::user()->id);
+        $user = Auth::user();
         $user->delete();
         return redirect()->route('homepage');
     }
