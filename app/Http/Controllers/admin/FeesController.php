@@ -16,15 +16,25 @@ class FeesController extends Controller
         $this->fee = $fee;
     }
 
-    public function showFees(){
+    public function showFees()
+    {
         $fees = $this->fee->all();
-        return view('admin.fees.show',['fees'=>$fees]);
+        return view('admin.fees.show')
+            ->with('fees', $fees);
     }
 
     public function updateRegisteredFees()
     {
         $fee_name = ['Normal Season'];
-
         return view('admin.fees.edit');
+    }
+
+    public function searchFees(Request $request)
+    {
+        $search = $request->input('search', '');
+        $fees = $this->fee->where('name', 'like', '%' . $search . '%')->paginate(5);
+        return view('admin.fees.show')
+            ->with('fees', $fees)
+            ->with('search', $search);
     }
 }
