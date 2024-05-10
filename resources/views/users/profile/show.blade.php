@@ -4,6 +4,16 @@
 
 @section('content')
 
+    @if (session('success_update'))
+    <div class="alert alert-success text-center w-50 mx-auto ">
+        {{ session('success_update') }}
+    </div>
+    @elseif (session('success_password'))
+    <div class="alert alert-success text-center w-50 mx-auto ">
+        {{ session('success_password') }}
+    </div>
+    @endif
+
     <div class="mt-5 d-flex justify-content-center">
         <div class="row justify-content-between">
             <div class="col-auto card shadow-sm mx-auto">

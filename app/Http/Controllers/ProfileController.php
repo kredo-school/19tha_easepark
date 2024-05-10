@@ -55,7 +55,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->route('profile.show', $user->id);
+        return redirect()->route('profile.show', $user->id)->with('success_update', 'Profile updated successfully.');
     }
 
     public function changePassword(Request $request)
@@ -77,14 +77,14 @@ class ProfileController extends Controller
         $user->password = Hash::make($request->get('new_password'));
         $user->save();
 
-        return redirect()->route('profile.show', $user->id);
+        return redirect()->route('profile.show', $user->id)->with('success_password', 'Your password has been changed successfully.');
     }
 
     public function deactivate(Request $request)
     {
         $user = Auth::user();
         $user->delete();
-        return redirect()->route('homepage');
+        return redirect()->route('homepage')->with('success_delete', 'Your account has been deactivated.');
     }
 
 }
