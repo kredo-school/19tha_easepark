@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Reservation;
 use App\Models\Area;
 
 class ReservationController extends Controller
 {
     private $area;
+    private $reservation;
 
-    public function __construct(Area $area)
+    public function __construct(Reservation $reservation, Area $area)
     {
+        $this->reservation = $reservation;
         $this->area = $area;
     }
 
@@ -29,19 +32,30 @@ class ReservationController extends Controller
     public function passToConfirmation(Request $request)
     {
         $selectedDates = $request->input('selectedDates');
+        sort($selectedDates);
+
         $attributeId = $request->input('attributeId');
         $availableAreas = [];
-        // $targetAreas = [];
+
+        // Get areas with the given attributeId
+        $areas = $this->area->where('attribute_id', $attributeId)->get();
+
+        // Fetch all reservations for the areas and dates at once
+        $reservations = $this->reservation
+            ->whereIn('area_id', $areas->pluck('id'))
+            ->whereIn('date', $selectedDates)
+            ->get();
+
+        // Group reservations by area and date
+        $reservationsGroupedByAreaAndDate = $reservations->groupBy(['area_id', 'date']);
 
         // Create an array for reservationsToBeConfirmed
-        $reservationsToBeConfirmed = array_map(function($date) use ($attributeId,&$availableAreas) {
-            // Get areas with the given attributeId
-            $areas = $this->area->where('attribute_id', $attributeId)->get();
-            // $targetAreas[$date] = $areas;
-
+        $reservationsToBeConfirmed = array_map(function($date) use ($attributeId, $areas, $reservationsGroupedByAreaAndDate, &$availableAreas) {
             // Filter out areas whose reservation number reaches the max num
-            $areas = $areas->filter(function ($area) use ($date) {
-                $reservationCount = $area->reservations()->whereDate('date', $date)->count();
+            $areas = $areas->filter(function ($area) use ($date, $reservationsGroupedByAreaAndDate) {
+                $reservationCount = isset($reservationsGroupedByAreaAndDate[$area->id][$date])
+                    ? count($reservationsGroupedByAreaAndDate[$area->id][$date])
+                    : 0;
                 return $reservationCount < $area->max_num;
             });
 

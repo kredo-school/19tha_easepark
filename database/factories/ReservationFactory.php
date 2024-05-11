@@ -25,9 +25,9 @@ class ReservationFactory extends Factory
             // 'area_id' => function() {
             //     return Area::all()->random()->id;
             // },
-            'area_id' => 5,
+            'area_id' => 8,
             // 'date' => fake()->date(),
-            'date' => '2024-05-25',
+            'date' => '2024-05-13',
             'fee_log' => fake()->randomNumber(4),
         ];
     }

@@ -17,10 +17,10 @@ $(document).ready(function() {
 
     //Check and get stored values from localStorage
     selectedDates = JSON.parse(localStorage.getItem('selectedDates'))|| []; // Retrieve the selected dates
-    console.log(`selectedDates: ${selectedDates}`)
+    // console.log(`selectedDates: ${selectedDates}`)
     var currentView = JSON.parse(localStorage.getItem('currentView')) || { type: 'dayGridMonth', date: new Date() }; // Retrieve the current view
     selectedAttributeId = JSON.parse(localStorage.getItem('selectedAttributeId')) || []; // Retrieve the selected attribute
-    console.log(`selectedAttributeId: ${selectedAttributeId}`)
+    // console.log(`selectedAttributeId: ${selectedAttributeId}`)
     
     function fetchAvailableDates(attributeId) {
         $.ajax({
@@ -45,11 +45,8 @@ $(document).ready(function() {
                             left: 'prev,next',
                             center: 'title',
                             right: 'resetSelection,today',
-                            
                         },
-                        footerToolbar: {
-                            
-                        },
+
                         customButtons: {
                             resetSelection: {
                                 text: 'Reset',
@@ -114,6 +111,7 @@ $(document).ready(function() {
                                 arg.el.style.backgroundColor = 'lightblue';
                             }
                         },
+
                         dateClick: function(info) {
                             if (!availableDates.includes(info.dateStr)) {
                                 // If the date is not available, prevent it from being selected
@@ -127,7 +125,7 @@ $(document).ready(function() {
                                 info.dayEl.style.backgroundColor = ''; // Reset the background color
                                 selectedDates.splice(index, 1);
                             }
-                            console.log(selectedDates);
+                            // console.log(selectedDates);
 
                             localStorage.setItem('selectedDates', JSON.stringify(selectedDates)); // Store the selected dates in localStorage
                             updateReserveButton();
@@ -162,7 +160,6 @@ $(document).ready(function() {
     }
 
     fetchAvailableDates(selectedAttributeId);
-
     updateReserveButton();
 
     // Fetch the available dates whenever the user changes the attribute selection
@@ -191,6 +188,7 @@ $(document).ready(function() {
                     attributeId: selectedAttributeId,
                 },
                 success: function(reservationsToBeConfirmed) {
+                    // console.log(reservationsToBeConfirmed);
                     localStorage.setItem('reservationsToBeConfirmed', JSON.stringify(reservationsToBeConfirmed));  // Store the reservation details that should be passed to /reservation/confirmation in localStorage
                     window.location.href = "/reservation/confirmation";  // Redirect to /reservation/confirmation
                 }

@@ -39,13 +39,11 @@ class HomeController extends Controller
         $attribute = $this->attribute->find($attributeId);
         $areaIds = $this->area->where('attribute_id', $attributeId)->pluck('id');
         $availableDates = [];
-        // Define the date range
         $startDate = new DateTime();
         $endDate = (new DateTime())->modify('+1 year');
-        // Fetch the attribute
+
         $data;
         if ($areaIds->isEmpty()) {
-            // Handle the case where there are no areas with the specified attribute_id
             $data = [
                 'reservationNumPerArea' => 'none',
                 'attribute' => [
@@ -57,22 +55,28 @@ class HomeController extends Controller
         } else {
             $reservationNumPerArea = [];
 
-            // Iterate over each areaId
+            // Fetch all reservations for the areas and dates at once
+            $reservations = $this->reservation
+                ->whereIn('area_id', $areaIds)
+                ->whereBetween('date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
+                ->get();
+
+            // Group reservations by area and date
+            $reservationsGroupedByAreaAndDate = $reservations->groupBy(['area_id', 'date']);
+
             foreach ($areaIds as $areaId) {
-                // Get the max_num for this area
                 $maxNumPerArea = $this->area->where('id', $areaId)->value('max_num');
 
-                // Iterate over each date in the range
                 for ($date = clone $startDate; $date <= $endDate; $date->modify('+1 day')) {
-                    // Count the number of reservations for this date
-                    $reservationNumPerAreaPerDay = $this->reservation
-                        ->where('area_id', $areaId)
-                        ->whereDate('date', $date->format('Y-m-d'))
-                        ->count();
-                    
-                    // If the number of reservations is less than the max_num, add the date to the available dates
+                    $dateStr = $date->format('Y-m-d');
+
+                    // Get the number of reservations for this date from the grouped data
+                    $reservationNumPerAreaPerDay = isset($reservationsGroupedByAreaAndDate[$areaId][$dateStr])
+                        ? count($reservationsGroupedByAreaAndDate[$areaId][$dateStr])
+                        : 0;
+
                     if ($reservationNumPerAreaPerDay < $maxNumPerArea) {
-                        $availableDates[] = $date->format('Y-m-d');
+                        $availableDates[] = $dateStr;
                     }
                 }
             }
