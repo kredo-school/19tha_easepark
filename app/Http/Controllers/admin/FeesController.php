@@ -28,7 +28,7 @@ class FeesController extends Controller
             ->with('search', $request->search);
     }
 
-    public function editRegisteredFees($id)
+    public function showEditFeePage($id)
     {
         $fee = $this->fee->findOrFail($id);
         return view('admin.fees.edit', ['fee' => $fee]);

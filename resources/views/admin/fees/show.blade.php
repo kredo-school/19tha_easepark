@@ -57,7 +57,7 @@
                                 <td>{{ $fee->name }}</td>
                                 <td>${{ $fee->fee }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.fees.edit', ['id' => $fee->id]) }}"><span
+                                    <a href="{{ route('admin.fees.showEdit', ['id' => $fee->id]) }}"><span
                                             class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
                                     <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
                                         data-bs-target="#delete-fee-{{ $fee->id }}"><span class="text-danger"><i
