@@ -113,7 +113,7 @@ class StatisticsController extends Controller
     }
 
     private function fetchYearlyRegistrationsData($selectedYear) {
-        return $this->user->whereYear('created_at', $selectedYear)->whereNull('deleted_at');
+        return $this->user->withTrashed()->whereYear('created_at', $selectedYear);
     }
 
     private function fetchYearlyDeletionsData($selectedYear) {
@@ -121,7 +121,7 @@ class StatisticsController extends Controller
     }
 
     private function fetchYearlyReservationsData($selectedYear) {
-        return $this->reservation->whereYear('date', $selectedYear)->whereNull('deleted_at');
+        return $this->reservation->withTrashed()->whereYear('date', $selectedYear);
     }
 
     private function fetchYearlyCancellationsData($selectedYear) {
