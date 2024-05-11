@@ -62,7 +62,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // For Attributes
         Route::get('/attributes/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
         Route::post('/attributes/store', [AttributesController::class, 'store'])->name('attributes.store');
-        Route::get('/attributes/{id}/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
+        Route::get('/attributes/{id}/edit', [AttributesController::class, 'showEditAttributePage'])->name('attributes.showEdit');
+        Route::patch('/attributes/{id}/update', [AttributesController::class, 'update'])->name('attributes.update');
 
         //For Admins
         Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');

@@ -47,7 +47,7 @@ class AttributesController extends Controller
     }
 
 
-    public function editAttribute($id)
+    public function showEditAttributePage($id)
     {
         $attribute = $this->attribute->findOrFail($id);
         return view('admin.attributes.edit')->with('attribute', $attribute);
@@ -63,7 +63,7 @@ class AttributesController extends Controller
         $attribute->name = ucwords(strtolower($request->name));
         $attribute->save();
         
-        return redirect()->back();
+        return redirect()->route('admin.attributes.show');
     }
 
 }
