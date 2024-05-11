@@ -15,11 +15,24 @@ class AttributesController extends Controller
         $this->attribute = $attribute;
     }
 
-    public function showAttribute()
+    public function showAttribute(Request $request)
     {
-        $all_attributes = $this->attribute->latest()->get();
-        return view('admin.attributes.show')->with('attributes', $all_attributes);
+        $searchTerm = $request->input('search_attributes');
+
+        if($searchTerm) {
+            $all_attributes = $this->attribute
+            ->where('name', 'like', '%'. $searchTerm. '%')
+            ->orderBy('id', 'asc')
+            ->paginate(5);
+        } else {
+            $all_attributes = $this->attribute->orderBy('id', 'asc')->paginate(5);
+        }
+
+        return view('admin.attributes.show')
+            ->with('attributes', $all_attributes)
+            ->with('search', $searchTerm);
     }
+
 
     public function store(Request $request)
     {
@@ -53,29 +66,4 @@ class AttributesController extends Controller
         return redirect()->back();
     }
 
-    public function search(Request $request)
-    {
-        // $all_attributes = Attribute::query();
-
-        // $searchAttribute = $request->input('search_attributes');
-        // $searchAttribute = $this->attribute->where('name', 'like', '%'.$request->search. '%')->get();
-
-        // return view('admin.attributes.show')->with('searchAttribute', $searchAttribute)->with('search', $request->search);
-
-        $searchTerm = $request->input('search_attributes');
-
-        if(!empty($searchTerm)) {
-            $attributes = Attribute::where('name', 'like', '%' . $searchTerm . '%')->get();
-
-        }else{
-            $attributes = Attribute::all();
-
-        }
-
-
-        return view('admin.attributes.show', [
-            'attributes' => $attributes,
-            'searchTerm' => $searchTerm
-        ]);
-    }
 }

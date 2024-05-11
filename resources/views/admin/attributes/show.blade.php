@@ -20,10 +20,10 @@
                     </h3>
                     <!-- Search Attributes -->
                     <div class="col justify-content-end me-1">
-                        <form action="{{ route('admin.attributes.search') }}" class="ms-auto">
+                        <form action="{{ route('admin.attributes.show') }}" class="ms-auto">
                             <div class="input-group">
                                 <input type="search" name="search_attributes" placeholder="Search Attributes" value=""
-                                class="form-control form-control-sm">
+                                class="form-control form-control-sm" value="{{ $search }}">
                                 <button type="submit" class="btn bg-dark text-white border" aria-label="Search Attributes"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </form>
@@ -41,9 +41,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if(isset($attributes))
-                        @foreach($attributes as $attribute)
-                            <tr class="">
+                        @forelse($attributes as $attribute)
+                            <tr>
                                 <td class="text-center">{{ $attribute->id }}</td>
                                 <td>{{ $attribute->name }}</td>
                                 <td class="text-center">
@@ -55,11 +54,17 @@
                                     </button>
                                 </td>
                             </tr>
-                        @endforeach
-                        @endif
+                        @empty
+                            <tr>
+                                <td colspan="3" class="text-center">No relevant data exists.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
                 @include('admin.attributes.modal.delete')
+                <div class="d-flex justify-content-center">
+                    {{ $attributes->links() }}
+                </div>
             </div>
         </div>
     </div>
