@@ -1,7 +1,7 @@
 {{-- delete --}}
 <div class="modal fade" id="delete-profile">
     <div class="modal-dialog">
-        <form action="#">
+        <form action="{{ route('profile.deactivate', ['id' => Auth::user()->id]) }}" method="POST">
             @csrf
             @method('DELETE')
             <div class="modal-content">
