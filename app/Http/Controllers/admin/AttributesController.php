@@ -21,7 +21,6 @@ class AttributesController extends Controller
         return view('admin.attributes.show')->with('all_attributes', $all_attributes);
     }
 
-
     public function editAttribute($id)
     {
         $attribute = $this->attribute->findOrFail($id);
@@ -37,6 +36,14 @@ class AttributesController extends Controller
         $attribute       = $this->attribute->findOrFail($id);
         $attribute->name = ucwords(strtolower($request->name));
         $attribute->save();
+
+        return redirect()->route('admin.attributes.show');
+    }
+
+    public function destroy($id)
+    {
+        $attribute = $this->attribute->findOrFail($id);
+        $attribute->delete();
 
         return redirect()->route('admin.attributes.show');
     }

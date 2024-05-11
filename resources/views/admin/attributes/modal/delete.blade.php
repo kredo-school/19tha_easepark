@@ -1,6 +1,6 @@
 <div class="modal" id="delete-attribute">
     <div class="modal-dialog modal-sm">
-        <form action="#">
+        <form id="delete-form" action="{{ route('admin.attributes.destroy', $attribute->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <div class="modal-content">
@@ -9,9 +9,11 @@
                     <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body fs-5 text-dark mt-3">
-                    Are you sure you want to delete the attribute below?
+                    <p>Are you sure you want to delete the attribute below?</p>
                     <div class="my-4 d-flex justify-content-center">
-                        <div class="col-8 text-center modal-head-color-red-transparent px-2 py-1">EV</div>
+                        <div class="col-8 text center modal-head-color-red-transparent px-2 py-1">
+                            <span id="attribute-name" class="fw-bold">{{ $attribute->name }}</span>
+                        </div>
                     </div>
                     Once delete, it cannot be undone.
                 </div>

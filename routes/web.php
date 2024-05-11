@@ -65,6 +65,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/attributes/store', [AttributesController::class, 'store'])->name('attributes.store');
         Route::patch('/attributes/{id}/update', [AttributesController::class, 'update'])->name('attributes.update');
         Route::get('/attributes/{id}/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
+        Route::delete('/attributes/{id}/destroy', [AttributesController::class, 'destroy'])->name('attributes.destroy');
 
         //For Admins
         Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
