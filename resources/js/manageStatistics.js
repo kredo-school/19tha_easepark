@@ -172,7 +172,7 @@ $(document).ready(function() {
             success: function(fetchedData) {
                 var chartId = selectedTableId + '-chart';
 
-                console.log('Fetched data:', fetchedData);
+                // console.log('Fetched data:', fetchedData);
 
                 updateTable('.table-responsive', fetchedData);
                 
