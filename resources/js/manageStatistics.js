@@ -259,7 +259,7 @@ $(document).ready(function() {
             };
             // If the selector is "#sales-num-chart" and the attribute is "Total", set the type to 'bar'
             if (selector === 'sales-num-chart' && attribute === 'Total') {
-                console.log(`sales-num.`);
+                // console.log(`sales-num.`);
                 dataset.type = 'bar';
             }
             return dataset;
