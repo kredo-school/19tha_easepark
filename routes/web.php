@@ -39,7 +39,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
     Route::get('/reservation/pdf_view', [ReservationController::class, 'pdf'])->name('pdf_view');
     Route::get('/reservation/pdf_download', [PDFController::class, 'pdf_generator_get'])->name('pdf_download');
-
 });
 
 // Admin registration routes
@@ -74,7 +73,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //For Fees
         Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
-        Route::get('/fees/edit', [FeesController::class, 'updateRegisteredFees'])->name('fees.edit');
+        Route::get('/fees/{id}/edit', [FeesController::class, 'showEditFeePage'])->name('fees.showEdit');
+        Route::patch('/fees/{id}/update', [FeesController::class, 'updateRegisteredFees'])->name('fees.update');
+        Route::delete('/fees/{id}/destroy', [FeesController::class, 'destroyFees'])->name('fees.destroy');
 
         //For Areas
         Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');

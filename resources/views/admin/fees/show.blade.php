@@ -3,6 +3,17 @@
 @section('title', 'Admin:Fees')
 
 @section('content')
+
+    @if (session('success_update'))
+    <div class="alert alert-success text-center w-50 mx-auto ">
+        {{ session('success_update') }}
+    </div>
+    @elseif (session('success_delete'))
+    <div class="alert alert-success text-center w-50 mx-auto ">
+        {{ session('success_delete') }}
+    </div>
+    @endif
+
     <div class="my-1 dropdown-item" data-bs-toggle="modal" data-bs-target="#register-fee">
         <button class="btn btn-green">
             <i class="fa-solid fa-circle-plus"></i> Register New Fee
@@ -46,17 +57,17 @@
                                 <td>{{ $fee->name }}</td>
                                 <td>${{ $fee->fee }}</td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.fees.edit') }}"><span class="text-warning me-2"><i
-                                                class="fa-solid fa-pen-to-square"></i></span></a>
+                                    <a href="{{ route('admin.fees.showEdit', ['id' => $fee->id]) }}"><span
+                                            class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
                                     <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
-                                        data-bs-target="#delete-fee"><span class="text-danger"><i
+                                        data-bs-target="#delete-fee-{{ $fee->id }}"><span class="text-danger"><i
                                                 class="fa-solid fa-trash-can"></i></span></button>
+                                    @include('admin.fees.modal.delete')
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                @include('admin.fees.modal.delete')
             </div>
         </div>
     </div>
