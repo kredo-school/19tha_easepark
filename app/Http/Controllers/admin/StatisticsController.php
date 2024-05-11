@@ -28,24 +28,78 @@ class StatisticsController extends Controller
         return view('admin.statistics.show');
     }
 
-    public function fetchStatisticalData(Request $request){
+    public function fetchYearlyStatisticalData(Request $request){
         $months = self::MONTH_MAP;
         $selectedYear = $request->selectedYear;
         $selectedTableId = $request->selectedTableId;
-        
-        if($selectedTableId === 'registrations-num' || $selectedTableId === 'deletions-num'){
+    
+        $tableIdMethodMap = [
+            'registrations-num' => 
+                [
+                    'yearlyDataFetchMethod' => 'fetchYearlyRegistrationsData', 'table' => 'users', 
+                    'statisticalDataFetchMethod' => 'fetchRegistrationsStatisticalData'
+                ],
+            'deletions-num' => 
+                [
+                    'yearlyDataFetchMethod' => 'fetchYearlyDeletionsData', 
+                    'table' => 'users', 
+                    'statisticalDataFetchMethod' => 'fetchDeletionsStatisticalData'
+                ],
+            'reservations-num' => 
+                [
+                    'yearlyDataFetchMethod' => 'fetchYearlyReservationsData', 'table' => 'reservations', 
+                    'statisticalDataFetchMethod' => 'fetchReservationsStatisticalData'
+                ],
+            'cancellations-num' => 
+                [
+                    'yearlyDataFetchMethod' => 'fetchYearlyCancellationsData', 'table' => 'reservations', 
+                    'statisticalDataFetchMethod' => 'fetchCancellationsStatisticalData'
+                ],
+            'sales-num' => 
+                [
+                    'yearlyDataFetchMethod' => 'fetchYearlySalesData', 
+                    'table' => 'reservations', 
+                    'statisticalDataFetchMethod' => 'fetchSalesStatisticalData'
+                ],
+        ];
+    
+        if (!array_key_exists($selectedTableId, $tableIdMethodMap)) {
+            return response()->json(['error' => 'Invalid table ID']);
+        }
+    
+        $yearlyDataFetchMethod = $tableIdMethodMap[$selectedTableId]['yearlyDataFetchMethod'];
+        $table = $tableIdMethodMap[$selectedTableId]['table'];
+        $statisticalDataFetchMethod = $tableIdMethodMap[$selectedTableId]['statisticalDataFetchMethod'];
+
+        $attributes = $this->getAttributes($table);
+        $yearlyData = $this->$yearlyDataFetchMethod($selectedYear);
+        $statisticalData = $this->$statisticalDataFetchMethod($attributes, $months, $yearlyData, $selectedTableId);
+    
+        // Add "Total" attribute
+        $statisticalData['Total'] = [];
+        foreach($months as $monthName) {
+            $total = 0;
+            foreach($attributes as $attribute) {
+                $total += $statisticalData[$attribute->name][$monthName];
+            }
+            $statisticalData['Total'][$monthName] = $total;
+        }
+    
+        // Convert the results array to an object
+        $fetchedData = [
+            'months' => array_values($months),
+            'attributes' => array_merge($attributes->pluck('name')->toArray(), ['Total']),
+            'statisticalData' => $statisticalData,
+        ];
+        return response()->json($fetchedData);
+    }
+    
+    private function getAttributes($table) {
+        if($table === 'users'){
             $attributes = $this->attribute->whereIn('id', function($query) {
                 $query->select('attribute_id')->from($this->user->getTable())->distinct();
             })->get();
-            switch ($selectedTableId) {
-                case 'registrations-num':
-                    $yearlyData = $this->user->whereYear('created_at', $selectedYear)->whereNull('deleted_at');
-                    break;
-                case 'deletions-num':
-                    $yearlyData = $this->user->onlyTrashed()->whereYear('created_at', $selectedYear);
-                    break;
-            }
-        } else if ($selectedTableId === 'reservations-num' || $selectedTableId === 'cancellations-num' || $selectedTableId === 'sales-num'){
+        } else if ($table === 'reservations'){
             $attributes = $this->attribute->whereIn('id', function($query) {
                 $query->select('attribute_id')
                     ->from($this->area->getTable())
@@ -54,26 +108,32 @@ class StatisticsController extends Controller
                     })
                     ->distinct();
             })->get();
-            switch ($selectedTableId) {
-                case 'reservations-num':
-                    $yearlyData = $this->reservation->whereYear('date', $selectedYear)->whereNull('deleted_at');
-                    break;
-                case 'cancellations-num':
-                    $yearlyData = $this->reservation->onlyTrashed()->whereYear('date', $selectedYear);
-                    break;
-                default:
-                    $yearlyData = $this->reservation->whereYear('date', $selectedYear)->whereNull('deleted_at');
-                    break;
-            }
-        } else {
-            return response()->json(['error' => 'Invalid table ID']);
         }
+        return $attributes;
+    }
 
-        // Initialize an array to hold the results
-        $numericalDataNumByAttribute = [];
-        
-        if($selectedTableId === 'registrations-num' || $selectedTableId === 'deletions-num'){
-        // Loop through each attribute
+    private function fetchYearlyRegistrationsData($selectedYear) {
+        return $this->user->whereYear('created_at', $selectedYear)->whereNull('deleted_at');
+    }
+
+    private function fetchYearlyDeletionsData($selectedYear) {
+        return $this->user->onlyTrashed()->whereYear('deleted_at', $selectedYear);
+    }
+
+    private function fetchYearlyReservationsData($selectedYear) {
+        return $this->reservation->whereYear('date', $selectedYear)->whereNull('deleted_at');
+    }
+
+    private function fetchYearlyCancellationsData($selectedYear) {
+        return $this->reservation->onlyTrashed()->whereYear('deleted_at', $selectedYear);
+    }
+
+    private function fetchYearlySalesData($selectedYear) {
+        return $this->reservation->whereYear('date', $selectedYear)->whereNull('deleted_at');
+    }
+
+    private function fetchRegistrationsStatisticalData($attributes, $months, $yearlyData, $selectedTableId) {
+        $data = [];
         foreach($attributes as $attribute) {
             foreach($months as $monthNumber => $monthName) {
                 $query = clone $yearlyData;
@@ -81,56 +141,75 @@ class StatisticsController extends Controller
                     ->where('attribute_id', $attribute->id)
                     ->whereMonth('created_at', $monthNumber)
                     ->count();
-
-                $numericalDataNumByAttribute[$attribute->name][$monthName] = $count;
+                $data[$attribute->name][$monthName] = $count;
             }
         }
-        } else if ($selectedTableId === 'reservations-num' || $selectedTableId === 'cancellations-num'){
-            foreach($attributes as $attribute) {
-                foreach($months as $monthNumber => $monthName) {
-                    $query = clone $yearlyData;
-                    $count = $query
-                        ->whereHas('area', function ($query) use ($attribute, $monthNumber) {
-                            $query->where('attribute_id', $attribute->id);
-                        })
-                        ->whereMonth('date', $monthNumber)
-                        ->count();
-                    $numericalDataNumByAttribute[$attribute->name][$monthName] = $count;
-                }
-            }
-        } else if ($selectedTableId === 'sales-num') {
-            foreach($attributes as $attribute) {
-                foreach($months as $monthNumber => $monthName) {
-                    $query = clone $yearlyData;
-                    $count = $query
-                        ->whereHas('area', function ($query) use ($attribute, $monthNumber) {
-                            $query->where('attribute_id', $attribute->id);
-                        })
-                        ->whereMonth('date', $monthNumber)
-                        ->sum('fee_log');
-                    $numericalDataNumByAttribute[$attribute->name][$monthName] = $count;
-                }
-            }
-        } else {
-            return response()->json(['error' => 'Invalid table ID']);
-        }
+        return $data;
+    }
 
-        // Add "Total" attribute
-        $numericalDataNumByAttribute['Total'] = [];
-        foreach($months as $monthName) {
-            $total = 0;
-            foreach($attributes as $attribute) {
-                $total += $numericalDataNumByAttribute[$attribute->name][$monthName];
+    private function fetchDeletionsStatisticalData($attributes, $months, $yearlyData, $selectedTableId) {
+        $data = [];
+        foreach($attributes as $attribute) {
+            foreach($months as $monthNumber => $monthName) {
+                $query = clone $yearlyData;
+                $count = $query
+                    ->where('attribute_id', $attribute->id)
+                    ->whereMonth('deleted_at', $monthNumber)
+                    ->count();
+                $data[$attribute->name][$monthName] = $count;
             }
-            $numericalDataNumByAttribute['Total'][$monthName] = $total;
         }
+        return $data;
+    }
 
-        // Convert the results array to an object
-        $fetchedData = [
-            'months' => array_values($months),
-            'attributes' => array_merge($attributes->pluck('name')->toArray(), ['Total']),
-            'numericalDataNumByAttribute' => $numericalDataNumByAttribute,
-        ];
-        return response()->json($fetchedData);
+    private function fetchReservationsStatisticalData($attributes, $months, $yearlyData, $selectedTableId) {
+        $data = [];
+        foreach($attributes as $attribute) {
+            foreach($months as $monthNumber => $monthName) {
+                $query = clone $yearlyData;
+                $count = $query
+                    ->whereHas('area', function ($query) use ($attribute, $monthNumber) {
+                        $query->where('attribute_id', $attribute->id);
+                    })
+                    ->whereMonth('date', $monthNumber)
+                    ->count();
+                $data[$attribute->name][$monthName] = $count;
+            }
+        }
+        return $data;
+    }
+
+    private function fetchCancellationsStatisticalData($attributes, $months, $yearlyData, $selectedTableId) {
+        $data = [];
+        foreach($attributes as $attribute) {
+            foreach($months as $monthNumber => $monthName) {
+                $query = clone $yearlyData;
+                $count = $query
+                    ->whereHas('area', function ($query) use ($attribute, $monthNumber) {
+                        $query->where('attribute_id', $attribute->id);
+                    })
+                    ->whereMonth('deleted_at', $monthNumber)
+                    ->count();
+                    $data[$attribute->name][$monthName] = $count;
+            }
+        }
+        return $data;
+    }
+
+    private function fetchSalesStatisticalData($attributes, $months, $yearlyData, $selectedTableId) {
+        $data = [];
+        foreach($attributes as $attribute) {
+            foreach($months as $monthNumber => $monthName) {
+                $query = clone $yearlyData;
+                $count = $query
+                    ->whereHas('area', function ($query) use ($attribute, $monthNumber) {
+                        $query->where('attribute_id', $attribute->id);
+                    })
+                    ->whereMonth('date', $monthNumber)
+                    ->sum('fee_log');
+                    $data[$attribute->name][$monthName] = $count;
+            }
+        }
+        return $data;
     }
 }

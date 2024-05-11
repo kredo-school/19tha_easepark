@@ -172,7 +172,7 @@ $(document).ready(function() {
             success: function(fetchedData) {
                 var chartId = selectedTableId + '-chart';
 
-                // console.log('Fetched data:', fetchedData, 'Chart ID:', chartId);
+                console.log('Fetched data:', fetchedData);
 
                 updateTable('.table-responsive', fetchedData);
                 
@@ -194,7 +194,7 @@ $(document).ready(function() {
      *         year: Number,
      *         months: Array of strings (the table column headers),
      *         attributes: Array of strings (the row headers),
-     *         numericalDataNumByAttribute: Object where each key
+     *         statisticalData: Object where each key
      *         is an attribute name and the value is another      
      *         object. This inner object should have month names as
      *         keys and numerical data as values.
@@ -218,7 +218,7 @@ $(document).ready(function() {
         data.attributes.forEach(function(attribute) {
             tableHtml += '<tr><th scope="row">' + attribute + '</th>';
             data.months.forEach(function(month) {
-                tableHtml += '<td>' + (data.numericalDataNumByAttribute[attribute][month] || '0') + '</td>';
+                tableHtml += '<td>' + (data.statisticalData[attribute][month] || '0') + '</td>';
             });
             tableHtml += '</tr>';
         });
@@ -236,7 +236,7 @@ $(document).ready(function() {
      * @param {Object} data - The data for the chart.
      * @param {string[]} data.attributes - The attributes for the chart.
      * @param {string[]} data.months - The months for the chart.
-     * @param {Object} data.numericalDataNumByAttribute - The statistical data for the chart, organized by attribute and month.
+     * @param {Object} data.statisticalData - The statistical data for the chart, organized by attribute and month.
      */
     function updateChart(selector, data) {
         if (myChart) {
@@ -251,7 +251,7 @@ $(document).ready(function() {
                 label: attribute,
                 data: data['months'].map(function(month) {
                     // Adjust how you're accessing the statistical data
-                    return data['numericalDataNumByAttribute'][attribute][month] || 0;
+                    return data['statisticalData'][attribute][month] || 0;
                 }),
                 backgroundColor: colors[index % colors.length],
                 borderColor: borderColors[index % borderColors.length],
