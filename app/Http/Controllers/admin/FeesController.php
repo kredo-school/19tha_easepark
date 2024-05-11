@@ -46,23 +46,14 @@ class FeesController extends Controller
         $fee->fee = $request->fee;
         $fee->save();
 
-        return redirect()->route('admin.fees.show');
-    }
-
-    public function searchFees(Request $request)
-    {
-        $search = $request->input('search', '');
-        $fees = $this->fee->where('name', 'like', '%' . $search . '%')->paginate(5);
-        return view('admin.fees.show')
-            ->with('fees', $fees)
-            ->with('search', $search);
+        return redirect()->route('admin.fees.show')->with('success_update', 'The selected fee updated successfully.');
     }
 
     public function  destroyFees($id)
     {
         $fee = $this->fee->findOrFail($id);
         $fee->forceDelete();
-        return redirect()->route('admin.fees.show');
+        return redirect()->route('admin.fees.show')->with('success_delete', 'The selected fee has been deleted.');
     }
 
 }
