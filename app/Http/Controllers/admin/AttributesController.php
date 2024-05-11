@@ -15,10 +15,35 @@ class AttributesController extends Controller
         $this->attribute = $attribute;
     }
 
-    public function showAttribute()
+    public function showAttribute(Request $request)
     {
-        $all_attributes = $this->attribute->latest()->get();
-        return view('admin.attributes.show')->with('all_attributes', $all_attributes);
+        $searchTerm = $request->input('search_attributes');
+
+        if($searchTerm) {
+            $all_attributes = $this->attribute
+            ->where('name', 'like', '%'. $searchTerm. '%')
+            ->orderBy('id', 'asc')
+            ->paginate(5);
+        } else {
+            $all_attributes = $this->attribute->orderBy('id', 'asc')->paginate(5);
+        }
+
+        return view('admin.attributes.show')
+            ->with('attributes', $all_attributes)
+            ->with('search', $searchTerm);
+    }
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:1|max:50|unique:attributes,name'
+        ]);
+
+        $this->attribute->name = ucwords(strtolower($request->name));
+        $this->attribute->save();
+
+        return redirect()->back();
     }
 
 
@@ -31,13 +56,14 @@ class AttributesController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|min:1|max:50|unique:attributes,name,' . $id
+            'name'  => 'required|min:1|max:50|unique:attributes,name,' . $id
         ]);
-
+        
         $attribute       = $this->attribute->findOrFail($id);
         $attribute->name = ucwords(strtolower($request->name));
         $attribute->save();
-
-        return redirect()->route('admin.attributes.show');
+        
+        return redirect()->back();
     }
+
 }

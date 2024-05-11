@@ -9,7 +9,11 @@
         <div class="col-md-10">
             <h2 class="col-auto lato-bold p-2 "><i class="fa-solid fa-pen-to-square mx-2"></i>Edit Attribute</h2>
             <div class="card p-4">
+<<<<<<< HEAD
                 <form action="{{ route('admin.attributes.update', $attribute->id) }}" method="post">
+=======
+                <form action="{{ route('admin.attributes.edit', $attribute->id) }}" method="post">
+>>>>>>> backend/admin/manageAttributes/showRegisteredAttributes
                     @csrf
                     @method('PATCH')
                     <label for="attribute_edit" class="form-label">Attribute</label>
