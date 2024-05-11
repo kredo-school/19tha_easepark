@@ -1,11 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'admin:attributes_show')
+@section('title', 'Admin:Attributes')
 
 @section('content')
 
-<div class="container">
-    <!-- <div class="row justify-content-center"> -->
+    <div class="container">
         <div class="col-4 mb-3">
             <button type="button" class="btn btn-green w-100" data-bs-toggle="modal" data-bs-target="#register-attribute">
                 <i class="fa-solid fa-circle-plus pe-2"></i>Register New Attribute
@@ -16,19 +15,17 @@
             <div class="card-header bg-light">
                 <div class="row">
                     <h3 class="col card-title mt-1">
-                    <i class="fa-solid fa-wheelchair pe-2"></i>Attribute
+                    <i class="fa-solid fa-wheelchair pe-2"></i>Attributes
                     </h3>
-                    <!-- Search Attributes -->
                     <div class="col justify-content-end me-1">
                         <form action="{{ route('admin.attributes.show') }}" class="ms-auto">
                             <div class="input-group">
-                                <input type="search" name="search_attributes" placeholder="Search Attributes" value=""
-                                class="form-control form-control-sm" value="{{ $search }}">
+                                <input type="search" name="search_attributes" placeholder="Search Attributes"
+                                class="form-control form-control-sm" value="{{ old('search', isset($search) ? $search : '') }}">
                                 <button type="submit" class="btn bg-dark text-white border" aria-label="Search Attributes"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
             <div class="card-body px-0 py-0">
@@ -68,5 +65,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
