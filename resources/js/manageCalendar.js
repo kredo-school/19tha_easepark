@@ -157,7 +157,7 @@ $(document).ready(function() {
     // Check if selectedAttributeId is not set or is an empty array
     if (!selectedAttributeId || selectedAttributeId.length === 0) {
         // If selectedAttributeId is not set or is an empty array, show an alert asking the user to select an attribute
-        alert('Please select an attribute first.');
+        alert('Please select a type first.');
     } else {
         // If selectedAttributeId is set and is not an empty array, set the value of the attribute-selection element to selectedAttributeId
         $('#attribute-selection').val(selectedAttributeId);
