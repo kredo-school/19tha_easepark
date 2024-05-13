@@ -9,7 +9,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body fs-6 fw-bold text-dark mt-3">
-                    {{-- Fee Name --}}
                     <div class="mb-4">
                         <label for="name" class="form-label">Fee Name</label>
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -20,7 +19,6 @@
                             </span>
                         @enderror
                     </div>
-                    {{-- Amount --}}
                     <div class="mb-4">
                         <label for="fee" class="form-label">Amount of the Fee</label>
                         <input id="fee" type="number" class="form-control @error('fee') is-invalid @enderror"
