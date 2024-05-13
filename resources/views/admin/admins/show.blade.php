@@ -3,9 +3,9 @@
 @section('title', 'Admin: Registered Admins')
 
 @section('content')
-<a class="btn btn-green my-2" role="button" href="{{ route('admin.admins.register') }}">
-    <i class="fa-solid fa-circle-plus me-2 btn-lg"></i>Register New Admin
-</a>
+    <a class="btn btn-green my-2" role="button" href="{{ route('admin.admins.register') }}">
+        <i class="fa-solid fa-circle-plus me-2 btn-lg"></i>Register New Admin
+    </a>
     <div class="card mb-3">
         <div class="card-header bg-light">
             <div class="row d-flex justify-content-center">
@@ -14,11 +14,13 @@
                     <i class="fa-solid fa-users-gear me-3 fa-lg"></i>Registered Admins
                 </h3>
                 <div class="col-md-5 my-auto">
-                    <form action="{{ route("admin.admins.show") }}">
+                    <form action="{{ route('admin.admins.show') }}">
                         <div class="input-group">
-                            <input type="search" name="search" class="form-control form-control-sm" placeholder="Search Admin" value="{{ $search }}">
+                            <input type="search" name="search" class="form-control form-control-sm"
+                                placeholder="Search Admin" value="{{ $search }}">
 
-                            <button type="submit" class="btn bg-dark text-white border" aria-label="Search Users"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="submit" class="btn bg-dark text-white border" aria-label="Search Users"><i
+                                    class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                     </form>
                 </div>
@@ -43,8 +45,13 @@
                             <td>{{ $admin['name'] }}</td>
                             <td>{{ $admin['email'] }}</td>
                             <td class="text-center">
-                                <a href="{{route('admin.admins.edit')}}"><i class="text-warning fa-solid fa-pen-to-square fa-lg me-4"></i></a>
-                                <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-admin"><span class="text-danger"><i class="fa-solid fa-trash-can"></i></span></button>
+                                @if (auth('admin')->user()->id === $admin->id)
+                                    <a href="{{ route('admin.admins.edit', ['id' => $admin->id]) }}"><i
+                                            class="text-warning fa-solid fa-pen-to-square fa-lg me-4"></i></a>
+                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
+                                        data-bs-target="#delete-admin"><span class="text-danger"><i
+                                                class="fa-solid fa-trash-can"></i></span></button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

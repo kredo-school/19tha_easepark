@@ -64,9 +64,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/attributes/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
 
         //For Admins
-        Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
-        Route::get('/admins/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
         Route::get('/admins/show', [AdminsController::class, 'showAdmins'])->name('admins.show');
+        Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
+        Route::get('/admins/{id}/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
 
         //For Fees
         Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
