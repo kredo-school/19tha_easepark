@@ -9,10 +9,10 @@
         <div class="col-md-10">
             <h2 class="col-auto lato-bold p-2 "><i class="fa-solid fa-pen-to-square mx-2"></i>Edit Attribute</h2>
             <div class="card p-4">
-                <form action="#" method="post">
+                <form action="{{ route('admin.attributes.edit', $attribute->id) }}" method="post">
                     @csrf
                     <label for="attribute_edit" class="form-label">Attribute</label>
-                    <input type="text" name="attribute" class="form-control mb-3" id="attribute_edit" placeholder="EV">
+                    <input type="text" name="name" class="form-control mb-3" id="attribute_edit" placeholder="Attribute" value="{{ $attribute->name }}">
                     
                     @error('attribute')
                     <div class="text-danger small">{{$message}}

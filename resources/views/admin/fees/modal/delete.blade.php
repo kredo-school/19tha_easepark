@@ -1,7 +1,7 @@
 {{-- delete --}}
-<div class="modal fade" id="delete-fee">
+<div class="modal fade" id="delete-fee-{{ $fee->id }}">
     <div class="modal-dialog">
-        <form action="#">
+        <form action="{{ route('admin.fees.destroy', ['id' => $fee->id]) }}" method="post">
             @csrf
             @method('DELETE')
             <div class="modal-content">
@@ -14,7 +14,7 @@
                     Are you sure you want to delete the fee below?
 
                     <div class="my-4">
-                        <span class="modal-head-color-red-transparent px-2 py-1">Promotion</span>
+                        <span class="modal-head-color-red-transparent px-2 py-1">{{ $fee->name }}</span>
                     </div>
                     Once deleted, it cannot be undone.
                 </div>
