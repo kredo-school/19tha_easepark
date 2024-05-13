@@ -71,6 +71,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         //For Fees
         Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
         Route::get('/fees/edit', [FeesController::class, 'updateRegisteredFees'])->name('fees.edit');
+        Route::post('/fees/register',[FeesController::class,'registerFee'])->name('fees.register');
 
         //For Areas
         Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');
