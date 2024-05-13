@@ -72,8 +72,7 @@ class StatisticsController extends Controller
         $statisticalDataFetchMethod = $tableIdMethodMap[$selectedTableId]['statisticalDataFetchMethod'];
 
         $attributes = $this->getAttributes($table);
-        // $yearlyData = $this->$yearlyDataFetchMethod($selectedYear);
-        $yearlyData = null;
+        $yearlyData = $this->$yearlyDataFetchMethod($selectedYear);
         $statisticalData = [];
         if (!empty($yearlyData)) {
             $statisticalData = $this->$statisticalDataFetchMethod($attributes, $months, $yearlyData, $selectedTableId);
