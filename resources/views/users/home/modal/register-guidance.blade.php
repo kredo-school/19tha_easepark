@@ -11,7 +11,7 @@
                         To make a reservation, please register as a member or login if you already have an account.
                     </p>
                     <div class="d-flex justify-content-center">
-                        <a href="{{route('register')}}" class="btn btn-blue fw-bold me-4">Register</a>
+                        <a href="{{route('register')}}" class="btn btn-blue text-white fw-bold me-4">Register</a>
                         <a href="{{route('login')}}" class="btn btn-outline-blue fw-bold">Login</a>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
                                 class="col-md-4 col-form-label text-md-end fw-bold">{{ __('Choose Type') }}</label>
                             <div class="col-md-4">
                                 <select class="form-select" name="attribute-selection" id="attribute-selection" required>
-                                    <option selected disabled>Select Your Type</option>
+                                    <option selected disabled value="not-selected">Select Your Type</option>
                                     @foreach($attributes as $attribute)
                                         <option value="{{ $attribute->id }}">{{ $attribute->name }}</option>
                                     @endforeach
@@ -37,7 +37,7 @@
                         </div>
                     <div class="row justify-content-center w-100">
                         <div class="col-md-7">
-                            <div class="my-2 bg-white rounded p-2">
+                            <div class="my-2 bg-white rounded p-2" id='calendar-range'>
                                 <div id='calendar'></div>
                             </div>
                         </div>

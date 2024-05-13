@@ -13,12 +13,13 @@ $(document).ready(function() {
     var calendar;
     var availableDates = [];
     var selectedDates = [];
+    var currentView = {};
     var selectedAttributeId = [];
 
     //Check and get stored values from localStorage
     selectedDates = JSON.parse(localStorage.getItem('selectedDates'))|| []; // Retrieve the selected dates
     // console.log(`selectedDates: ${selectedDates}`)
-    var currentView = JSON.parse(localStorage.getItem('currentView')) || { type: 'dayGridMonth', date: new Date() }; // Retrieve the current view
+    currentView = JSON.parse(localStorage.getItem('currentView')) || { type: 'dayGridMonth', date: new Date() }; // Retrieve the current view
     selectedAttributeId = JSON.parse(localStorage.getItem('selectedAttributeId')) || []; // Retrieve the selected attribute
     // console.log(`selectedAttributeId: ${selectedAttributeId}`)
     
@@ -27,7 +28,7 @@ $(document).ready(function() {
             url: '/homepage/available-dates/' + attributeId,
             method: 'GET',
             success: function(data) {
-                // console.log(data);
+                console.log(data);
                 availableDates = data.availableDates;
                 
                 var calendarEl = document.getElementById('calendar');
@@ -134,7 +135,7 @@ $(document).ready(function() {
                 calendar.render();
             },
             error: function(errorThrown) {
-                reject(`The calendar has failed to be rendered. ${errorThrown}`);
+                throw new Error(`The calendar has failed to be rendered. ${errorThrown}`);
             }
         });
     }
@@ -142,25 +143,34 @@ $(document).ready(function() {
     function updateReserveButton() {
         if (selectedDates.length > 0) {
             $('#reserve-button').prop('disabled', false);
-            $('#reserve-button').removeClass('btn-cancel');
             $('#reserve-button').show(); // Show the button
         } else {
             $('#reserve-button').prop('disabled', true);
-            $('#reserve-button').addClass('btn-cancel');
             $('#reserve-button').hide(); // Hide the button
         }
     }
 
-    // Set attributeId with consideration of whether the user has selected an attribute or not
-    var initialAttributeId = $('#attribute-selection').val();
-    if (!selectedAttributeId) {
-        selectedAttributeId = initialAttributeId;
-    } else {
-        $('#attribute-selection').val(selectedAttributeId);
-    }
+    // Initially hide the calendar range and reserve button
+    $('#calendar-range').hide();
+    $('#reserve-button').hide();
 
-    fetchAvailableDates(selectedAttributeId);
-    updateReserveButton();
+    // Check if selectedAttributeId is not set or is an empty array
+    if (!selectedAttributeId || selectedAttributeId.length === 0) {
+        // If selectedAttributeId is not set or is an empty array, show an alert asking the user to select an attribute
+        alert('Please select an attribute first.');
+    } else {
+        // If selectedAttributeId is set and is not an empty array, set the value of the attribute-selection element to selectedAttributeId
+        $('#attribute-selection').val(selectedAttributeId);
+
+        // Show the calendar range
+        $('#calendar-range').show();
+
+        // Fetch the available dates for the selected attribute
+        fetchAvailableDates(selectedAttributeId);
+
+        // Update the reserve button based on the selected attribute
+        updateReserveButton();
+    }
 
     // Fetch the available dates whenever the user changes the attribute selection
     $('#attribute-selection').change(function() {
@@ -168,9 +178,11 @@ $(document).ready(function() {
         localStorage.setItem('selectedAttributeId', attributeId);
         selectedDates = []; // Clear the selected dates array
         localStorage.setItem('selectedDates', JSON.stringify(selectedDates)); // Update the selected dates in localStorage
+        $('#calendar-range').show();
         fetchAvailableDates(attributeId);
     });
 
+    // When the user clicks the "Reserve" button, pass the selected dates and attribute to confirmation page or show the register guidance modal based on login status
     $('#reserve-button').click(function(e) {
         e.preventDefault();
 

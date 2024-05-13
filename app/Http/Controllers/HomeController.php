@@ -81,13 +81,18 @@ class HomeController extends Controller
                 }
             }
 
+            /*
+            'availableDates' contains all available dates with duplicates possibly included. array_unique() removes duplicates but doesn't reindex keys, leading to non-sequential keys if duplicates are removed.
+            This can cause issues in JavaScript, as it treats arrays with non-sequential keys as objects, and we want to use the 'includes()' array method.
+            To ensure 'availableDates' remains an array in JavaScript, array_values() is used to reindex the keys, ensuring they start from 0 and increase by 1 for each element.
+            */
             $data = [
                 'attribute' => [
                     'attributeName' => $attribute->name,
                     'attributeId' => $attribute->id
                 ],
                 'startDate' => $startDate->format('Y-m-d'),
-                'availableDates' => array_unique($availableDates),
+                'availableDates' => array_values(array_unique($availableDates)),
             ];
         }
 
