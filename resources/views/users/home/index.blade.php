@@ -3,6 +3,13 @@
 @section('title', 'index')
 
 @section('content')
+
+    @if (session('success_delete'))
+    <div class="alert alert-success text-center w-50 mx-auto ">
+        {{ session('success_delete') }}
+    </div>
+    @endif
+
     <div class="index-background py-3">
         <main class="container">
             <div class="row justify-content-center">
@@ -23,7 +30,7 @@
                                 <button type="submit" class="btn btn-blue" data-bs-toggle="modal" data-bs-target="#guest-test">Reserve</button>
                             </div>
                             @include('users.home.modal.register-guidance')
-                            
+
                         </div>
                         {{-- error --}}
                         @error('type')
@@ -35,14 +42,14 @@
                             <div class="my-2 bg-white rounded p-2">
                                 <div id='calendar'></div>
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
-            
+
         </main>
     </div>
     <script type="text/javascript" src="{{ asset('js/jquery-3.7.1.min.js')}}"></script>
