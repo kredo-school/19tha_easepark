@@ -95,6 +95,7 @@ class StatisticsController extends Controller
     }
     
     private function getAttributes($table) {
+        $attributes = [];
         if($table === 'users'){
             $attributes = $this->attribute->whereIn('id', function($query) {
                 $query->select('attribute_id')->from($this->user->getTable())->distinct();
