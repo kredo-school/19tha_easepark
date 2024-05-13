@@ -72,17 +72,21 @@ class StatisticsController extends Controller
         $statisticalDataFetchMethod = $tableIdMethodMap[$selectedTableId]['statisticalDataFetchMethod'];
 
         $attributes = $this->getAttributes($table);
-        $yearlyData = $this->$yearlyDataFetchMethod($selectedYear);
-        $statisticalData = $this->$statisticalDataFetchMethod($attributes, $months, $yearlyData, $selectedTableId);
-    
-        // Add "Total" attribute
-        $statisticalData['Total'] = [];
-        foreach($months as $monthName) {
-            $total = 0;
-            foreach($attributes as $attribute) {
-                $total += $statisticalData[$attribute->name][$monthName];
+        // $yearlyData = $this->$yearlyDataFetchMethod($selectedYear);
+        $yearlyData = null;
+        $statisticalData = [];
+        if (!empty($yearlyData)) {
+            $statisticalData = $this->$statisticalDataFetchMethod($attributes, $months, $yearlyData, $selectedTableId);
+            
+            // Add "Total" attribute
+            $statisticalData['Total'] = [];
+            foreach($months as $monthName) {
+                $total = 0;
+                foreach($attributes as $attribute) {
+                    $total += $statisticalData[$attribute->name][$monthName];
+                }
+                $statisticalData['Total'][$monthName] = $total;
             }
-            $statisticalData['Total'][$monthName] = $total;
         }
     
         // Convert the results array to an object
