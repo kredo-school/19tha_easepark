@@ -94,12 +94,13 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label text-muted">{{ __('Attribute') }}</label>
+                                <label for="attribute_id" class="form-label text-muted">{{ __('Attribute') }}</label>
                                 <div class="d-flex flex-wrap">
                                     @foreach ($attributes as $id => $attribute)
                                         <div class="form-check mx-3">
-                                            <input class="form-check-input" type="radio" name="attribute_id"
-                                                id="attribute-{{ $id }}" value="{{ $id }}">
+                                            <input class="form-check-input @error('attribute_id') is-invalid @enderror"
+                                                type="radio" name="attribute_id" id="attribute-{{ $id }}"
+                                                value="{{ $id }}">
                                             <label class="form-check-label" for="attribute-{{ $id }}">
                                                 {{ $attribute }}
                                             </label>
