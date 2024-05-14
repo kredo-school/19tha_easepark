@@ -29,6 +29,7 @@ class ReservationFactory extends Factory
             // 'date' => fake()->date(),
             'date' => '2024-05-20',
             'fee_log' => fake()->randomNumber(4),
+            'deleted_at' => fake()->dateTimeBetween('2022-01-01', '2024-12-31'),
         ];
     }
 }

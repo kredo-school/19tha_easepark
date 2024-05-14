@@ -356,7 +356,7 @@ fieldset[disabled] .btn-cancel:focus,
 
 /* Modal-red*/
 .modal-head-color-red {
-  background-color: #C73E3A;
+    background-color: #c73e3a;
 }
 
 .modal-head-color-red-transparent{
@@ -367,6 +367,9 @@ fieldset[disabled] .btn-cancel:focus,
     filter: invert(1);
   }
 
+  .pdf_logo {
+    width: 80px;
+}
 
 /*
 /*

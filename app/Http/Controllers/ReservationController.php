@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
-use App\Models\Reservation;
 use App\Models\Area;
 
 class ReservationController extends Controller
@@ -26,7 +26,7 @@ class ReservationController extends Controller
         ];
 
         return view('users.reservation.list')
-            -> with('tentativeAllReservations', $tentativeAllReservations);
+            ->with('tentativeAllReservations', $tentativeAllReservations);
     }
 
     public function passToConfirmation(Request $request)
@@ -84,7 +84,7 @@ class ReservationController extends Controller
 
         return response()->json($reservationsToBeConfirmed);
     }
-    
+
     public function showConfirmationReservation()
     {
         return view('users.reservation.confirmation');
@@ -101,6 +101,16 @@ class ReservationController extends Controller
 
         return view('users.reservation.completion')
             ->with('confirmedReservations', $confirmedReservations)
-            ->with ('userAttribute', $userAttribute);
+            ->with('userAttribute', $userAttribute);
+    }
+
+
+    public function pdf()
+    {
+        if (Auth::check()) {
+            return view('users.reservation.pdf_view');
+        } else {
+            return redirect()->route('login');
+        }
     }
 }

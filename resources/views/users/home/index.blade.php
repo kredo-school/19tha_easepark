@@ -11,6 +11,12 @@
     var userIsAuthenticated = @json(auth()->check());
 </script>
 
+    @if (session('success_delete'))
+    <div class="alert alert-success text-center w-50 mx-auto ">
+        {{ session('success_delete') }}
+    </div>
+    @endif
+
     <div class="index-background py-3">
         <main class="container">
             <div class="row justify-content-center">
@@ -33,7 +39,7 @@
                             @if(!Auth::check())
                                 @include('users.home.modal.register-guidance')
                             @endif
-                            
+
                         </div>
                     <div class="row justify-content-center w-100">
                         <div class="col-md-7">

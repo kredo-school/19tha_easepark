@@ -1,7 +1,7 @@
 {{-- register --}}
 <div class="modal fade" id="register-attribute">
     <div class="modal-dialog">
-        <form method="POST" action="#">
+        <form method="POST" action="{{ route('admin.attributes.store') }}">
             @csrf
             <div class="modal-content">
                 <div class="modal-header justify-content-between modal-head-color">
@@ -9,7 +9,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body fs-5 text-dark mt-3">
-                    <form action="#">
+                    <form action="{{ route('admin.attributes.store') }}">
                         <div class="form-group">
                             <label for="name" class="ms-3">Attribute</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
