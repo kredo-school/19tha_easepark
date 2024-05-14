@@ -72,7 +72,7 @@ class AttributesController extends Controller
     }
 
     // Soft deleted attribute
-    public function destroy($id)
+    public function deactivateAttributes($id)
     {
         $attribute = $this->attribute->findOrFail($id);
         $attribute->delete();

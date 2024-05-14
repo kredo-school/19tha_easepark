@@ -17,10 +17,8 @@ use App\Http\Controllers\Admin\ReservationsController;
 use App\Http\Controllers\Admin\StatisticsController;
 
 
-Route::get('/homepage', function () {
-    return view('users.home.index');
-})->name('homepage');
-Route::get('/homepage/available-dates', [HomeController::class, 'passAvailableDates']);
+Route::get('/homepage', [HomeController::class, 'showHomePage'])->name('homepage');
+Route::get('/homepage/available-dates/{attributeId}', [HomeController::class, 'fetchAttributeAndAvailableDates']);
 
 Auth::routes();
 
@@ -35,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // for Reservation
     Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
+    Route::post('/reservation/pass-to-confirmation', [ReservationController::class, 'passToConfirmation']);
     Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
     Route::get('/reservation/pdf_view', [ReservationController::class, 'pdf'])->name('pdf_view');
@@ -67,7 +66,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/attributes/store', [AttributesController::class, 'store'])->name('attributes.store');
         Route::get('/attributes/{id}/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
         Route::patch('/attributes/{id}/update', [AttributesController::class, 'update'])->name('attributes.update');
-        Route::delete('/attributes/{id}/delete', [AttributesController::class, 'destroy'])->name('attributes.delete');
+        Route::delete('/attributes/{id}/deactivate', [AttributesController::class, 'deactivateAttributes'])->name('attributes.deactivate');
         Route::patch('/attributes/{id}/restore', [AttributesController::class, 'restore'])->name('attributes.restore');
 
 
@@ -91,13 +90,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         //For Reservations
         Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
 
-        // Following routes are test routes for the StatisticsController
-        Route::get('/statistics/show/test', [StatisticsController::class, 'showStatisticsTest'])->name('statistics.show.test');
-        Route::get('/statistics/test/registrations-num/data', [StatisticsController::class, 'fetchRegistrationDataTest']);
-        Route::get('/statistics/test/deletions-num/data', [StatisticsController::class, 'fetchDeletionDataTest']);
-        Route::get('/statistics/test/reservations-num/data', [StatisticsController::class, 'fetchReservationDataTest']);
-        Route::get('/statistics/test/cancellations-num/data', [StatisticsController::class, 'fetchCancellationDataTest']);
-        Route::get('/statistics/test/sales-num/data', [StatisticsController::class, 'fetchSaleDataTest']);
-        // End of test routes for the StatisticsController
+        //For Statistics
+        Route::get('/statistics/show', [StatisticsController::class, 'showStatistics'])->name('statistics.show');
+        Route::get('/statistics/fetch-data', [StatisticsController::class, 'fetchYearlyStatisticalData']);
     });
 });

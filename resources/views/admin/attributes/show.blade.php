@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin:Attributes')
+@section('title', 'Admin | Attributes')
 
 @section('content')
 
@@ -60,10 +60,11 @@
                                             <span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
                                         </a>
                                         <!-- // Press the button to display the delete modal. -->
-                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute">
+                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute-{{ $attribute->id }}">
                                             <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span>
                                         </button>
                                     @endif
+                                    @include('admin.attributes.modal.delete', ['attribute' => $attribute])
 
                                 </td>
                             </tr>
@@ -73,7 +74,6 @@
                             </tr>
                         @endforelse
                     </tbody>
-                    @include('admin.attributes.modal.delete')
                 </table>
                 <div class="d-flex justify-content-center">
                     {{ $attributes->links() }}
