@@ -23,7 +23,7 @@ $(document).ready(function() {
                 page: page
             },
             success: function(fetchedData) {
-                console.log(fetchedData.reservations.data.length);
+                // console.log(fetchedData);
                 var rows = '';
 
                 //Display the reservations based on the filter condition

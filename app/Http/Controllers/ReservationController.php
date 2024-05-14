@@ -32,28 +32,37 @@ class ReservationController extends Controller
 
         $filterCondition = $request->input('filterCondition');
         $page = $request->get('page');
+        $today = now()->startOfDay();
+        $nextMonth = clone $today;
+        $nextMonth->addMonth();
+        $nextWeek = clone $today;
+        $nextWeek->addWeek();
+        $preMonth = clone $today;
+        $preMonth->subMonth();
+        $preWeek = clone $today;
+        $preWeek->subWeek();
 
         switch ($filterCondition) {
             case 'all':
                 $reservations = $userReservations->with('area')->paginate(5, ['*'], 'page', $page);
                 break;
             case 'upcoming_reservations_all':
-                $reservations = $userReservations->with('area')->where('date', '>', now())->paginate(5, ['*'], 'page', $page);
+                $reservations = $userReservations->with('area')->where('date', '>=', $today)->paginate(5, ['*'], 'page', $page);
                 break;
             case 'upcoming_reservations_one_month':
-                $reservations = $userReservations->with('area')->where('date', '>', now())->where('date', '<', now()->addMonth())->paginate(5, ['*'], 'page', $page);
+                $reservations = $userReservations->with('area')->where('date', '>=', $today)->where('date', '<=', $nextMonth)->paginate(5, ['*'], 'page', $page);
                 break;
             case 'upcoming_reservations_one_week':
-                $reservations = $userReservations->with('area')->where('date', '>', now())->where('date', '<', now()->addWeek())->paginate(5, ['*'], 'page', $page);
+                $reservations = $userReservations->with('area')->where('date', '>=', $today)->where('date', '<=', $nextWeek)->paginate(5, ['*'], 'page', $page);
                 break;
             case 'past_reservations_all':
-                $reservations = $userReservations->with('area')->where('date', '<', now())->paginate(5, ['*'], 'page', $page);
+                $reservations = $userReservations->with('area')->where('date', '<', $today)->paginate(5, ['*'], 'page', $page);
                 break;
             case 'past_reservations_one_month':
-                $reservations = $userReservations->with('area')->where('date', '<', now())->where('date', '>', now()->subMonth())->paginate(5, ['*'], 'page', $page);
+                $reservations = $userReservations->with('area')->where('date', '<', $today)->where('date', '>=', $preMonth)->paginate(5, ['*'], 'page', $page);
                 break;
             case 'past_reservations_one_week':
-                $reservations = $userReservations->with('area')->where('date', '<', now())->where('date', '>', now()->subWeek())->paginate(5, ['*'], 'page', $page);
+                $reservations = $userReservations->with('area')->where('date', '<', $today)->where('date', '>=', $preWeek)->paginate(5, ['*'], 'page', $page);
                 break;
             default:
                 $reservations = $userReservations->with('area')->paginate(5, ['*'], 'page', $page);
