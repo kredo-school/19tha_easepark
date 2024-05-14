@@ -277,8 +277,8 @@ fieldset[disabled] .btn-cancel:focus,
     background: #003366;
 }
 
-.modal-head-color-transparent{
-  background: #98c5f3;
+.modal-head-color-blue-transparent {
+    background-color: #98c5f3;
 }
 
 /* Others */
