@@ -3,13 +3,16 @@
 @section('title', 'All Confirmed Reservation')
 
 @section('content')
+<script type="text/javascript" src="{{ asset('js/jquery-3.7.1.min.js')}}"></script>
+@vite(['resources/js/manageList.js'])
 
 <div class="container w-75 mt-3">
+    
     <div class="row mb-2">
         <div class="col">
             <h4 class="float-start"><i class="fa-solid fa-list p-2"></i>Reservation List</h4>
             <div class="float-end">
-                <select name="list" id="list" class="form-select" >
+                <select name="filter-list" id="filter-list" class="form-select text-center" >
                     <option value="all">All</option>
                     <option value="upcoming_reservations_all">Upcoming Reservations(All)</option>
                     <option value="upcoming_reservations_one_month">Upcoming Reservations(One Month)</option>
@@ -22,7 +25,7 @@
         </div>
     </div>
     <!-- Table -->
-    <table class="table">
+    <table class="table table-responsive">
         <thead>
             <tr class="table-info">
                 <th scope="col" class="text-center">ID</th>
@@ -34,54 +37,11 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
-            <!-- TODO :  foreach -->
-            <tr>
-                <th scope="row" class="text-center">1</th>
-                <td class="text-center">Area D, 2F</td>
-                <td class="text-center">March 18(Sun)</td>
-                <td class="text-center">Disability</td>
-                <td class="text-center">$20</td>
-                <td class="text-center"><a href="{{ route('pdf_view') }}"><i class="fa-solid fa-download"></i></a></td>
-                <td class="text-center">
-                    <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation"><i class="fa-solid fa-trash-can"></i></button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row" class="text-center">2</th>
-                <td class="text-center">Area A, 1F</td>
-                <td class="text-center">March 18(Sun)</td>
-                <td class="text-center">Disability</td>
-                <td class="text-center">$20</td>
-                <td class="text-center"><i class="fa-solid fa-download"></i></td>
-                <td class="text-center">
-                    <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation"><i class="fa-solid fa-trash-can"></i></button>
-                    </td>
-            </tr>
-            <tr>
-                <th scope="row" class="text-center">3</th>
-                <td class="text-center">Area A, 1F</td>
-                <td class="text-center">March 22(Thu)</td>
-                <td class="text-center">Disability</td>
-                <td class="text-center">$20</td>
-                <td class="text-center"><i class="fa-solid fa-download"></i></td>
-                <td class="text-center">
-                    <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation"><i class="fa-solid fa-trash-can"></i></button>
-                    </td>
-            </tr>
-            <tr>
-                <th scope="row" class="text-center">4</th>
-                <td class="text-center">Area D, 2F</td>
-                <td class="text-center">March 23(Fri)</td>
-                <td class="text-center">Disability</td>
-                <td class="text-center">$20</td>
-                <td class="text-center"><i class="fa-solid fa-download"></i></td>
-                <td class="text-center">
-                    <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation"><i class="fa-solid fa-trash-can"></i></button>
-                    </td>
-                </tr>
+        <tbody id="reservation-list-data">
+            {{-- List of reservations are displayed HERE based on the filter selected. --}}
         </tbody>
     </table>
+    <div id="pagination" class="d-flex justify-content-center"></div>
     @include('users.reservation.modal.delete')
 </div>
 @endsection

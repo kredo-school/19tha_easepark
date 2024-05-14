@@ -34,7 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/profile/deactivate', [ProfileController::class, 'deactivate'])->name('profile.deactivate');
 
     // for Reservation
-    Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
+    Route::get('/reservation/list', [ReservationController::class, 'showReservationList'])->name('reservation.list');
+    Route::get('/reservation/filter-list', [ReservationController::class, 'filterReservationList']);
     Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
     Route::get('/reservation/pdf_view', [ReservationController::class, 'pdf'])->name('pdf_view');
