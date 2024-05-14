@@ -60,29 +60,49 @@
                 </div>
                 {{-- Table for Users --}}
                 <div class="statical-table-range" id="registrations-num" role="tabpanel">
-                    <x-admin_statistic_table :data="$data"/>
-                    <x-admin_statistic_chart :data="$data" chartId="registrations-num-chart" />
+                    <div class="table-responsive">
+                        <!-- Table will be populated with JavaScript -->
+                    </div>
+                    <canvas id="registrations-num-chart">
+                        <!-- Chart will be populated with JavaScript -->
+                    </canvas>
                 </div>
             
                 <div class="statical-table-range" id="deletions-num" role="tabpanel">
-                    <x-admin_statistic_table :data="$data" />
-                    <x-admin_statistic_chart :data="$data" chartId="deletions-num-chart" />
+                    <div class="table-responsive">
+                        <!-- Table will be populated with JavaScript -->
+                    </div>
+                    <canvas id="deletions-num-chart">
+                        <!-- Chart will be populated with JavaScript -->
+                    </canvas>
                 </div>
 
                 {{-- Table for Reservations --}}
                 <div class="statical-table-range" id="reservations-num" role="tabpanel">
-                    <x-admin_statistic_table :data="$data" />
-                    <x-admin_statistic_chart :data="$data" chartId="reservations-num-chart" />
+                    <div class="table-responsive">
+                        <!-- Table will be populated with JavaScript -->
+                    </div>
+                    <canvas id="reservations-num-chart">
+                        <!-- Chart will be populated with JavaScript -->
+                    </canvas>
                 </div>
 
                 <div class="statical-table-range" id="cancellations-num" role="tabpanel">
-                    <x-admin_statistic_table :data="$data" />
-                    <x-admin_statistic_chart :data="$data" chartId="cancellations-num-chart" />
+                    <div class="table-responsive">
+                        <!-- Table will be populated with JavaScript -->
+                    </div>
+                    <canvas id="cancellations-num-chart">
+                        <!-- Chart will be populated with JavaScript -->
+                    </canvas>
                 </div>
 
                 <div class="statical-table-range" id="sales-num" role="tabpanel">
-                    <x-admin_statistic_table :data="$data" />
-                    <x-admin_statistic_chart :data="$data" chartId="sales-num-chart" />
+                    <div class="table-responsive">
+                        <!-- Table will be populated with JavaScript -->
+                    </div>
+                    <canvas id="sales-num-chart">
+                        <!-- Chart will be populated with JavaScript -->
+                    </canvas>
                 </div>
             </div>  
         </div>
