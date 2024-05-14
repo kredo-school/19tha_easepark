@@ -19,10 +19,12 @@ class AreaFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->randomElement(["Area A, 1F", "Area B, 1F", "Area C, 1F", "Area B, 2F"]),
-            'attribute_id' => function() {
-                return Attribute::all()->random()->id;
-            },
+            // 'name' => fake()->unique()->randomElement(["Area A, 1F", "Area B, 1F", "Area C, 1F", "Area B, 2F"]),
+            'name' => "Area C, 1F",
+            // 'attribute_id' => function() {
+            //     return Attribute::all()->random()->id;
+            // },
+            'attribute_id' => 1,
             'fee_id' => function() {
                 return Fee::all()->random()->id;
             },
