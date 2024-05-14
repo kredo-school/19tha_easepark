@@ -44,14 +44,13 @@ class AttributesController extends Controller
             'name' => 'required|min:1|max:50|unique:attributes,name'
         ]);
 
-        $this->attribute->name = $request->name;
+        $this->attribute->name = ucwords(strtolower($request->name));
         $this->attribute->save();
 
         return redirect()->back();
     }
 
-
-    public function editAttribute($id)
+    public function showEditAttributePage($id)
     {
         $attribute = $this->attribute->findOrFail($id);
         return view('admin.attributes.edit')->with('attribute', $attribute);
@@ -66,11 +65,10 @@ class AttributesController extends Controller
         $attribute       = $this->attribute->findOrFail($id);
         $attribute->name = $request->name;
         $attribute->save();
-
-        return redirect()->back();
+        
+        return redirect()->route('admin.attributes.show');
     }
 
-    // Soft deleted attribute
     public function deactivateAttributes($id)
     {
         $attribute = $this->attribute->findOrFail($id);
@@ -78,8 +76,6 @@ class AttributesController extends Controller
 
         return redirect()->back();
     }
-
-
 
     public function restore($id)
     {

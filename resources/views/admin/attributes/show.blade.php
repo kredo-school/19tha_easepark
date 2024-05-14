@@ -46,7 +46,7 @@
                                 <td>{{ $attribute->name }}</td>
                                 <td>
                                     @if($attribute->trashed())
-                                        <span class="text-danger">Deleted</span>
+                                        <span class="text-danger">Inactive</span>
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -57,7 +57,7 @@
                                         </button>
                                     @else
                                         <!-- // Press the icon to display the EDIT BLADE. -->
-                                        <a href="{{ route('admin.attributes.edit', $attribute->id) }}">
+                                        <a href="{{ route('admin.attributes.showEdit', $attribute->id) }}">
                                             <span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
                                         </a>
                                         <!-- // Press the button to display the delete modal. -->
