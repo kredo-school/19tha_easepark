@@ -1,7 +1,7 @@
 {{-- delete --}}
-<div class="modal fade" id="delete-user">
+<div class="modal fade" id="delete-user-{{ $user->id }}">
     <div class="modal-dialog">
-        <form action="#">
+        <form action="{{ route('admin.users.deactivate', $user->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <div class="modal-content">
@@ -14,7 +14,7 @@
                     Are you sure you want to delete the following user?
                     <br>All associated data will be permanently removed.
                     <div class="my-4">
-                        <span class="modal-head-color-red-transparent px-2 py-1">John Doe</span>
+                        <span class="modal-head-color-red-transparent px-2 py-1">{{ $user->name }}</span>
                     </div>
                     Once deleted, it cannot be undone.
                 </div>

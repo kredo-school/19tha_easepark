@@ -61,6 +61,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Other admin routes
         // For Users
         Route::get('/users/show', [UsersController::class, 'showUsers'])->name('users.show');
+        Route::delete('/users/{id}/deactivate',[UsersController::class,'deactivateUsers'])->name('users.deactivate');
+        Route::patch('/users/{id}/activate',[UsersController::class,'activateUsers'])->name('users.activate');
 
         // For Attributes
         Route::get('/attributes/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
