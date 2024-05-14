@@ -11,6 +11,7 @@
             <div class="card p-4">
                 <form action="{{ route('admin.attributes.edit', $attribute->id) }}" method="post">
                     @csrf
+                    @method('PUT')
                     <label for="attribute_edit" class="form-label">Attribute</label>
                     <input type="text" name="name" class="form-control mb-3" id="attribute_edit" placeholder="Attribute" value="{{ $attribute->name }}">
                     

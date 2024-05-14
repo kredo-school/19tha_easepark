@@ -35,6 +35,7 @@
                             <th scope="col" class="fw-bold text-center">ID</th>
                             <th scope="col">Attribute Name</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,13 +43,28 @@
                             <tr>
                                 <td class="text-center">{{ $attribute->id }}</td>
                                 <td>{{ $attribute->name }}</td>
+                                <td>
+                                    @if($attribute->trashed())
+                                        <span class="text-danger">Deleted</span>
+                                    @endif
+                                </td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.attributes.edit', $attribute->id) }}">
-                                        <span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
-                                    </a>
-                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute">
-                                        <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span>
-                                    </button>
+                                    @if($attribute->trashed())
+                                    <!-- // Pressing the icon displays a restore modal in the delete.blade file. -->
+                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#restore-attribute-{{$attribute->id}}">
+                                            <span class="text-success"><i class="fa-solid fa-rotate-left"></i></span>
+                                        </button>
+                                    @else
+                                        <!-- // Press the icon to display the EDIT BLADE. -->
+                                        <a href="{{ route('admin.attributes.edit', $attribute->id) }}">
+                                            <span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
+                                        </a>
+                                        <!-- // Press the button to display the delete modal. -->
+                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute">
+                                            <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span>
+                                        </button>
+                                    @endif
+
                                 </td>
                             </tr>
                         @empty
@@ -57,8 +73,8 @@
                             </tr>
                         @endforelse
                     </tbody>
+                    @include('admin.attributes.modal.delete')
                 </table>
-                @include('admin.attributes.modal.delete')
                 <div class="d-flex justify-content-center">
                     {{ $attributes->links() }}
                 </div>
