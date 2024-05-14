@@ -60,18 +60,22 @@
                             <td>${{ $reservation->fee_log }}</td>
                             <td>
                                 @if ($reservation->deleted_at != null)
-                                    <span>Deleted</span>
+                                    <span class="text-danger">Deactivated</span>
+                                @else
+                                    <span>Active</span>
                                 @endif
                             </td>
                             <td>
-                                @if ($reservation->deleted_at != null)
-                                    <button type="button" class="btn btn-sm text-primary" data-bs-toggle="modal" data-bs-target="#">
-                                        <i class="fa-solid fa-rotate-left mx-1"></i>
-                                    </button>
-                                @elseif ((new DateTime($reservation['date']))->format('Y-m-d') >= date('Y-m-d'))
-                                    <button type="button" class="btn btn-sm text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation">
-                                        <i class="fa-solid fa-trash-can mx-1"></i>
-                                    </button>
+                                @if ((new DateTime($reservation['date']))->format('Y-m-d') >= date('Y-m-d'))
+                                    @if ($reservation->deleted_at != null)
+                                        <button type="button" class="btn btn-sm text-primary" data-bs-toggle="modal" data-bs-target="#activate-reservation">
+                                            <i class="fa-solid fa-rotate-left mx-1"></i>
+                                        </button>
+                                    @else
+                                        <button type="button" class="btn btn-sm text-danger" data-bs-toggle="modal" data-bs-target="#deactivate-reservation">
+                                            <i class="fa-solid fa-trash-can mx-1"></i>
+                                        </button>
+                                    @endif
                                 @endif
                             </td>
                         </tr>
