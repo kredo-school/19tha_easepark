@@ -41,7 +41,7 @@ $(document).ready(function() {
                         if (reservation.date >= today) {
                             deleteTag = `<td class="text-center"><button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="${deleteModalTarget}"><i class="fa-solid fa-trash-can"></i></button></td>`;
                         } else {
-                            deleteTag = '';
+                            deleteTag = `<td></td>`;
                         }
             
                         rows += `
