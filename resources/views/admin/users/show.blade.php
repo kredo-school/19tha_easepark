@@ -13,8 +13,8 @@
                 <div class="col-md-5  me-1">
                     <form action="{{ route('admin.users.show') }}" method="GET" class="ms-auto">
                         <div class="input-group">
-                            <input type="search" name="search" placeholder="Search by name or phone" value="{{ $search }}"
-                                class="form-control form-control-sm">
+                            <input type="search" name="search" placeholder="Search by name or phone"
+                                value="{{ $search }}" class="form-control form-control-sm">
                             <button type="submit" class="btn bg-dark text-white border" aria-label="Search Users"><i
                                     class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
@@ -32,7 +32,7 @@
                         <th>Plate Number</th>
                         <th>Phone Number</th>
                         <th>Email</th>
-                        <th>CREATED AT</th>
+                        <th>Registered</th>
                         <th>Status</th>
                         <th></th>
                     </tr>
@@ -56,12 +56,11 @@
                             <td>
                                 @if (Auth::user()->id !== $user->id)
                                     @if ($user->trashed())
-                                        <form action="{{ route('admin.users.activate', $user->id) }}" method="post"
-                                            style="display: inline;">
-                                            @csrf
-                                            @method('PATCH')
-                                            <button type="submit" class="btn text-primary"><i
-                                                    class="fa-solid fa-rotate-left"></i></button>
+                                            <button type="button" class="btn text-primary" data-bs-toggle="modal"
+                                                data-bs-target="#activate-user-{{ $user->id }}">
+                                                <i class="fa-solid fa-rotate-left"></i>
+                                            </button>
+                                            @include('admin.users.modal.activate', ['user' => $user])
                                         </form>
                                     @else
                                         <button type="button" class="btn text-danger" data-bs-toggle="modal"

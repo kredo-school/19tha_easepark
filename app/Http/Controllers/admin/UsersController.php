@@ -17,15 +17,16 @@ class UsersController extends Controller
 
     public function showUsers(Request $request)
     {
+        $query = $this->user->withTrashed();
+
         if ($request->search) {
-            $all_users = $this->user->withTrashed()
-                ->where('name', 'like', '%' . $request->search . '%')
-                ->orWhere('phone_number', 'like', '%' . $request->search . '%')
-                ->paginate(5);
-        } else {
-            $all_users = $this->user->orderBy('name')->withTrashed()
-                ->paginate(5);
+            $query->where(function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->search . '%')
+                    ->orWhere('phone_number', 'like', '%' . $request->search . '%');
+            });
         }
+
+        $all_users = $query->orderBy('id')->paginate(5);
 
         return view('admin.users.show')
             ->with('all_users', $all_users)

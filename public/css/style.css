@@ -87,13 +87,13 @@ body {
 
 /* button */
 .btn-blue {
-    background: #3399CC;
+    background: #3399cc;
     color: #ffff;
     border: none;
 }
 
 a:link {
-    color: #3399CC;
+    color: #3399cc;
     text-decoration: none;
 }
 
@@ -131,7 +131,7 @@ fieldset[disabled] .btn-blue.focus {
 }
 
 .btn-red {
-    background: #C73E3A;
+    background: #c73e3a;
     color: #ffff;
     border: none;
 }
@@ -159,13 +159,13 @@ fieldset[disabled] .btn-red:focus,
 .btn-red.disabled.focus,
 .btn-red[disabled].focus,
 fieldset[disabled] .btn-red.focus {
-    background: #B31712;
+    background: #b31712;
     color: #ffff;
     text-decoration: none;
 }
 
 .btn-green {
-    background: #24936E;
+    background: #24936e;
     color: #ffff;
     border: none;
 }
@@ -193,12 +193,12 @@ fieldset[disabled] .btn-green:focus,
 .btn-green.disabled.focus,
 .btn-green[disabled].focus,
 fieldset[disabled] .btn-green.focus {
-    background: #2E7157;
+    background: #2e7157;
     color: #ffff;
     text-decoration: none;
 }
 .btn-yellow {
-    background: #FFB11B;
+    background: #ffb11b;
     color: #ffff;
     border: none;
 }
@@ -226,7 +226,7 @@ fieldset[disabled] .btn-yellow:focus,
 .btn-yellow.disabled.focus,
 .btn-yellow[disabled].focus,
 fieldset[disabled] .btn-yellow.focus {
-    background: #CC8C16;
+    background: #cc8c16;
     color: #ffff;
     text-decoration: none;
 }
@@ -252,7 +252,7 @@ fieldset[disabled] .btn-cancel:hover,
 .btn-cancel[disabled]:focus,
 fieldset[disabled] .btn-cancel:focus,
 .btn-cancel[disabled].focus {
-    background: #D9D9D9;
+    background: #d9d9d9;
     color: #003399;
     border: solid 1px #999999;
     text-decoration: none;
@@ -265,6 +265,10 @@ fieldset[disabled] .btn-cancel:focus,
 /* Modal*/
 .modal-head-color {
     background: #003366;
+}
+
+.modal-head-color-blue-transparent {
+    background-color: #98c5f3;
 }
 
 /* Others */
@@ -347,15 +351,15 @@ fieldset[disabled] .btn-cancel:focus,
     background-color: #c73e3a;
 }
 
-.modal-head-color-red-transparent{
-  background-color: #F2D3D3;
+.modal-head-color-red-transparent {
+    background-color: #f2d3d3;
 }
 
 .modal-header .btn-close {
     filter: invert(1);
-  }
+}
 
-  .pdf_logo {
+.pdf_logo {
     width: 80px;
 }
 
@@ -363,32 +367,32 @@ fieldset[disabled] .btn-cancel:focus,
 /*
   styles for statistical pages
 */
-.statistic-db-choice-range{
+.statistic-db-choice-range {
     background-color: rgba(225, 225, 225, 0.8);
-  }
-  .statistic-each-db:hover {
+}
+.statistic-each-db:hover {
     transform: translateY(-5px); /* Moves the element up by 5 pixels */
     transition: all 0.3s ease; /* Smooth transition */
-  }
-  .statistic-extract-condition:hover{
+}
+.statistic-extract-condition:hover {
     transform: translateX(-5px); /* Moves the element up by 5 pixels */
     transition: all 0.3s ease; /* Smooth transition */
     color: black;
-  }
-  .statistic-extract-condition-clicked {
-    background-color: #124DAB;
+}
+.statistic-extract-condition-clicked {
+    background-color: #124dab;
     color: white;
-  }
-  .statistic-extract-condition-clicked:hover {
+}
+.statistic-extract-condition-clicked:hover {
     color: white;
-  }
-  .year-selection {
+}
+.year-selection {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right .75rem center;
+    background-position: right 0.75rem center;
     background-size: 8px 10px;
-  }
-.selected-date{
+}
+.selected-date {
     background-color: #51b8ec;
 }
