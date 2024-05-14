@@ -32,7 +32,7 @@ class FeesController extends Controller
     {
         $request->validate([
             'name' => 'required|min:1|max:50',
-            'fee' => 'required|numeric|min:0.01|max:99999.99'
+            'fee' => 'required|numeric|between:0.01,99999.99'
         ]);
 
         $this->fee->name =  $request->name;
@@ -53,7 +53,7 @@ class FeesController extends Controller
     {
         $request->validate([
             'name' => 'required|min:1|max:50',
-            'fee' => 'required|numeric|min:1|max:999999.99'
+            'fee' => 'required|numeric|between:0.01,99999.99'
         ]);
 
         $fee = $this->fee->findOrFail($id);

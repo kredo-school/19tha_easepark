@@ -21,7 +21,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="fee" class="form-label">Amount of the Fee</label>
-                        <input id="fee" type="number" class="form-control @error('fee') is-invalid @enderror"
+                        <input id="fee" type="number" step="0.01" class="form-control @error('fee') is-invalid @enderror"
                             name="fee" value="{{ old('fee') }}" required autofocus>
                         @error('fee')
                             <span class="invalid-feedback" role="alert">
