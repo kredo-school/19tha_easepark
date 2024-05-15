@@ -17,20 +17,25 @@ class AttributesController extends Controller
 
     public function showAttribute(Request $request)
     {
-        $searchTerm = $request->input('search_attributes');
+        $search = $request->input('search_attributes');
 
-        if($searchTerm) {
+        if($search) {
             $all_attributes = $this->attribute
-            ->where('name', 'like', '%'. $searchTerm. '%')
+            ->withTrashed()
+            ->where('name', 'like', '%'. $search. '%')
             ->orderBy('id', 'asc')
             ->paginate(5);
         } else {
-            $all_attributes = $this->attribute->orderBy('id', 'asc')->paginate(5);
+            $all_attributes = $this->attribute
+            ->withTrashed()
+            ->orderBy('id', 'asc')
+            ->paginate(5);
         }
 
         return view('admin.attributes.show')
             ->with('attributes', $all_attributes)
-            ->with('search', $searchTerm);
+            ->with('search', $search);
+
     }
 
 
@@ -40,7 +45,7 @@ class AttributesController extends Controller
             'name' => 'required|min:1|max:50|unique:attributes,name'
         ]);
 
-        $this->attribute->name = ucwords(strtolower($request->name));
+        $this->attribute->name = $request->name;
         $this->attribute->save();
 
         return redirect()->back();
@@ -58,12 +63,30 @@ class AttributesController extends Controller
         $request->validate([
             'name'  => 'required|min:1|max:50|unique:attributes,name,' . $id
         ]);
-        
+
         $attribute       = $this->attribute->findOrFail($id);
-        $attribute->name = ucwords(strtolower($request->name));
+        $attribute->name = $request->name;
         $attribute->save();
-        
-        return redirect()->route('admin.attributes.show');
+
+        return redirect()->back();
+    }
+
+    public function deactivateAttributes($id)
+    {
+        $attribute = $this->attribute->findOrFail($id);
+        $attribute->delete();
+
+        return redirect()->back();
+    }
+
+
+
+    public function activateAttributes($id)
+    {
+        $attribute = $this->attribute->onlyTrashed()->findOrFail($id);
+        $attribute->restore();
+
+        return redirect()->back();
     }
 
 }

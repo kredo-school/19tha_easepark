@@ -14,7 +14,7 @@
                     @method('PATCH')
                     <label for="attribute_edit" class="form-label">Attribute</label>
                     <input type="text" name="name" class="form-control mb-3" id="attribute_edit" placeholder="Attribute" value="{{ $attribute->name }}">
-                    
+
                     @error('name')
                     <div class="text-danger small">{{ $message }}</div>
                     @enderror
