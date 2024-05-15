@@ -60,4 +60,7 @@
             </div>
         </div>
     </div>
+    <div class="d-flex justify-content-center mt-2 w-75">
+        {{ $fees->appends(request()->query())->links() }}
+    </div>
 @endsection

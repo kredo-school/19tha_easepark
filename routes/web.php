@@ -32,7 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/profile/deactivate', [ProfileController::class, 'deactivate'])->name('profile.deactivate');
 
     // for Reservation
-    Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
+    Route::get('/reservation/list', [ReservationController::class, 'showReservationList'])->name('reservation.list');
+    Route::get('/reservation/filter-list', [ReservationController::class, 'filterReservationList']);
     Route::post('/reservation/pass-to-confirmation', [ReservationController::class, 'passToConfirmation']);
     Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
@@ -76,6 +77,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //For Fees
         Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
+        Route::post('/fees/register',[FeesController::class,'registerFee'])->name('fees.register');
         Route::get('/fees/{id}/edit', [FeesController::class, 'showEditFeePage'])->name('fees.showEdit');
         Route::patch('/fees/{id}/update', [FeesController::class, 'updateRegisteredFees'])->name('fees.update');
         Route::delete('/fees/{id}/destroy', [FeesController::class, 'destroyFees'])->name('fees.destroy');
