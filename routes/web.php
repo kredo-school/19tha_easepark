@@ -60,6 +60,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Other admin routes
         // For Users
         Route::get('/users/show', [UsersController::class, 'showUsers'])->name('users.show');
+        Route::delete('/users/{id}/deactivate',[UsersController::class,'deactivateUsers'])->name('users.deactivate');
+        Route::patch('/users/{id}/activate',[UsersController::class,'activateUsers'])->name('users.activate');
 
         // For Attributes
         Route::get('/attributes/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
@@ -67,7 +69,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/attributes/{id}/edit', [AttributesController::class, 'editAttribute'])->name('attributes.edit');
         Route::patch('/attributes/{id}/update', [AttributesController::class, 'update'])->name('attributes.update');
         Route::delete('/attributes/{id}/deactivate', [AttributesController::class, 'deactivateAttributes'])->name('attributes.deactivate');
-        Route::patch('/attributes/{id}/restore', [AttributesController::class, 'restore'])->name('attributes.restore');
+        Route::patch('/attributes/{id}/activate', [AttributesController::class, 'activateAttributes'])->name('attributes.activate');
 
 
 

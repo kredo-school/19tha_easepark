@@ -34,7 +34,7 @@
                         <tr class="table-info">
                             <th scope="col" class="fw-bold text-center">ID</th>
                             <th scope="col">Attribute Name</th>
-                            <th></th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -45,14 +45,15 @@
                                 <td>{{ $attribute->name }}</td>
                                 <td>
                                     @if($attribute->trashed())
-                                        <span class="text-danger">Deleted</span>
-                                    @endif
+                                    <i class="fa-regular fa-circle text-secondary"></i>&nbsp; Inactive
+                                @else
+                                    <i class="fa-solid fa-circle text-success"></i>&nbsp; Active
+                                @endif
                                 </td>
                                 <td class="text-center">
                                     @if($attribute->trashed())
-                                    <!-- // Pressing the icon displays a restore modal in the delete.blade file. -->
-                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#restore-attribute-{{$attribute->id}}">
-                                            <span class="text-success"><i class="fa-solid fa-rotate-left"></i></span>
+                                        <button type="button" class="btn btn-link p-0 text-primary" data-bs-toggle="modal" data-bs-target="#activate-attribute-{{ $attribute->id }}">
+                                            <i class="fa-solid fa-rotate-left"></i>
                                         </button>
                                     @else
                                         <!-- // Press the icon to display the EDIT BLADE. -->
@@ -75,10 +76,10 @@
                         @endforelse
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center">
-                    {{ $attributes->links() }}
-                </div>
             </div>
+        </div>
+        <div class="col-8 d-flex justify-content-center mt-2">
+            {{ $attributes->links() }}
         </div>
     </div>
 @endsection

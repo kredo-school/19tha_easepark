@@ -71,7 +71,6 @@ class AttributesController extends Controller
         return redirect()->back();
     }
 
-    // Soft deleted attribute
     public function deactivateAttributes($id)
     {
         $attribute = $this->attribute->findOrFail($id);
@@ -82,7 +81,7 @@ class AttributesController extends Controller
 
 
 
-    public function restore($id)
+    public function activateAttributes($id)
     {
         $attribute = $this->attribute->onlyTrashed()->findOrFail($id);
         $attribute->restore();
