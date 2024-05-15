@@ -30,13 +30,13 @@ class ReservationsController extends Controller
     public function deactivateReservations($id)
     {
         $this->reservation->destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('success_delete', 'Selected reservation deactivated successfully.');
     }
 
     public function activateReservations($id)
     {
         $this->reservation->onlyTrashed()->findOrFail($id)->restore();
-        return redirect()->back();
+        return redirect()->back()->with('success_restore', 'Selected reservation activated successfully.');
     }
 
 }
