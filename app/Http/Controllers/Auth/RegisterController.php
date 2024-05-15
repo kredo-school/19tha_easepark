@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Attribute;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -51,9 +52,11 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email-verify' => ['required', 'string', 'email', 'max:255', 'same:email'],
             'phone-number' => ['required', 'string', 'max:255'],
             'plate-number' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'attribute_id' => ['required', 'exists:attributes,id']
         ]);
     }
 
@@ -71,14 +74,13 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'phone_number' => $data['phone-number'],
             'plate_number' => $data['plate-number'],
-            'attribute_id' => 1,
+            'attribute_id' => $data['attribute_id'],
         ]);
-
     }
 
-    public function showRegistrationFormTest()
+    public function showRegistrationForm()
     {
-        $attributes = ['General', 'EV', 'Disability'];
+        $attributes = Attribute::pluck('name', 'id');
         return view('auth.register')->with('attributes', $attributes);
     }
 }

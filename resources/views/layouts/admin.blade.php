@@ -117,7 +117,7 @@
                             </a>
 
                             {{-- Route name for statistics should be 'admin.statistics.show' later --}}
-                            <a href="{{route('admin.statistics.show.test')}}" class="list-group-item {{ request()->is('admin/statistics*') ? 'active' : '' }}">
+                            <a href="{{route('admin.statistics.show')}}" class="list-group-item {{ request()->is('admin/statistics*') ? 'active' : '' }}">
                                 <i class="fa-solid fa-chart-simple me-1"></i>Statistics
                             </a>
 
