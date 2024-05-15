@@ -24,7 +24,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="fee" class="form-label">Amount of fee</label>
-                                <input type="number" name="fee" class="form-control mb-4" id="fee"
+                                <input type="number" step="0.01" name="fee" class="form-control mb-4" id="fee"
                                     value="{{ old('fee', $fee->fee) }}">
 
                                 @error('fee')

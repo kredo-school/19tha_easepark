@@ -4,41 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Area;
 
 class AreasController extends Controller
 {
-    public function showAreas(){
-        $areas = [
-            [
-                'id' => 1,
-                'area_name' => 'Area 1',
-                'type' => 'EV',
-                'fee' => 100,
-                'fee_name' => 'Fee 1',
-                'address' => '123 Main Street Anytown',
-                'max_number'=> 20,
-            ],
-            [
-                'id'=>2,
-                'area_name' => 'Area 2',
-                'type' => 'General',
-                'fee' => 200,
-                'fee_name' => 'Fee 2',
-                'address' => '123 Main Street Anytown',
-                'max_number'=> 10,
-            ],
-            [
-                'id'=>3,
-                'area_name' => 'Area 3',
-                'type' => 'Disability',
-                'fee' => 300,
-                'fee_name' => 'Fee 3',
-                'address' => '123 Main Street Anytown',
-                'max_number'=> 10,
-            ],
-        ];
+    private $area;
 
-        return view('admin.areas.show', ['areas' => $areas]);
+    public function __construct(Area $area){
+        $this->area = $area;
+    }
+
+    public function showAreas(Request $request){
+        if($request->search) {
+            $areas = $this->area->withTrashed()->where('name', 'like', '%' . $request->search . '%')->paginate(5);
+        } else {
+            $areas = $this->area->withTrashed()->orderBy('id')->paginate(5);
+        }
+        return view('admin.areas.show')
+            ->with('areas', $areas)
+            ->with('search', $request->search);
     }
 
     public function editRegisteredAreas(){
