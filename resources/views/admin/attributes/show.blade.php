@@ -76,10 +76,11 @@
                         @endforelse
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center">
-                    {{ $attributes->links() }}
-                </div>
             </div>
+        </div>
+        <!-- Pagination -->
+        <div class="d-flex col-8 justify-content-center mt-2">
+            {{ $attributes->links() }}
         </div>
     </div>
 @endsection
