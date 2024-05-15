@@ -18,15 +18,63 @@ class ReservationController extends Controller
         $this->area = $area;
     }
 
-    public function showAllConfirmationReservation(){
-        $tentativeAllReservations = [
-            ['date' => '2022-04-01', 'area' => 'Area 1', 'fee' => 100],
-            ['date' => '2022-04-02', 'area' => 'Area 2', 'fee' => 200],
-            ['date' => '2022-04-03', 'area' => 'Area 3', 'fee' => 300]
+    public function showReservationList()
+    {
+        return view('users.reservation.list');
+    }
+
+    public function filterReservationList(Request $request)
+    {
+        $userReservations = $this->reservation
+            ->where('user_id', Auth::id())
+            ->orderBy('date', 'desc');
+        $userAttribute = Auth::user()->attribute->name;
+
+        $filterCondition = $request->input('filterCondition');
+        $page = $request->get('page');
+        $today = now()->startOfDay();
+        $nextMonth = clone $today;
+        $nextMonth->addMonth();
+        $nextWeek = clone $today;
+        $nextWeek->addWeek();
+        $preMonth = clone $today;
+        $preMonth->subMonth();
+        $preWeek = clone $today;
+        $preWeek->subWeek();
+
+        switch ($filterCondition) {
+            case 'all':
+                $reservations = $userReservations->with('area')->paginate(5, ['*'], 'page', $page);
+                break;
+            case 'upcoming_reservations_all':
+                $reservations = $userReservations->with('area')->where('date', '>=', $today)->paginate(5, ['*'], 'page', $page);
+                break;
+            case 'upcoming_reservations_one_month':
+                $reservations = $userReservations->with('area')->where('date', '>=', $today)->where('date', '<=', $nextMonth)->paginate(5, ['*'], 'page', $page);
+                break;
+            case 'upcoming_reservations_one_week':
+                $reservations = $userReservations->with('area')->where('date', '>=', $today)->where('date', '<=', $nextWeek)->paginate(5, ['*'], 'page', $page);
+                break;
+            case 'past_reservations_all':
+                $reservations = $userReservations->with('area')->where('date', '<', $today)->paginate(5, ['*'], 'page', $page);
+                break;
+            case 'past_reservations_one_month':
+                $reservations = $userReservations->with('area')->where('date', '<', $today)->where('date', '>=', $preMonth)->paginate(5, ['*'], 'page', $page);
+                break;
+            case 'past_reservations_one_week':
+                $reservations = $userReservations->with('area')->where('date', '<', $today)->where('date', '>=', $preWeek)->paginate(5, ['*'], 'page', $page);
+                break;
+            default:
+                $reservations = $userReservations->with('area')->paginate(5, ['*'], 'page', $page);
+                break;
+        }
+
+        $fetchedData = [
+            'reservations' => $reservations,
+            'userAttribute' => $userAttribute,
         ];
 
-        return view('users.reservation.list')
-            ->with('tentativeAllReservations', $tentativeAllReservations);
+        return response()->json($fetchedData);
     }
 
     public function passToConfirmation(Request $request)

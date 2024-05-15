@@ -11,14 +11,14 @@
     var userIsAuthenticated = @json(auth()->check());
 </script>
 
-    @if (session('success_delete'))
-    <div class="alert alert-success text-center w-50 mx-auto ">
-        {{ session('success_delete') }}
-    </div>
-    @endif
-
     <div class="index-background py-3">
         <main class="container">
+            {{-- Success alert for deletion --}}
+            @if (session('success_delete'))
+            <div class="alert alert-danger success-alert text-center w-50 mt-2 mx-auto" id="delete-success-alert">
+                {{ session('success_delete') }}
+            </div>
+            @endif
             <div class="row justify-content-center">
                 <div class="col-md-10">
                         <div class="row mb-1">

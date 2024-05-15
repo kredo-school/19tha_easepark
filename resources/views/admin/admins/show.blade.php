@@ -3,7 +3,7 @@
 @section('title', 'Admin: Registered Admins')
 
 @section('content')
-    <a class="btn btn-green my-2" role="button" href="{{ route('admin.admins.register') }}">
+    <a class="btn btn-green my-2 text-white" role="button" href="{{ route('admin.admins.register') }}">
         <i class="fa-solid fa-circle-plus me-2 btn-lg"></i>Register New Admin
     </a>
     <div class="card mb-3">
@@ -49,16 +49,16 @@
                                     <a href="{{ route('admin.admins.edit', ['id' => $admin->id]) }}"><i
                                             class="text-warning fa-solid fa-pen-to-square fa-lg me-4"></i></a>
                                     <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
-                                        data-bs-target="#delete-admin"><span class="text-danger"><i
-                                                class="fa-solid fa-trash-can"></i></span></button>
+                                        data-bs-target="#delete-admin-{{ auth('admin')->user()->id }}"><span class="text-danger"><i
+                                                class="fa-solid fa-trash-can fa-lg"></i></span></button>
                                 @endif
                             </td>
                         </tr>
                     @endforeach
+                    @include('admin.admins.modal.delete', ['admin' => $admin])
                 </tbody>
             </table>
         </div>
-        @include('admin.admins.modal.delete')
     </div>
     <div class="d-flex justify-content-center">{{ $admins->links() }}</div>
 @endsection
