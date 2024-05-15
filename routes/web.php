@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
     Route::post('/reservation/pass-to-confirmation', [ReservationController::class, 'passToConfirmation']);
     Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
+    Route::post('/reservation/reserve-spaces', [ReservationController::class, 'reserveSpaces']);
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
     Route::get('/reservation/pdf_view', [ReservationController::class, 'pdf'])->name('pdf_view');
     Route::get('/reservation/pdf_download', [PDFController::class, 'pdf_generator_get'])->name('pdf_download');
