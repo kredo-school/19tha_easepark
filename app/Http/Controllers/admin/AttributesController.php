@@ -48,7 +48,7 @@ class AttributesController extends Controller
         $this->attribute->name = $request->name;
         $this->attribute->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success_register', 'The attribute registered successfully.');
     }
 
 
@@ -68,7 +68,7 @@ class AttributesController extends Controller
         $attribute->name = $request->name;
         $attribute->save();
 
-        return redirect()->back();
+        return redirect()->route('admin.attributes.show')->with('success_update', 'The selected attribute updated successfully.');
     }
 
     public function deactivateAttributes($id)
@@ -76,17 +76,15 @@ class AttributesController extends Controller
         $attribute = $this->attribute->findOrFail($id);
         $attribute->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('success_delete', 'The selected attribute has been deactivated.');
     }
-
-
 
     public function activateAttributes($id)
     {
         $attribute = $this->attribute->onlyTrashed()->findOrFail($id);
         $attribute->restore();
 
-        return redirect()->back();
+        return redirect()->back()->with('success_restore', 'The selected attribute has been activated.');
     }
 
 }
