@@ -90,6 +90,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //For Reservations
         Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
+        Route::delete('/reservations/{id}/deactivate',[ReservationsController::class,'deactivateReservations'])->name('reservations.deactivate');
+        Route::patch('/reservations/{id}/activate',[ReservationsController::class,'activateReservations'])->name('reservations.activate');
 
         //For Statistics
         Route::get('/statistics/show', [StatisticsController::class, 'showStatistics'])->name('statistics.show');
