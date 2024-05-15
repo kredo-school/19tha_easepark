@@ -3,7 +3,7 @@
 @section('title', 'Admin: Registered Admins')
 
 @section('content')
-    <a class="btn btn-green my-2" role="button" href="{{ route('admin.admins.register') }}">
+    <a class="btn btn-green my-2 text-white" role="button" href="{{ route('admin.admins.register') }}">
         <i class="fa-solid fa-circle-plus me-2 btn-lg"></i>Register New Admin
     </a>
     <div class="card mb-3">

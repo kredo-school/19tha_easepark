@@ -6,6 +6,14 @@
 
 <div class="container w-75 mt-3">
     <div class="row mb-2">
+
+        {{-- Success alert for deletion --}}
+        @if (session('success_delete'))
+        <div class="alert alert-danger success-alert text-center mx-auto mt-2" id="delete-success-alert">
+            {{ session('success_delete') }}
+        </div>
+        @endif
+        
         <div class="col">
             <h4 class="float-start"><i class="fa-solid fa-list p-2"></i>Reservation List</h4>
             <div class="float-end">

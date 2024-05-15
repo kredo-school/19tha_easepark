@@ -1,7 +1,7 @@
 {{-- delete --}}
 <div class="modal fade" id="delete-admin-{{ auth('admin')->user()->id }}">
     <div class="modal-dialog">
-        <form method="DELETE" action="{{ route('admin.admins.delete') }}">
+        <form method="post" action="{{ route('admin.admins.delete') }}">
             @csrf
             @method('DELETE')
 

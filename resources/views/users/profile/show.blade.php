@@ -4,15 +4,17 @@
 
 @section('content')
 
+    {{-- Success alert for upadte --}}
     @if (session('success_update'))
-    <div class="alert alert-success text-center w-50 mx-auto ">
+    <div class="alert alert-success success-alert text-center w-50 mt-2 mx-auto" id="update-success-alert">
         {{ session('success_update') }}
     </div>
     @elseif (session('success_password'))
-    <div class="alert alert-success text-center w-50 mx-auto ">
+    <div class="alert alert-success success-alert text-center w-50 mt-2 mx-auto" id="password-success-alert">
         {{ session('success_password') }}
     </div>
     @endif
+   
 
     <div class="mt-5 d-flex justify-content-center">
         <div class="row justify-content-between">

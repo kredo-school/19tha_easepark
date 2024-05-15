@@ -54,7 +54,7 @@ class AdminsController extends Controller
     
         $admin->save();
 
-        return redirect()->route('admin.admins.show', $admin->id)->with('success', 'Profile updated successfully.');
+        return redirect()->route('admin.admins.show', $admin->id)->with('success_update', 'Profile updated successfully.');
     }
 
     public function changePassword(Request $request) {
@@ -79,13 +79,15 @@ class AdminsController extends Controller
         $admin->password = Hash::make($request->get('new_password'));
         $admin->save();
 
-        return redirect()->route('admin.admins.show', $admin->id)->with('success', 'Your password has been changed successfully.');
+        return redirect()->route('admin.admins.show', $admin->id)->with('success_password', 'Your password has been changed successfully.');
     }
 
     public function deleteAdmin() {
+
         $admin = $this->admin->findOrFail(auth('admin')->user()->id);
         $admin->delete();
+
         
-        return redirect()->route('admin.admins.show', $admin->id)->with('success', 'Your admin account has been deleted successfully.');
+        return redirect()->route('admin.login')->with('success_delete', 'Account deleted successfully.');
     }
 }
