@@ -9,7 +9,7 @@
             <div class="h3 mb-2"><i class="fa-solid fa-user-plus pe-3 fa-lg"></i>Register New Admin</div>
 
             {{-- Add action --}}
-            <form method="POST" action="#">
+            <form method="POST" action="#"  enctype="multipart/form-data">
             @csrf
 
             {{-- Name --}}

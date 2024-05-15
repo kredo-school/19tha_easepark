@@ -28,6 +28,21 @@ class FeesController extends Controller
             ->with('search', $request->search);
     }
 
+    public function registerFee(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:1|max:50',
+            'fee' => 'required|numeric|between:0.01,99999.99'
+        ]);
+
+        $this->fee->name =  $request->name;
+        $this->fee->fee = $request->fee;
+        $this->fee->save();
+
+        return redirect()->route('admin.fees.show')
+            ->with('success_register', ' The added fee registered successfully.');
+    }
+    
     public function showEditFeePage($id)
     {
         $fee = $this->fee->findOrFail($id);
@@ -38,7 +53,7 @@ class FeesController extends Controller
     {
         $request->validate([
             'name' => 'required|min:1|max:50',
-            'fee' => 'required|numeric|min:1|max:999999.99'
+            'fee' => 'required|numeric|between:0.01,99999.99'
         ]);
 
         $fee = $this->fee->findOrFail($id);

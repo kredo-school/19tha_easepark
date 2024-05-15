@@ -32,7 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/profile/deactivate', [ProfileController::class, 'deactivate'])->name('profile.deactivate');
 
     // for Reservation
-    Route::get('/reservation/list', [ReservationController::class, 'showAllConfirmationReservation'])->name('reservation.list');
+    Route::get('/reservation/list', [ReservationController::class, 'showReservationList'])->name('reservation.list');
+    Route::get('/reservation/filter-list', [ReservationController::class, 'filterReservationList']);
     Route::post('/reservation/pass-to-confirmation', [ReservationController::class, 'passToConfirmation']);
     Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
@@ -65,6 +66,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // For Attributes
         Route::get('/attributes/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
+        Route::get('/attributes/search', [AttributesController::class, 'search'])->name('attributes.search');
         Route::post('/attributes/store', [AttributesController::class, 'store'])->name('attributes.store');
         Route::get('/attributes/{id}/edit', [AttributesController::class, 'showEditAttributePage'])->name('attributes.showEdit');
         Route::patch('/attributes/{id}/update', [AttributesController::class, 'update'])->name('attributes.update');
@@ -73,11 +75,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //For Admins
         Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
-        Route::get('/admins/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
         Route::get('/admins/show', [AdminsController::class, 'showAdmins'])->name('admins.show');
+        Route::get('/admins/{id}/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
+        Route::patch('/admins/update', [AdminsController::class, 'updateAdmin'])->name('admins.update');
+        Route::patch('/admins/password', [AdminsController::class, 'changePassword'])->name('admins.password');
+        Route::delete('/admins/delete', [AdminsController::class, 'deleteAdmin'])->name('admins.delete');
 
         //For Fees
         Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
+        Route::post('/fees/register',[FeesController::class,'registerFee'])->name('fees.register');
         Route::get('/fees/{id}/edit', [FeesController::class, 'showEditFeePage'])->name('fees.showEdit');
         Route::patch('/fees/{id}/update', [FeesController::class, 'updateRegisteredFees'])->name('fees.update');
         Route::delete('/fees/{id}/destroy', [FeesController::class, 'destroyFees'])->name('fees.destroy');
@@ -88,6 +94,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //For Reservations
         Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
+        Route::delete('/reservations/{id}/deactivate',[ReservationsController::class,'deactivateReservations'])->name('reservations.deactivate');
+        Route::patch('/reservations/{id}/activate',[ReservationsController::class,'activateReservations'])->name('reservations.activate');
 
         //For Statistics
         Route::get('/statistics/show', [StatisticsController::class, 'showStatistics'])->name('statistics.show');

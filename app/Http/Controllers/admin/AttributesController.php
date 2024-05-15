@@ -38,19 +38,17 @@ class AttributesController extends Controller
 
     }
 
-
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|min:1|max:50|unique:attributes,name'
         ]);
 
-        $this->attribute->name = $request->name;
+        $this->attribute->name = ucwords(strtolower($request->name));
         $this->attribute->save();
 
         return redirect()->back()->with('success_register', 'The attribute registered successfully.');
     }
-
 
     public function showEditAttributePage($id)
     {

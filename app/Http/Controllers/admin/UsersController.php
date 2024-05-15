@@ -36,12 +36,12 @@ class UsersController extends Controller
     public function deactivateUsers($id)
     {
         $this->user->destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('success_delete', 'Account deactivated successfully.');
     }
 
     public function activateUsers($id)
     {
         $this->user->onlyTrashed()->findOrFail($id)->restore();
-        return redirect()->back();
+        return redirect()->back()->with('success_restore', 'Account activated successfully.');
     }
 }
