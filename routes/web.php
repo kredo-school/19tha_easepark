@@ -74,6 +74,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //For Fees
         Route::get('/fees/show', [FeesController::class, 'showFees'])->name('fees.show');
+        Route::post('/fees/register',[FeesController::class,'registerFee'])->name('fees.register');
         Route::get('/fees/{id}/edit', [FeesController::class, 'showEditFeePage'])->name('fees.showEdit');
         Route::patch('/fees/{id}/update', [FeesController::class, 'updateRegisteredFees'])->name('fees.update');
         Route::delete('/fees/{id}/destroy', [FeesController::class, 'destroyFees'])->name('fees.destroy');
