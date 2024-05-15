@@ -19,6 +19,7 @@
                     Once deleted, it cannot be undone.
                 </div>
                 <div class="modal-footer border-0">
+                    <button type="button" class="btn text-dark btn-cancel" data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn text-white btn-red">Delete</button>
                 </div>
             </div>
