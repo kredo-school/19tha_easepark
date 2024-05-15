@@ -58,7 +58,7 @@
                                         </button>
                                     @else
                                         <!-- // Press the icon to display the EDIT BLADE. -->
-                                        <a href="{{ route('admin.attributes.showEdit', $attribute->id) }}">
+                                        <a href="{{ route('admin.attributes.showEdit', $attribute->id) }}" class="text-decoration-none">
                                             <span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
                                         </a>
                                         <!-- // Press the button to display the delete modal. -->
@@ -66,8 +66,8 @@
                                             <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span>
                                         </button>
                                     @endif
+                                    @include('admin.attributes.modal.activate', ['attribute' => $attribute])
                                     @include('admin.attributes.modal.delete', ['attribute' => $attribute])
-
                                 </td>
                             </tr>
                         @empty

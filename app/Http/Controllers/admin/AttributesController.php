@@ -44,7 +44,7 @@ class AttributesController extends Controller
             'name' => 'required|min:1|max:50|unique:attributes,name'
         ]);
 
-        $this->attribute->name = ucwords(strtolower($request->name));
+        $this->attribute->name = $request->name;
         $this->attribute->save();
 
         return redirect()->back()->with('success_register', 'The attribute registered successfully.');
