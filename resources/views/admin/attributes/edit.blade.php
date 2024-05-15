@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'admin:attributes_edit')
+@section('title', 'admin | attributes_edit')
 
 @section('content')
 
@@ -18,8 +18,6 @@
                     @error('name')
                     <div class="text-danger small">{{ $message }}</div>
                     @enderror
-
-
                     <div class="row justify-content-center">
                         <div class="col-4">
                             <a href="{{ route('admin.attributes.show')}}" role="button" class="btn btn-cancel w-100">{{__('Cancel')}}</a>
@@ -28,12 +26,8 @@
                             <button type="submit" class="btn btn-blue w-100">{{__('Save')}}</button>
                         </div>
                     </div>
-
-
                 </form>
             </div>
     </div>
 </div>
-
-
 @endsection
