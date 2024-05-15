@@ -80,6 +80,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         //For Areas
         Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');
         Route::get('/areas/edit', [AreasController::class, 'editRegisteredAreas'])->name('areas.edit');
+        Route::post('areas/register',[AreasController::class,'registerArea'])->name('areas.register');
 
         //For Reservations
         Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
