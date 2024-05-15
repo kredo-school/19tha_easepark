@@ -83,6 +83,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //For Reservations
         Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
+        Route::delete('/reservations/{id}/deactivate',[ReservationsController::class,'deactivateReservations'])->name('reservations.deactivate');
+        Route::patch('/reservations/{id}/activate',[ReservationsController::class,'activateReservations'])->name('reservations.activate');
 
         // Following routes are test routes for the StatisticsController
         Route::get('/statistics/show/test', [StatisticsController::class, 'showStatisticsTest'])->name('statistics.show.test');

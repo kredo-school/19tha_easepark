@@ -59,22 +59,26 @@
                             <td>{{ $reservation->area->attribute->name }}</td>
                             <td>${{ $reservation->fee_log }}</td>
                             <td>
-                                @if ($reservation->deleted_at != null)
-                                    <span class="text-danger">Deactivated</span>
+                                @if ((new DateTime($reservation['date']))->format('Y-m-d') < date('Y-m-d'))
+                                    <i class="fa-solid fa-circle text-black"></i>&nbsp; Past
+                                @elseif ($reservation->trashed())
+                                    <i class="fa-regular fa-circle text-secondary"></i>&nbsp; Inactive
                                 @else
-                                    <span>Active</span>
+                                    <i class="fa-solid fa-circle text-success"></i>&nbsp; Active
                                 @endif
                             </td>
                             <td>
                                 @if ((new DateTime($reservation['date']))->format('Y-m-d') >= date('Y-m-d'))
-                                    @if ($reservation->deleted_at != null)
-                                        <button type="button" class="btn btn-sm text-primary" data-bs-toggle="modal" data-bs-target="#activate-reservation">
+                                    @if ($reservation->trashed())
+                                        <button type="button" class="btn btn-sm text-primary" data-bs-toggle="modal" data-bs-target="#activate-reservation-{{ $reservation->id }}">
                                             <i class="fa-solid fa-rotate-left mx-1"></i>
                                         </button>
+                                        @include('admin.reservations.modal.activate', ['reservation' => $reservation])
                                     @else
-                                        <button type="button" class="btn btn-sm text-danger" data-bs-toggle="modal" data-bs-target="#deactivate-reservation">
+                                        <button type="button" class="btn btn-sm text-danger" data-bs-toggle="modal" data-bs-target="#deactivate-reservation-{{ $reservation->id }}">
                                             <i class="fa-solid fa-trash-can mx-1"></i>
                                         </button>
+                                        @include('admin.reservations.modal.deactivate', ['reservation' => $reservation])
                                     @endif
                                 @endif
                             </td>
@@ -82,11 +86,9 @@
                     @endforeach
                 </tbody>
             </table>
-            @include('admin.reservations.modal.delete')
         </div>
     </div>
-    <br>
-    <div class="pagination">
+    <div class="d-flex justify-content-center mt-2">
         {{ $reservations->appends(request()->query())->links() }}
     </div>
 @endsection

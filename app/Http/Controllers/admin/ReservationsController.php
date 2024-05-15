@@ -26,4 +26,17 @@ class ReservationsController extends Controller
         return view('admin.reservations.show')->with('reservations', $reservations)
                                             ->with('daterange', $request->daterange);
     }
+
+    public function deactivateReservations($id)
+    {
+        $this->reservation->destroy($id);
+        return redirect()->back();
+    }
+
+    public function activateReservations($id)
+    {
+        $this->reservation->onlyTrashed()->findOrFail($id)->restore();
+        return redirect()->back();
+    }
+
 }
