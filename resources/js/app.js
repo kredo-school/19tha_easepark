@@ -1,3 +1,2 @@
 import './bootstrap';
-import './manageStatistics.js';
-import './manageCalendar.js';
+import './success-alert'

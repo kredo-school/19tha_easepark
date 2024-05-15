@@ -92,6 +92,16 @@ body {
     border: none;
 }
 
+.btn-outline-blue {
+    background: #ffff;
+    color: #3399CC;
+    border: 1px solid #3399CC;
+}
+.btn-outline-blue:hover {
+    background: #3399CC;
+    color: #ffff;
+}
+
 a:link {
     color: #3399CC;
     text-decoration: none;
@@ -262,6 +272,11 @@ fieldset[disabled] .btn-cancel:focus,
     justify-content: flex-end;
 }
 
+/*Success alert message*/
+.success-alert {
+    transition: opacity 1s;
+}
+
 /* Modal*/
 .modal-head-color {
     background: #003366;
@@ -316,6 +331,8 @@ fieldset[disabled] .btn-cancel:focus,
 
 .index-background {
     position: relative;
+    width: 100%;
+    min-height: calc(100vh - 160px);
     background-image: url("/images/pexels-k-howard-2220292.jpg");
     background-size: cover;
     background-position: center;
