@@ -272,6 +272,11 @@ fieldset[disabled] .btn-cancel:focus,
     justify-content: flex-end;
 }
 
+/*Success alert message*/
+.success-alert {
+    transition: opacity 1s;
+}
+
 /* Modal*/
 .modal-head-color {
     background: #003366;

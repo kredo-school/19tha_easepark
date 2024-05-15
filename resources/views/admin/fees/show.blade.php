@@ -3,20 +3,6 @@
 @section('title', 'Admin:Fees')
 
 @section('content')
-    @if (session('success_register'))
-        <div class="alert alert-success text-center w-50 mx-auto">
-            {{ session('success_register') }}
-        </div>
-    @elseif (session('success_update'))
-        <div class="alert alert-success text-center w-50 mx-auto ">
-            {{ session('success_update') }}
-        </div>
-    @elseif (session('success_delete'))
-        <div class="alert alert-success text-center w-50 mx-auto ">
-            {{ session('success_delete') }}
-        </div>
-    @endif
-
     <div class="my-1 dropdown-item" data-bs-toggle="modal" data-bs-target="#register-fee">
         <button class="btn btn-green">
             <i class="fa-solid fa-circle-plus"></i> Register New Fee
@@ -75,6 +61,6 @@
         </div>
     </div>
     <div class="d-flex justify-content-center mt-2 w-75">
-        {{ $fees->links() }}
+        {{ $fees->appends(request()->query())->links() }}
     </div>
 @endsection
