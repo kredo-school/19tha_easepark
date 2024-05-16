@@ -38,7 +38,7 @@ class AttributesController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function registerAttribute(Request $request)
     {
         $request->validate([
             'name' => 'required|min:1|max:50|unique:attributes,name'
@@ -56,7 +56,7 @@ class AttributesController extends Controller
         return view('admin.attributes.edit')->with('attribute', $attribute);
     }
 
-    public function update(Request $request, $id)
+    public function updateAttribute(Request $request, $id)
     {
         $request->validate([
             'name'  => 'required|min:1|max:50|unique:attributes,name,' . $id

@@ -35,7 +35,7 @@ class AreasController extends Controller
             ->with('all_fees', $all_fees);
     }
 
-    public function showEditAreasPage($id)
+    public function showEditAreaPage($id)
     {
         $area = $this->area->findOrFail($id);
         $all_attributes = Attribute::all();
@@ -46,7 +46,7 @@ class AreasController extends Controller
             ->with('area', $area);
     }
 
-    public function showUpdateAreasPage(Request $request, $id)
+    public function updateArea(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|min:1|max:50',

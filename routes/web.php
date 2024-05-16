@@ -66,10 +66,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // For Attributes
         Route::get('/attributes/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
-        Route::get('/attributes/search', [AttributesController::class, 'search'])->name('attributes.search');
-        Route::post('/attributes/store', [AttributesController::class, 'store'])->name('attributes.store');
+        Route::post('/attributes/store', [AttributesController::class, 'registerAttribute'])->name('attributes.register');
         Route::get('/attributes/{id}/edit', [AttributesController::class, 'showEditAttributePage'])->name('attributes.showEdit');
-        Route::patch('/attributes/{id}/update', [AttributesController::class, 'update'])->name('attributes.update');
+        Route::patch('/attributes/{id}/update', [AttributesController::class, 'updateAttribute'])->name('attributes.update');
         Route::delete('/attributes/{id}/deactivate', [AttributesController::class, 'deactivateAttributes'])->name('attributes.deactivate');
         Route::patch('/attributes/{id}/activate', [AttributesController::class, 'activateAttributes'])->name('attributes.activate');
 
@@ -91,8 +90,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         //For Areas
         Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');
         Route::post('/areas/register',[AreasController::class,'registerArea'])->name('areas.register');
-        Route::get('/areas/{id}/edit', [AreasController::class, 'showEditAreasPage'])->name('areas.showEdit');
-        Route::patch('/areas/{id}/update',[AreasController::class,'showUpdateAreasPage'])->name('areas.update');
+        Route::get('/areas/{id}/edit', [AreasController::class, 'showEditAreaPage'])->name('areas.showEdit');
+        Route::patch('/areas/{id}/update',[AreasController::class,'updateArea'])->name('areas.update');
 
         //For Reservations
         Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
