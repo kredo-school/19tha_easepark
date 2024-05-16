@@ -13,8 +13,9 @@
                     <div class="h3 mt-1 mb-5"><i class="fa-solid fa-pen-to-square pe-3 fa-lg"></i>Edit Admin Profile</div>
 
                     {{-- Add action --}}
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('admin.admins.update') }}" enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
 
                     {{-- Name --}}
                     <div class="row">
@@ -22,7 +23,7 @@
                     </div>
 
                     <div class="row mb-4">
-                        <input id="name" type="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name">
+                        <input id="name" type="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $admin->name) }}" required autocomplete="name">
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -37,7 +38,7 @@
                     </div>
 
                     <div class="row mb-5">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email" value="{{ old('email', $admin->email) }}">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -70,8 +71,9 @@
                     <div class="h3 mt-1 mb-5"><i class="fa-solid fa-key pe-3 fa-lg"></i>Update Admin Password</div>
 
                     {{-- Add action --}}
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('admin.admins.password') }}" enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
 
                     {{-- Current PASSWORD --}}
                     <div class="row">
@@ -79,7 +81,7 @@
                     </div>
 
                     <div class="row mb-4">
-                        <input id="current-password" type="password" class="form-control @error('current-password') is-invalid @enderror" name="current_password" required autocomplete="current-password">
+                        <input id="current-password" type="password" class="form-control @error('current-password') is-invalid @enderror" name="current_password" autocomplete="current-password">
 
                         @error('current_password')
                             <span class="invalid-feedback" role="alert">
@@ -93,7 +95,7 @@
                     </div>
 
                     <div class="row mb-4">
-                        <input id="new-password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" required autocomplete="">
+                        <input id="new-password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" autocomplete="">
 
                         @error('new_password')
                             <span class="invalid-feedback" role="alert">
