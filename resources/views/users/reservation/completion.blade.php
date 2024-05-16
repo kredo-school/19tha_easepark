@@ -25,7 +25,7 @@
             <div class="text-danger font-bold" style="font-size: 1.5rem;">*Payment on site.</div>
             <div class="mt-5 button-group">
                 <a href="{{route('homepage')}}" class="btn btn-cancel me-2">Back to Home</button>
-                <a href="{{ route('reservation.list', Auth::user()->id) }}" class="btn btn-blue">Reservation List</a>
+                <a href="{{ route('reservation.list', Auth::user()->id) }}" class="btn btn-blue text-white">Reservation List</a>
             </div>
         </div>
     </div>

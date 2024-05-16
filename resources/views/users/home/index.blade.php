@@ -7,8 +7,16 @@
 <script type="text/javascript" src="{{ asset('js/fullcalendar-6.1.8.js')}}"></script>
 @vite(['resources/js/manageCalendar.js'])
 
+@php
+$userAttributeId = null;
+if (auth()->check() && auth()->user()->attribute) {
+    $userAttributeId = auth()->user()->attribute->id;
+}
+@endphp
+
 <script>
     var userIsAuthenticated = @json(auth()->check());
+    var userAttributeId = @json($userAttributeId);
 </script>
 
     @if (session('success_delete'))
