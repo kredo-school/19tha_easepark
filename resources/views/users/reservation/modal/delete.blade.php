@@ -1,5 +1,5 @@
 {{-- delete --}}
-<div class="modal fade" id="delete-reservation" tabindex="-1" role="dialog" aria-labelledby="delete-reservation" aria-hidden="true">
+<div class="modal fade" id="delete-reservation-{{ $reservation->id }}" tabindex="-1" role="dialog" aria-labelledby="delete-reservation" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content justify-content-center">
             <div class="modal-header modal-head-color-red text-center justify-content-between">
@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body fs-5">
-                <form action="#">
+                <form method="post" action="{{ route('reservation.delete') }}">                    
                 @csrf
                 @method('DELETE')
 
@@ -19,7 +19,7 @@
                 <div class="row justify-content-center">
                     <div class="col-10 modal-head-color-red-transparent pt-3">
                         <ul>
-                            <li>Area D, 2F &nbsp; March 18(Sun)	&nbsp; Disability &nbsp; $20</li>
+                            <li>{{ $reservation->area->name }} &nbsp; {{ $reservation->date }}	&nbsp; {{ $reservation->attribute->name }} &nbsp; {{ $reservation->fee_log }}</li>
                         </ul>
                     </div>
                 </div>

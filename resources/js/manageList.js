@@ -32,7 +32,7 @@ $(document).ready(function() {
                 } else {
                     $.each(fetchedData.reservations.data, function(index, reservation) {
                         var pdfRoute = '/pdf_view/' + reservation.id;
-                        var deleteModalTarget = '#delete-reservation' + reservation.id;
+                        var deleteModalTarget = '#delete-reservation-' + reservation.id;
                         var deleteTag;
                         // Get today's date in 'Y-m-d' format
                         var today = new Date().toISOString().split('T')[0];

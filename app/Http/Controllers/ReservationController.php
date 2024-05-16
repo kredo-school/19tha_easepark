@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Area;
+use App\Models\Reservation;
 
 class ReservationController extends Controller
 {
@@ -20,7 +21,8 @@ class ReservationController extends Controller
 
     public function showReservationList()
     {
-        return view('users.reservation.list');
+        $reservation = $this->reservation;
+        return view('users.reservation.list', ['reservation' => $reservation]);
     }
 
     public function filterReservationList(Request $request)
@@ -151,7 +153,13 @@ class ReservationController extends Controller
             ->with('confirmedReservations', $confirmedReservations)
             ->with('userAttribute', $userAttribute);
     }
+    public function deleteReservation($id)
+    {
+        $reservation = Reservation::where('user_id', Auth::user()->id)->findOrFail($id);
+        $reservation->delete();
 
+        return redirect()->route('reservation.list')->with('success_delete', 'The reservation has been deleted.');
+    }
 
     public function pdf()
     {

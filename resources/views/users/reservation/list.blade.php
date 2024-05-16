@@ -48,8 +48,8 @@
         <tbody id="reservation-list-data">
             {{-- List of reservations are displayed HERE based on the filter selected. --}}
         </tbody>
+        @include('users.reservation.modal.delete',  ['reservation' => $reservation])
     </table>
     <div id="pagination" class="d-flex justify-content-center"></div>
-    @include('users.reservation.modal.delete')
 </div>
 @endsection
