@@ -8,7 +8,8 @@
             <i class="fa-solid fa-circle-plus"></i> Register New Area
         </button>
     </div>
-    @include('admin.areas.modal.register')
+    @include('admin.areas.modal.register', ['all_attributes' => $all_attributes, 'all_fees' => $all_fees])
+
     <div class="card border">
         <div class="card-header bg-light">
             <div class="row d-flex justify-content-center align-items-center">
@@ -74,5 +75,8 @@
                 @include('admin.areas.modal.delete')
             </div>
         </div>
+    </div>
+    <div class="d-flex justify-content-center mt-2">
+        {{ $areas->appends(request()->query())->links() }}
     </div>
 @endsection

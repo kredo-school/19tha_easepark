@@ -1,6 +1,7 @@
+
 @extends('layouts.admin')
 
-@section('title', 'Admin:Attributes')
+@section('title', 'Admin | Attributes')
 
 @section('content')
 
@@ -34,6 +35,7 @@
                         <tr class="table-info">
                             <th scope="col" class="fw-bold text-center">ID</th>
                             <th scope="col">Attribute Name</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -42,13 +44,30 @@
                             <tr>
                                 <td class="text-center">{{ $attribute->id }}</td>
                                 <td>{{ $attribute->name }}</td>
+                                <td>
+                                    @if($attribute->trashed())
+                                    <i class="fa-regular fa-circle text-secondary"></i>&nbsp; Inactive
+                                @else
+                                    <i class="fa-solid fa-circle text-success"></i>&nbsp; Active
+                                @endif
+                                </td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.attributes.edit', $attribute->id) }}">
-                                        <span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
-                                    </a>
-                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute">
-                                        <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span>
-                                    </button>
+                                    @if($attribute->trashed())
+                                        <button type="button" class="btn btn-link p-0 text-primary" data-bs-toggle="modal" data-bs-target="#activate-attribute-{{ $attribute->id }}">
+                                            <i class="fa-solid fa-rotate-left"></i>
+                                        </button>
+                                    @else
+                                        <!-- // Press the icon to display the EDIT BLADE. -->
+                                        <a href="{{ route('admin.attributes.showEdit', $attribute->id) }}" class="text-decoration-none">
+                                            <span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
+                                        </a>
+                                        <!-- // Press the button to display the delete modal. -->
+                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute-{{ $attribute->id }}">
+                                            <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span>
+                                        </button>
+                                    @endif
+                                    @include('admin.attributes.modal.activate', ['attribute' => $attribute])
+                                    @include('admin.attributes.modal.delete', ['attribute' => $attribute])
                                 </td>
                             </tr>
                         @empty
@@ -58,11 +77,10 @@
                         @endforelse
                     </tbody>
                 </table>
-                @include('admin.attributes.modal.delete')
-                <div class="d-flex justify-content-center">
-                    {{ $attributes->links() }}
-                </div>
             </div>
+        </div>
+        <div class="col-8 d-flex justify-content-center mt-2">
+            {{ $attributes->links() }}
         </div>
     </div>
 @endsection
