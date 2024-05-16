@@ -14,7 +14,7 @@
                     Are you sure you want to activate this area?
                     <br>
                     <div class="my-4">
-                        <span class="modal-head px-2 py-1">{{ $area->name }}</span>
+                        <span class="modal-head-color-blue-transparent px-2 py-1 ">{{ $area->name }}</span>
                     </div>
                     The area will be available for use.
                 </div>
