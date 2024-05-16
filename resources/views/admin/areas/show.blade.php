@@ -60,7 +60,8 @@
                                             data-bs-target="#restore-area"><span class="text-primary"><i
                                                     class="fa-solid fa-rotate-right"></i></span></button>
                                     @else
-                                        <a href="{{ route('admin.areas.edit') }}"><span class="text-warning me-2"><i
+                                        <a href="{{ route('admin.areas.showEdit', $area->id) }}"><span
+                                                class="text-warning me-2"><i
                                                     class="fa-solid fa-pen-to-square"></i></span></a>
                                         <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
                                             data-bs-target="#delete-area"><span class="text-danger"><i
