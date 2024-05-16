@@ -31,4 +31,19 @@ class AreasController extends Controller
     public function registerArea(){
         return view('admin.areas.show');
     }
+
+    public function deactivateArea($id){
+        $area = $this->area->find($id);
+        $area->delete();
+        return redirect()->route('admin.areas.show')
+            ->with('success_delete', 'Area deactivated successfully');
+    }
+
+    public function activateArea($id){
+        $area = $this->area->onlyTrashed()->findOrFail($id);
+        $area->restore();
+        return redirect()->route('admin.areas.show')
+            ->with('success_restore', 'Area activated successfully');
+    }
+
 }

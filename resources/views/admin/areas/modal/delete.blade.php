@@ -1,7 +1,7 @@
-{{-- delete --}}
-<div class="modal fade" id="delete-area">
+{{-- deactivate --}}
+<div class="modal fade" id="delete-area-{{ $area->id }}">
     <div class="modal-dialog">
-        <form action="#">
+        <form action="{{ route('admin.areas.deactivate', $area->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <div class="modal-content">
@@ -14,7 +14,7 @@
                     Are you sure you want to delete the area below?
 
                     <div class="my-4">
-                        <span class="modal-head-color-red-transparent px-2 py-1">Area A, 1F</span>
+                        <span class="modal-head-color-red-transparent px-2 py-1">{{ $area->name }}</span>
                     </div>
                     Once deleted, it cannot be undone.
                 </div>

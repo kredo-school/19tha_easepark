@@ -87,6 +87,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         //For Areas
         Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');
         Route::get('/areas/edit', [AreasController::class, 'editRegisteredAreas'])->name('areas.edit');
+        Route::delete('/areas/{id}/deactivate',[AreasController::class,'deactivateArea'])->name('areas.deactivate');
+        Route::patch('/areas/{id}/activate',[AreasController::class,'activateArea'])->name('areas.activate');
 
         //For Reservations
         Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
