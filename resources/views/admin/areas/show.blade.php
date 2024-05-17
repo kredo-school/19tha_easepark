@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin:Areas')
+@section('title', 'Admin | Areas')
 
 @section('content')
     <div class="my-1">
@@ -41,6 +41,7 @@
                             <th>Fee Name</th>
                             <th>Address</th>
                             <th>Max</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -54,25 +55,33 @@
                                 <td>{{ $area->fee->name }}</td>
                                 <td>{{ $area['address'] }}</td>
                                 <td>{{ $area['max_num'] }}</td>
-                                <td class="text-center">
+                                <td>
                                     @if ($area->deleted_at)
-                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
-                                            data-bs-target="#restore-area"><span class="text-primary"><i
-                                                    class="fa-solid fa-rotate-right"></i></span></button>
+                                        <i class="fa-regular fa-circle text-secondary"></i>&nbsp; Inactive
                                     @else
-                                        <a href="{{ route('admin.areas.showEdit', $area->id) }}"><span
-                                                class="text-warning me-2"><i
-                                                    class="fa-solid fa-pen-to-square"></i></span></a>
-                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
-                                            data-bs-target="#delete-area"><span class="text-danger"><i
-                                                    class="fa-solid fa-trash-can"></i></span></button>
+                                        <i class="fa-solid fa-circle text-success"></i>&nbsp; Active
                                     @endif
+                                    @include('admin.areas.modal.activate')
+                                </td>
+                                <td class="text-center">
+                                    @if($area->deleted_at)
+                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#activate-area-{{ $area->id }}">
+                                            <span class="text-primary"><i class="fa-solid fa-rotate-right"></i></span>
+                                        </button>
+                                    @else
+                                        <a href="{{route('admin.areas.showEdit', $area->id)}}" class="text-decoration-none">
+                                            <span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
+                                        </a>
+                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-area-{{ $area->id }}">
+                                            <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span>
+                                        </button>
+                                    @endif
+                                    @include('admin.areas.modal.delete')
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                @include('admin.areas.modal.delete')
             </div>
         </div>
     </div>
