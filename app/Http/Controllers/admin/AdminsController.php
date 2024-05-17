@@ -28,10 +28,23 @@ class AdminsController extends Controller
 
         return view('admin.admins.show',['admins'=>$admins])->with('search', $request->search);
     }
-    public function registerAdmin() {
-        return view('admin.admins.register');
+    public function registerAdmin(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:admins',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $admin = Admin::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('admin.admins.show')->with('success_register', 'Account is registered successfully.');
     }
-    public function editAdmin($id) {
+    public function showEditAdminPage($id) {
         $admin = Admin::findOrFail($id);
 
         if (auth('admin')->user()->id != $admin->id) {
