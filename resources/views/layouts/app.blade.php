@@ -29,7 +29,9 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-color shadow-sm">
             <div class="container">
                 <div class="text-white navbar-brand">
-                    <img src="{{ asset('images/8C8FAB4E-E713-45F0-839A-5064D27EDBAA.png') }}" alt="Logo" class="logo-style">
+                    <a class="nav-link text-white me-2" href="{{ route('homepage') }}">
+                        <img src="{{ asset('images/8C8FAB4E-E713-45F0-839A-5064D27EDBAA.png') }}" alt="Logo" class="logo-style">
+                    </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

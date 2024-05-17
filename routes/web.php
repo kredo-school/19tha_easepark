@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
     Route::get('/reservation/pdf_view', [ReservationController::class, 'pdf'])->name('pdf_view');
     Route::get('/reservation/pdf_download', [PDFController::class, 'pdf_generator_get'])->name('pdf_download');
-    Route::get('/reservation/delete', [ReservationController::class, 'deleteReservation'])->name('reservation.delete');
+    Route::delete('/reservation/delete/{id}', [ReservationController::class, 'deleteReservation'])->name('reservation.delete');
 });
 
 // Admin registration routes

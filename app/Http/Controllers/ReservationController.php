@@ -28,6 +28,7 @@ class ReservationController extends Controller
     public function filterReservationList(Request $request)
     {
         $userReservations = $this->reservation
+            ->with(['area', 'area.attribute'])
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc');
         $userAttribute = Auth::user()->attribute->name;

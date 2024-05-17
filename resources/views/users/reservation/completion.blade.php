@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Reservation Completion')
 @section('content')
-<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 
 <div class="container w-75 pb-3">
     <h2 class="text-center font-navy font-bold pt-3"><i class="fas fa-check-circle"></i> Reservation Completed !!</h2>

@@ -13,6 +13,51 @@ $(document).ready(function() {
     // Set the page
     var page = savedPage ? savedPage : 1;
 
+    // Define a global variable to store the fetched reservations
+    var reservations = [];
+
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    var deleteModalHTML = `
+    <div class="modal fade" id="delete-reservation" tabindex="-1" role="dialog" aria-labelledby="delete-reservation" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content justify-content-center">
+                <div class="modal-header modal-head-color-red text-center justify-content-between">
+                    <h1 class="modal-title fs-5 text-white ms-auto"><i class="fa-solid fa-trash-can me-2"></i>Delete Reservation</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body fs-5">
+                    <form method="post" id="reservation-deletion-form" action="/reservation/delete">                    
+                        <input type="hidden" name="_token" value="${csrfToken}">
+                        <input type="hidden" name="_method" value="DELETE">
+
+                        <p class="text-center my-4">
+                            Are you sure you want to delete the following reservation?<br>
+                            All associated data will be permanently removed.                    
+                        </p>
+
+                        <div class="row justify-content-center">
+                            <div class="col-10 modal-head-color-red-transparent pt-3">
+                                <ul>
+                                    <!-- <li> element dynamically changes -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <p class="text-center my-4">
+                            Once deleted, it cannot be undone.
+                        </p>
+
+                        <div class="modal-footer border-0">
+                            <button type="button" class="btn text-dark btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn text-white btn-red">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>`;
+    $('body').append(deleteModalHTML);
+
     // Function to fetch and display reservations based on the filter condition
     function fetchReservations(filterCondition, page) {
         $.ajax({
@@ -23,8 +68,10 @@ $(document).ready(function() {
                 page: page
             },
             success: function(fetchedData) {
-                // console.log(fetchedData);
                 var rows = '';
+
+                // Store the fetched reservations in the global variable
+                reservations = fetchedData.reservations.data;
 
                 //Display the reservations based on the filter condition
                 if (fetchedData.reservations.data.length === 0) {
@@ -39,9 +86,11 @@ $(document).ready(function() {
 
                         // Check if reservation.date is today or in the future
                         if (reservation.date >= today) {
-                            deleteTag = `<td class="text-center"><button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="${deleteModalTarget}"><i class="fa-solid fa-trash-can"></i></button></td>`;
+                            deleteTag = `<td class="text-center"><button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation" id="${deleteModalTarget}"><i class="fa-solid fa-trash-can"></i></button></td>`;
+
                         } else {
                             deleteTag = `<td></td>`;
+                            deleteModalHTML = '';
                         }
             
                         rows += `
@@ -53,7 +102,8 @@ $(document).ready(function() {
                                 <td class="text-center">$${reservation.fee_log}</td>
                                 <td class="text-center"><a href="${pdfRoute}"><i class="fa-solid fa-download"></i></a></td>
                                 ${deleteTag}
-                            </tr>`;
+                            </tr>
+                            `;
                     });
                 }
                 $reservationListData.html(rows);
@@ -93,4 +143,24 @@ $(document).ready(function() {
         localStorage.setItem('page', page);
         fetchReservations(filterCondition, page);
     });
+
+    // When the delete button is clicked, update the form action with the reservation id
+    $(document).on('click', '[data-bs-target="#delete-reservation"]', function() {
+        var reservationId = Number($(this).attr('id').split('-')[2]);
+        
+        // Update the form action with the reservation id
+        $('#reservation-deletion-form').attr('action', '/reservation/delete/' + reservationId);
+
+        var reservation = reservations.find(function(reservation) {
+            return reservation.id === reservationId;
+        });
+
+        // Update the modal content with the reservation data
+        $('#delete-reservation').find('ul').html(`
+            <li>${reservation.area.name} &nbsp; ${reservation.date} &nbsp; ${reservation.area.attribute.name} &nbsp; ${reservation.fee_log}</li>
+        `);
+
+        
+    });
+    
 });
