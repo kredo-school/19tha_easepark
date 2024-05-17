@@ -4,6 +4,18 @@
 
 @section('content')
 
+    {{-- Success alert for upadte --}}
+    @if (session('success_update'))
+    <div class="alert alert-success success-alert text-center w-50 mt-2 mx-auto" id="update-success-alert">
+        {{ session('success_update') }}
+    </div>
+    @elseif (session('success_password'))
+    <div class="alert alert-success success-alert text-center w-50 mt-2 mx-auto" id="password-success-alert">
+        {{ session('success_password') }}
+    </div>
+    @endif
+   
+
     <div class="mt-5 d-flex justify-content-center">
         <div class="row justify-content-between">
             <div class="col-auto card shadow-sm mx-auto">
@@ -26,11 +38,11 @@
                         <p>Attribute</p>
                     </div>
                     <div class="col-auto fs-5">
-                        <p>John Doe</p>
-                        <p>john@email.com</p>
-                        <p>01-2345-6789</p>
-                        <p>12-34</p>
-                        <p>EV</p>
+                        <p>{{ $user->name }}</p>
+                        <p>{{ $user->email }}</p>
+                        <p>{{ $user->phone_number }}</p>
+                        <p>{{ $user->plate_number }}</p>
+                        <p>{{ $user->attribute->name }}</p>
                     </div>
                 </div>
             </div>
@@ -45,3 +57,6 @@
     </div>
 
 @endsection
+
+
+

@@ -87,6 +87,12 @@
         </nav>
         @guest('admin')
             <div class="col">
+                @if (session('success_delete'))
+                {{-- Success alert for deletion --}}
+                <div class="alert alert-danger success-alert text-center w-50 mx-auto mt-2" id="delete-success-alert">
+                    {{ session('success_delete') }}
+                </div>
+                @endif
                 @yield('content')
             </div>
         @endguest
@@ -96,7 +102,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-2">
                         <div class="list-group text-center">
-                            
+
                             <a href="{{route('admin.users.show')}}" class="list-group-item {{ request()->is('admin/users*') ? 'active' : '' }}">
                                 <i class="fa-solid fa-people-group me-1"></i>Users
                             </a>
@@ -105,9 +111,9 @@
                                 <i class="fa-solid fa-map-marked-alt me-1"></i>Areas
                             </a>
                             <a href="{{route('admin.attributes.show')}}" class="list-group-item {{ request()->is('admin/attributes*') ? 'active' : '' }}">
-                                <i class="fa-solid fa-wheelchair me-1"></i>Attribute
+                                <i class="fa-solid fa-wheelchair me-1"></i>Attributes
                             </a>
-                            
+
                             <a href="{{route('admin.fees.show')}}" class="list-group-item {{ request()->is('admin/fees*') ? 'active' : '' }}">
                                 <i class="fa-regular fa-credit-card me-1"></i>Fees
                             </a>
@@ -117,7 +123,7 @@
                             </a>
 
                             {{-- Route name for statistics should be 'admin.statistics.show' later --}}
-                            <a href="{{route('admin.statistics.show.test')}}" class="list-group-item {{ request()->is('admin/statistics*') ? 'active' : '' }}">
+                            <a href="{{route('admin.statistics.show')}}" class="list-group-item {{ request()->is('admin/statistics*') ? 'active' : '' }}">
                                 <i class="fa-solid fa-chart-simple me-1"></i>Statistics
                             </a>
 
@@ -128,6 +134,33 @@
                     </div>
 
                     <div class="col-9">
+                        {{-- Success aleart for registration --}}
+                        @if (session('success_register'))
+                        <div class="alert alert-primary success-alert text-center ms-2" id="register-success-alert">
+                            {{ session('success_register') }}
+                        </div>
+                        @elseif (session('success_update'))
+                        {{-- Success alert for update --}}
+                        <div class="alert alert-success success-alert text-center success-alert text-center ms-2" id="update-success-alert" style="transition: opacity 1s;">
+                            {{ session('success_update') }}
+                        </div>
+                        @elseif (session('success_password'))
+                        {{-- Success alert for update of password --}}
+                        <div class="alert alert-success success-alert text-center ms-2" id="password-success-alert">
+                            {{ session('success_password') }}
+                        </div>
+                        @elseif (session('success_delete'))
+                        {{-- Success alert for deletion --}}
+                        <div class="alert alert-danger success-alert text-center ms-2" id="delete-success-alert">
+                            {{ session('success_delete') }}
+                        </div>
+                        @elseif (session('success_restore'))
+                        {{-- Success alert for restoration --}}
+                        <div class="alert alert-warning success-alert text-center ms-2" id="restore-success-alert">
+                            {{ session('success_restore') }}
+                        </div>
+                        @endif
+
                         @yield('content')
                     </div>
                 </div>
@@ -156,6 +189,7 @@
             </div>
         </footer>
     </div>
+
 </body>
 
 </html>

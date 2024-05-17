@@ -20,9 +20,11 @@ class AreaFactory extends Factory
     {
         return [
             'name' => fake()->unique()->randomElement(["Area A, 1F", "Area B, 1F", "Area C, 1F", "Area B, 2F"]),
-            'attribute_id' => function() {
-                return Attribute::all()->random()->id;
-            },
+            // 'name' => "Area C, 1F",
+            // 'attribute_id' => function() {
+            //     return Attribute::all()->random()->id;
+            // },
+            'attribute_id' => fake()->numberBetween(4, 9),
             'fee_id' => function() {
                 return Fee::all()->random()->id;
             },

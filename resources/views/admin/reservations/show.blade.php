@@ -22,7 +22,7 @@
                     {{-- Add: backend --}}
                     <form action="{{route('admin.reservations.show')}}" class="ms-auto">
                         <div class="input-group">
-                            <input type="text" name="daterange" placeholder="Choose Period" class="form-control">
+                            <input type="text" name="daterange" placeholder="Choose Period" class="form-control" value="{{ $daterange }}">
                             <input type="hidden" name="start_date" id="start-date">
                             <input type="hidden" name="end_date" id="end-date">
                             <button type="submit" class="btn bg-dark text-white border" aria-label="Search Reservations">
@@ -34,42 +34,61 @@
             </div>
         </div>
         <div class="card-body px-0 py-0 mb-2">
-            <div class="table-responsive">
-                <table class="table table-hover align-middle border-0">
-                    <thead class="small table-info text-center">
-                        <tr>
-                            <th>Res. ID</th>
-                            <th>User ID</th>
-                            <th>User Name</th>
-                            <th>Date</th>
-                            <th>Area</th>
-                            <th>Type</th>
-                            <th>Fee</th>
-                            <th></th>
+            <table class="table table-hover align-middle border-0">
+                <thead class="small table-info text-center">
+                    <tr>
+                        <th>Res. ID</th>
+                        <th>User ID</th>
+                        <th>User Name</th>
+                        <th>Date</th>
+                        <th>Area</th>
+                        <th>Type</th>
+                        <th>Fee</th>
+                        <th>Status</th>
+                        <th></th>
                         </tr>
-                    </thead>
-                    <tbody class="text-center">
-                        {{-- Add: backend --}}
-                        @foreach ($reservations as $reservation)
-                            <tr>
-                                <td>{{ $reservation['res_id'] }}</td>
-                                <td>{{ $reservation['user_id'] }}</td>
-                                <td>{{ $reservation['user_name'] }}</td>
-                                <td>{{ (new DateTime($reservation['date']))->format('F j, Y (D)') }}</td>
-                                <td>{{ $reservation['area'] }}</td>
-                                <td>{{ $reservation['type'] }}</td>
-                                <td>${{ $reservation['fee'] }}</td>
-                                <td>
-                                    <button type="button" class="btn btn-sm text-danger" data-bs-toggle="modal" data-bs-target="#delete-reservation">
-                                        <i class="fa-solid fa-trash-can mx-1"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                @include('admin.reservations.modal.delete')
-            </div>
+                </thead>
+                <tbody class="text-center">
+                    @foreach ($reservations as $reservation)
+                        <tr>
+                            <td>{{ $reservation->id }}</td>
+                            <td>{{ $reservation->user_id }}</td>
+                            <td>{{ $reservation->user->name }}</td>
+                            <td>{{ (new DateTime($reservation['date']))->format('F j, Y (D)') }}</td>
+                            <td>{{ $reservation->area->name }}</td>
+                            <td>{{ $reservation->area->attribute->name }}</td>
+                            <td>${{ $reservation->fee_log }}</td>
+                            <td>
+                                @if ((new DateTime($reservation['date']))->format('Y-m-d') < date('Y-m-d'))
+                                    <i class="fa-solid fa-circle text-black"></i>&nbsp; Past
+                                @elseif ($reservation->trashed())
+                                    <i class="fa-regular fa-circle text-secondary"></i>&nbsp; Inactive
+                                @else
+                                    <i class="fa-solid fa-circle text-success"></i>&nbsp; Active
+                                @endif
+                            </td>
+                            <td>
+                                @if ((new DateTime($reservation['date']))->format('Y-m-d') >= date('Y-m-d'))
+                                    @if ($reservation->trashed())
+                                        <button type="button" class="btn btn-sm text-primary" data-bs-toggle="modal" data-bs-target="#activate-reservation-{{ $reservation->id }}">
+                                            <i class="fa-solid fa-rotate-left mx-1"></i>
+                                        </button>
+                                        @include('admin.reservations.modal.activate', ['reservation' => $reservation])
+                                    @else
+                                        <button type="button" class="btn btn-sm text-danger" data-bs-toggle="modal" data-bs-target="#deactivate-reservation-{{ $reservation->id }}">
+                                            <i class="fa-solid fa-trash-can mx-1"></i>
+                                        </button>
+                                        @include('admin.reservations.modal.deactivate', ['reservation' => $reservation])
+                                    @endif
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
+    </div>
+    <div class="d-flex justify-content-center mt-2">
+        {{ $reservations->appends(request()->query())->links() }}
     </div>
 @endsection
