@@ -31,7 +31,7 @@ $(document).ready(function() {
                     rows = `<tr><td colspan="7" class="text-center">There are no reservations with the filter condition.</td></tr>`;
                 } else {
                     $.each(fetchedData.reservations.data, function(index, reservation) {
-                        var pdfRoute = '/pdf_view/' + reservation.id;
+                        var pdfRoute = '/reservation/pdf_view/' + reservation.id;
                         var deleteModalTarget = '#delete-reservation' + reservation.id;
                         var deleteTag;
                         // Get today's date in 'Y-m-d' format
