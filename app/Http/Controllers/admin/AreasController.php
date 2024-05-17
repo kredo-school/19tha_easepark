@@ -35,9 +35,37 @@ class AreasController extends Controller
             ->with('all_fees', $all_fees);
     }
 
-    public function editRegisteredAreas()
+    public function showEditAreaPage($id)
     {
-        return view('admin.areas.edit');
+        $area = $this->area->findOrFail($id);
+        $all_attributes = Attribute::all();
+        $all_fees = Fee::all();
+        return view('admin.areas.edit')
+            ->with('all_attributes', $all_attributes)
+            ->with('all_fees', $all_fees)
+            ->with('area', $area);
+    }
+
+    public function updateArea(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|min:1|max:50',
+            'attribute_id' => 'required|exists:attributes,id',
+            'fee_id' => 'required|exists:fees,id',
+            'address' => 'required|min:1|max:255',
+            'max_num' => 'required|integer'
+        ]);
+
+        $area = $this->area->findOrFail($id);
+        $area->name = $request->name;
+        $area->attribute_id = $request->attribute_id;
+        $area->fee_id = $request->fee_id;
+        $area->address = $request->address;
+        $area->max_num = $request->max_num;
+        $area->save();
+
+        return redirect()->route('admin.areas.show')
+            ->with('success_update', 'The area updated successfully.');
     }
 
     public function registerArea(Request $request)
@@ -60,4 +88,19 @@ class AreasController extends Controller
         return redirect()->route('admin.areas.show')
             ->with('success_register', 'New area registered successfully.');
     }
+
+    public function deactivateArea($id){
+        $area = $this->area->find($id);
+        $area->delete();
+        return redirect()->route('admin.areas.show')
+            ->with('success_delete', 'Area deactivated successfully');
+    }
+
+    public function activateArea($id){
+        $area = $this->area->onlyTrashed()->findOrFail($id);
+        $area->restore();
+        return redirect()->route('admin.areas.show')
+            ->with('success_restore', 'Area activated successfully');
+    }
+
 }

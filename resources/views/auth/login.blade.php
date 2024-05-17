@@ -47,7 +47,7 @@
             </form>
 
             <div class="row">
-                <p class="text-center">New to EasePark? <a href="#">Create an Account</a></p>
+                <p class="text-center">New to EasePark? <a href="{{ route('register') }}">Create an Account</a></p>
             </div>
         </div>
     </div>

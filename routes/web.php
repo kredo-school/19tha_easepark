@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/reservation/filter-list', [ReservationController::class, 'filterReservationList']);
     Route::post('/reservation/pass-to-confirmation', [ReservationController::class, 'passToConfirmation']);
     Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
+    Route::post('/reservation/reserve-spaces', [ReservationController::class, 'reserveSpaces']);
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
     Route::get('/reservation/pdf_view/{id}', [ReservationController::class, 'pdf'])->name('pdf_view');
     Route::get('/reservation/pdf_download/{id}', [PDFController::class, 'pdf_generator_get'])->name('pdf_download');});
@@ -65,17 +66,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         // For Attributes
         Route::get('/attributes/show', [AttributesController::class, 'showAttribute'])->name('attributes.show');
-        Route::get('/attributes/search', [AttributesController::class, 'search'])->name('attributes.search');
-        Route::post('/attributes/store', [AttributesController::class, 'store'])->name('attributes.store');
+        Route::post('/attributes/store', [AttributesController::class, 'registerAttribute'])->name('attributes.register');
         Route::get('/attributes/{id}/edit', [AttributesController::class, 'showEditAttributePage'])->name('attributes.showEdit');
-        Route::patch('/attributes/{id}/update', [AttributesController::class, 'update'])->name('attributes.update');
+        Route::patch('/attributes/{id}/update', [AttributesController::class, 'updateAttribute'])->name('attributes.update');
         Route::delete('/attributes/{id}/deactivate', [AttributesController::class, 'deactivateAttributes'])->name('attributes.deactivate');
         Route::patch('/attributes/{id}/activate', [AttributesController::class, 'activateAttributes'])->name('attributes.activate');
 
         //For Admins
-        Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
         Route::get('/admins/show', [AdminsController::class, 'showAdmins'])->name('admins.show');
-        Route::get('/admins/{id}/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
+        Route::get('/admins/register', [AdminRegisterController::class, 'showRegistrationForm'])->name('admins.register');
+        Route::post('/admins/store', [AdminsController::class, 'registerAdmin'])->name('admins.store');
+        Route::get('/admins/{id}/edit', [AdminsController::class, 'showEditAdminPage'])->name('admins.showEdit');
         Route::patch('/admins/update', [AdminsController::class, 'updateAdmin'])->name('admins.update');
         Route::patch('/admins/password', [AdminsController::class, 'changePassword'])->name('admins.password');
         Route::delete('/admins/delete', [AdminsController::class, 'deleteAdmin'])->name('admins.delete');
@@ -89,8 +90,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //For Areas
         Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');
-        Route::get('/areas/edit', [AreasController::class, 'editRegisteredAreas'])->name('areas.edit');
-        Route::post('areas/register',[AreasController::class,'registerArea'])->name('areas.register');
+        Route::post('/areas/register',[AreasController::class,'registerArea'])->name('areas.register');
+        Route::get('/areas/{id}/edit', [AreasController::class, 'showEditAreaPage'])->name('areas.showEdit');
+        Route::patch('/areas/{id}/update',[AreasController::class,'updateArea'])->name('areas.update');
+        Route::delete('/areas/{id}/deactivate',[AreasController::class,'deactivateArea'])->name('areas.deactivate');
+        Route::patch('/areas/{id}/activate',[AreasController::class,'activateArea'])->name('areas.activate');
 
         //For Reservations
         Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');

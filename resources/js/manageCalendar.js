@@ -1,13 +1,16 @@
-$(window).on('load',function(){
-    if (!sessionStorage.getItem('registerGuidanceShown')) {
-        var delayMs = 1500; // delay in milliseconds
+// This script shows the register guidance modal after 1.5 seconds if the user has not seen it yet
+// Disable for now since this seems to be not necessary
+
+// $(window).on('load',function(){
+//     if (!sessionStorage.getItem('registerGuidanceShown')) {
+//         var delayMs = 1500; // delay in milliseconds
         
-        setTimeout(function(){
-            $('#registerGuidanceModal').modal('show');
-            sessionStorage.setItem('registerGuidanceShown', 'true');
-        }, delayMs);
-    }
-});
+//         setTimeout(function(){
+//             $('#registerGuidanceModal').modal('show');
+//             sessionStorage.setItem('registerGuidanceShown', 'true');
+//         }, delayMs);
+//     }
+// });
 
 $(document).ready(function() {
     var calendar;
@@ -15,13 +18,13 @@ $(document).ready(function() {
     var selectedDates = [];
     var currentView = {};
     var selectedAttributeId = [];
+    console.log(userAttributeId)
 
     //Check and get stored values from localStorage
     selectedDates = JSON.parse(localStorage.getItem('selectedDates'))|| []; // Retrieve the selected dates
     // console.log(`selectedDates: ${selectedDates}`)
     currentView = JSON.parse(localStorage.getItem('currentView')) || { type: 'dayGridMonth', date: new Date() }; // Retrieve the current view
-    selectedAttributeId = JSON.parse(localStorage.getItem('selectedAttributeId')) || []; // Retrieve the selected attribute
-    // console.log(`selectedAttributeId: ${selectedAttributeId}`)
+    selectedAttributeId = JSON.parse(localStorage.getItem('selectedAttributeId')) || userAttributeId || []; // Set selectedAttributeId (One in localStorage => one from userAttributeId => empty array)
     
     function fetchAvailableDates(attributeId) {
         $.ajax({
