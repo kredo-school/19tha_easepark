@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Reservation;
 use App\Models\Area;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -138,18 +140,29 @@ class ReservationController extends Controller
         return view('users.reservation.confirmation');
     }
 
+    public function reserveSpaces (Request $request){
+        $reservationsToBeCompleted = $request->input('reservationsToBeConfirmed');
+
+        //Database transaction to save reservations
+        DB::transaction(function () use ($reservationsToBeCompleted) {
+            foreach ($reservationsToBeCompleted as $reservationData) {
+                //a new Reservation instance for each reservation in $reservationsToBeCompleted, sets its properties, and saves it.
+                $reservation = new Reservation;
+                $reservation->user_id = Auth::id();
+                $reservation->area_id = $reservationData['areaId'];
+                $reservation->date = $reservationData['date'];
+                $reservation->fee_log = $reservationData['fee'];
+                $reservation->save();
+            }
+        });
+
+        return response()->json($reservationsToBeCompleted);
+    }
+
     public function showCompletionReservation()
     {
-        $confirmedReservations = [
-            ['date' => '2022-01-01', 'area' => 'Area 1', 'fee' => 100],
-            ['date' => '2022-01-02', 'area' => 'Area 2', 'fee' => 200],
-            ['date' => '2022-01-03', 'area' => 'Area 3', 'fee' => 300],
-        ];
-        $userAttribute = 'Disability';
 
-        return view('users.reservation.completion')
-            ->with('confirmedReservations', $confirmedReservations)
-            ->with('userAttribute', $userAttribute);
+        return view('users.reservation.completion');
     }
 
 
