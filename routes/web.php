@@ -73,8 +73,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::patch('/attributes/{id}/activate', [AttributesController::class, 'activateAttributes'])->name('attributes.activate');
 
         //For Admins
-        Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
         Route::get('/admins/show', [AdminsController::class, 'showAdmins'])->name('admins.show');
+        Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
         Route::get('/admins/{id}/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
         Route::patch('/admins/update', [AdminsController::class, 'updateAdmin'])->name('admins.update');
         Route::patch('/admins/password', [AdminsController::class, 'changePassword'])->name('admins.password');
@@ -92,6 +92,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/areas/register',[AreasController::class,'registerArea'])->name('areas.register');
         Route::get('/areas/{id}/edit', [AreasController::class, 'showEditAreaPage'])->name('areas.showEdit');
         Route::patch('/areas/{id}/update',[AreasController::class,'updateArea'])->name('areas.update');
+        Route::delete('/areas/{id}/deactivate',[AreasController::class,'deactivateArea'])->name('areas.deactivate');
+        Route::patch('/areas/{id}/activate',[AreasController::class,'activateArea'])->name('areas.activate');
 
         //For Reservations
         Route::get('/reservations/show', [ReservationsController::class, 'showReservations'])->name('reservations.show');
