@@ -100,7 +100,7 @@ class ReservationController extends Controller
         $reservationsGroupedByAreaAndDate = $reservations->groupBy(['area_id', 'date']);
 
         // Create an array for reservationsToBeConfirmed
-        $reservationsToBeConfirmed = array_map(function($date) use ($attributeId, $areas, $reservationsGroupedByAreaAndDate, &$availableAreas) {
+        $reservationsToBeConfirmed = array_map(function ($date) use ($attributeId, $areas, $reservationsGroupedByAreaAndDate, &$availableAreas) {
             // Filter out areas whose reservation number reaches the max num
             $areas = $areas->filter(function ($area) use ($date, $reservationsGroupedByAreaAndDate) {
                 $reservationCount = isset($reservationsGroupedByAreaAndDate[$area->id][$date])
@@ -165,11 +165,13 @@ class ReservationController extends Controller
         return view('users.reservation.completion');
     }
 
-
-    public function pdf()
+    public function pdf($id)
     {
+        $reservation = Reservation::findOrFail($id);
+        $all_reservations = Reservation::all();
         if (Auth::check()) {
-            return view('users.reservation.pdf_view');
+            return view('users.reservation.pdf_view', compact('reservation'))
+            ->with('all_reservations', $all_reservations);
         } else {
             return redirect()->route('login');
         }

@@ -38,9 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/reservation/confirmation', [ReservationController::class, 'showConfirmationReservation'])->name('reservation.confirmation');
     Route::post('/reservation/reserve-spaces', [ReservationController::class, 'reserveSpaces']);
     Route::get('/reservation/completion', [ReservationController::class, 'showCompletionReservation'])->name('reservation.completion');
-    Route::get('/reservation/pdf_view', [ReservationController::class, 'pdf'])->name('pdf_view');
-    Route::get('/reservation/pdf_download', [PDFController::class, 'pdf_generator_get'])->name('pdf_download');
-});
+    Route::get('/reservation/pdf_view/{id}', [ReservationController::class, 'pdf'])->name('pdf_view');
+    Route::get('/reservation/pdf_download/{id}', [PDFController::class, 'pdf_generator_get'])->name('pdf_download');});
 
 // Admin registration routes
 Route::prefix('admin')->name('admin.')->group(function () {
