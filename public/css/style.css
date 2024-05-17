@@ -70,6 +70,15 @@ body {
     background: #003366;
 }
 
+/* right side icon for small navbar */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'><path stroke='rgba(255, 255, 255, 0.5)' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/></svg>"); 
+}
+
 /* footer */
 .content {
     min-height: calc(100vh - 100px);
