@@ -69,7 +69,7 @@
                                             <span class="text-primary"><i class="fa-solid fa-rotate-right"></i></span>
                                         </button>
                                     @else
-                                        <a href="{{route('admin.areas.edit')}}">
+                                        <a href="{{route('admin.areas.showEdit', $area->id)}}" class="text-decoration-none">
                                             <span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
                                         </a>
                                         <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-area-{{ $area->id }}">
