@@ -75,8 +75,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         //For Admins
         Route::get('/admins/show', [AdminsController::class, 'showAdmins'])->name('admins.show');
-        Route::get('/admins/register', [AdminsController::class, 'registerAdmin'])->name('admins.register');
-        Route::get('/admins/{id}/edit', [AdminsController::class, 'editAdmin'])->name('admins.edit');
+        Route::get('/admins/register', [AdminRegisterController::class, 'showRegistrationForm'])->name('admins.register');
+        Route::post('/admins/store', [AdminsController::class, 'registerAdmin'])->name('admins.store');
+        Route::get('/admins/{id}/edit', [AdminsController::class, 'showEditAdminPage'])->name('admins.showEdit');
         Route::patch('/admins/update', [AdminsController::class, 'updateAdmin'])->name('admins.update');
         Route::patch('/admins/password', [AdminsController::class, 'changePassword'])->name('admins.password');
         Route::delete('/admins/delete', [AdminsController::class, 'deleteAdmin'])->name('admins.delete');

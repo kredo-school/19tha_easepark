@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','admin|Admin_Resister')
+@section('title', 'Admin | Register Admin')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,7 @@
             <div class="h3 mb-2"><i class="fa-solid fa-user-plus pe-3 fa-lg"></i>Register New Admin</div>
 
             {{-- Add action --}}
-            <form method="POST" action="#"  enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.admins.store') }}"  enctype="multipart/form-data">
             @csrf
 
             {{-- Name --}}
@@ -87,7 +87,7 @@
             <div class="row mb-3">
                 <div class="col">
                     {{-- Add Link --}}
-                    <a href="#" role="button" class="btn btn-cancel w-100">
+                    <a href="{{ route("admin.admins.show") }}" role="button" class="btn btn-cancel w-100">
                         {{ __('Cancel') }}
                     </a>
                 </div>
