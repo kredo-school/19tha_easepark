@@ -183,6 +183,7 @@ $(document).ready(function() {
         localStorage.setItem('selectedDates', JSON.stringify(selectedDates)); // Update the selected dates in localStorage
         $('#calendar-range').show();
         fetchAvailableDates(attributeId);
+        updateReserveButton()
     });
 
     // When the user clicks the "Reserve" button, pass the selected dates and attribute to confirmation page or show the register guidance modal based on login status
@@ -203,7 +204,7 @@ $(document).ready(function() {
                     attributeId: selectedAttributeId,
                 },
                 success: function(reservationsToBeConfirmed) {
-                    // console.log(reservationsToBeConfirmed);
+                    console.log(reservationsToBeConfirmed);
                     localStorage.setItem('reservationsToBeConfirmed', JSON.stringify(reservationsToBeConfirmed));  // Store the reservation details that should be passed to /reservation/confirmation in localStorage
                     window.location.href = "/reservation/confirmation";  // Redirect to /reservation/confirmation
                 }

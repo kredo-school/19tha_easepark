@@ -19,11 +19,12 @@ class ReservationFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => 1368,
-            'area_id' => function() {
-                return Area::all()->random()->id;
-            },
-            'date' => '2024-05-19',
+            'user_id' => 1373,
+            // 'area_id' => function() {
+            //     return Area::all()->random()->id;
+            // },
+            'area_id' => 22,
+            'date' => '2024-05-20',
             'fee_log' => fake()->randomNumber(4),
             // 'deleted_at' => fake()->dateTimeBetween('2022-01-01', '2024-12-31'),
         ];

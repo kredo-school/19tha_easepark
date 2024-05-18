@@ -42,7 +42,7 @@ class HomeController extends Controller
         $startDate = new DateTime();
         $endDate = (new DateTime())->modify('+1 year');
 
-        $data;
+        $data = [];
         if ($areaIds->isEmpty()) {
             $data = [
                 'reservationNumPerArea' => 'none',

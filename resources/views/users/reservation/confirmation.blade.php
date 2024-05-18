@@ -20,7 +20,12 @@
                     $ <!-- The total fee will be added here by JavaScript -->
                 </span>
             </div>
-            <div class="mt-5 button-group">
+
+            <div class="text-danger font-bold py-1" id="different-area-alert-reservationsToBeConfirmed" style="font-size: 1.0rem; diplay: none;">
+                * Please note that the same area CANNOT be reserved for some of the consecutive dates due to lack of available spaces.
+            </div>
+
+            <div class="mt-2 button-group">
                 <a href="{{route('homepage')}}" class="btn btn-cancel me-2">Cancel</a>
                 <button type="button" class="btn btn-blue" id="btn-reservation-confirm">Confirm</button>
             </div>
