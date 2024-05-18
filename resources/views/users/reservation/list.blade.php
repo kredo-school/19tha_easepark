@@ -50,6 +50,5 @@
             </tbody>
         </table>
         <div id="pagination" class="d-flex justify-content-center"></div>
-        @include('users.reservation.modal.delete')
     </div>
 @endsection

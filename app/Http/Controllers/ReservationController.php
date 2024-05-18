@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Reservation;
 use App\Models\Area;
-use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -22,12 +22,14 @@ class ReservationController extends Controller
 
     public function showReservationList()
     {
-        return view('users.reservation.list');
+        $reservation = $this->reservation;
+        return view('users.reservation.list', ['reservation' => $reservation]);
     }
 
     public function filterReservationList(Request $request)
     {
         $userReservations = $this->reservation
+            ->with(['area', 'area.attribute'])
             ->where('user_id', Auth::id())
             ->orderBy('date', 'desc');
         $userAttribute = Auth::user()->attribute->name;
@@ -158,10 +160,16 @@ class ReservationController extends Controller
 
         return response()->json($reservationsToBeCompleted);
     }
+    public function deleteReservation($id)
+    {
+        $reservation = Reservation::where('user_id', Auth::user()->id)->findOrFail($id);
+        $reservation->delete();
+
+        return redirect()->route('reservation.list')->with('success_delete', 'The reservation has been deleted.');
+    }
 
     public function showCompletionReservation()
     {
-
         return view('users.reservation.completion');
     }
 
