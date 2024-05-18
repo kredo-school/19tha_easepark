@@ -26,13 +26,13 @@ $(document).ready(function() {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body fs-5">
-                    <form method="post" id="reservation-deletion-form" action="/reservation/delete">                    
+                    <form method="post" id="reservation-deletion-form" action="/reservation/delete">
                         <input type="hidden" name="_token" value="${csrfToken}">
                         <input type="hidden" name="_method" value="DELETE">
 
                         <p class="text-center my-4">
                             Are you sure you want to delete the following reservation?<br>
-                            All associated data will be permanently removed.                    
+                            All associated data will be permanently removed.
                         </p>
 
                         <div class="row justify-content-center">
@@ -78,7 +78,7 @@ $(document).ready(function() {
                     rows = `<tr><td colspan="7" class="text-center">There are no reservations with the filter condition.</td></tr>`;
                 } else {
                     $.each(fetchedData.reservations.data, function(index, reservation) {
-                        var pdfRoute = '/pdf_view/' + reservation.id;
+                        var pdfRoute = '/reservation/pdf_view/' + reservation.id;
                         var deleteModalTarget = '#delete-reservation-' + reservation.id;
                         var deleteTag;
                         // Get today's date in 'Y-m-d' format
@@ -92,7 +92,7 @@ $(document).ready(function() {
                             deleteTag = `<td></td>`;
                             deleteModalHTML = '';
                         }
-            
+
                         rows += `
                             <tr>
                                 <th scope="row" class="text-center">${reservation.id}</th>
@@ -107,7 +107,7 @@ $(document).ready(function() {
                     });
                 }
                 $reservationListData.html(rows);
-                
+
                 // Display the pagination links only if there are reservations
                 if (fetchedData.reservations.data.length !== 0){
                     var currentPage = fetchedData.reservations.current_page;
@@ -147,7 +147,7 @@ $(document).ready(function() {
     // When the delete button is clicked, update the form action with the reservation id
     $(document).on('click', '[data-bs-target="#delete-reservation"]', function() {
         var reservationId = Number($(this).attr('id').split('-')[2]);
-        
+
         // Update the form action with the reservation id
         $('#reservation-deletion-form').attr('action', '/reservation/delete/' + reservationId);
 
@@ -160,7 +160,7 @@ $(document).ready(function() {
             <li>${reservation.area.name} &nbsp; ${reservation.date} &nbsp; ${reservation.area.attribute.name} &nbsp; ${reservation.fee_log}</li>
         `);
 
-        
+
     });
-    
+
 });

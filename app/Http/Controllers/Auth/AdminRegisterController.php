@@ -32,6 +32,6 @@ class AdminRegisterController extends Controller
         // automatically admin can login
         auth()->guard('admin')->login($admin);
 
-        return redirect(route('admin.users.show'));
+        return redirect()->route('admin.admins.show')->with('success_register', 'Account is registered successfully.');
     }
 }

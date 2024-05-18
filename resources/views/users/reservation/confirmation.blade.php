@@ -16,11 +16,13 @@
             </ul>
             <div class="total-info">
                 <span>Total:</span>
-                <span id="total-fee">$</span>
+                <span id="total-fee">
+                    $ <!-- The total fee will be added here by JavaScript -->
+                </span>
             </div>
             <div class="mt-5 button-group">
                 <a href="{{route('homepage')}}" class="btn btn-cancel me-2">Cancel</a>
-                <button type="button" class="btn btn-blue">Confirm</button>
+                <button type="button" class="btn btn-blue" id="btn-reservation-confirm">Confirm</button>
             </div>
         </div>
     </div>

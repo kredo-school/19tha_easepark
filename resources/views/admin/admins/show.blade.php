@@ -46,7 +46,7 @@
                             <td>{{ $admin['email'] }}</td>
                             <td class="text-center">
                                 @if (auth('admin')->user()->id === $admin->id)
-                                    <a href="{{ route('admin.admins.edit', ['id' => $admin->id]) }}"><i
+                                    <a href="{{ route('admin.admins.showEdit', ['id' => $admin->id]) }}"><i
                                             class="text-warning fa-solid fa-pen-to-square fa-lg me-4"></i></a>
                                     <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
                                         data-bs-target="#delete-admin-{{ auth('admin')->user()->id }}"><span class="text-danger"><i

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\Area;
+use App\Models\User;
 use App\Models\Reservation;
+use App\Models\Area;
 
 class ReservationController extends Controller
 {
@@ -101,7 +102,7 @@ class ReservationController extends Controller
         $reservationsGroupedByAreaAndDate = $reservations->groupBy(['area_id', 'date']);
 
         // Create an array for reservationsToBeConfirmed
-        $reservationsToBeConfirmed = array_map(function($date) use ($attributeId, $areas, $reservationsGroupedByAreaAndDate, &$availableAreas) {
+        $reservationsToBeConfirmed = array_map(function ($date) use ($attributeId, $areas, $reservationsGroupedByAreaAndDate, &$availableAreas) {
             // Filter out areas whose reservation number reaches the max num
             $areas = $areas->filter(function ($area) use ($date, $reservationsGroupedByAreaAndDate) {
                 $reservationCount = isset($reservationsGroupedByAreaAndDate[$area->id][$date])
@@ -141,18 +142,23 @@ class ReservationController extends Controller
         return view('users.reservation.confirmation');
     }
 
-    public function showCompletionReservation()
-    {
-        $confirmedReservations = [
-            ['date' => '2022-01-01', 'area' => 'Area 1', 'fee' => 100],
-            ['date' => '2022-01-02', 'area' => 'Area 2', 'fee' => 200],
-            ['date' => '2022-01-03', 'area' => 'Area 3', 'fee' => 300],
-        ];
-        $userAttribute = 'Disability';
+    public function reserveSpaces (Request $request){
+        $reservationsToBeCompleted = $request->input('reservationsToBeConfirmed');
 
-        return view('users.reservation.completion')
-            ->with('confirmedReservations', $confirmedReservations)
-            ->with('userAttribute', $userAttribute);
+        //Database transaction to save reservations
+        DB::transaction(function () use ($reservationsToBeCompleted) {
+            foreach ($reservationsToBeCompleted as $reservationData) {
+                //a new Reservation instance for each reservation in $reservationsToBeCompleted, sets its properties, and saves it.
+                $reservation = new Reservation;
+                $reservation->user_id = Auth::id();
+                $reservation->area_id = $reservationData['areaId'];
+                $reservation->date = $reservationData['date'];
+                $reservation->fee_log = $reservationData['fee'];
+                $reservation->save();
+            }
+        });
+
+        return response()->json($reservationsToBeCompleted);
     }
     public function deleteReservation($id)
     {
@@ -162,10 +168,18 @@ class ReservationController extends Controller
         return redirect()->route('reservation.list')->with('success_delete', 'The reservation has been deleted.');
     }
 
-    public function pdf()
+    public function showCompletionReservation()
     {
+        return view('users.reservation.completion');
+    }
+
+    public function pdf($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $all_reservations = Reservation::all();
         if (Auth::check()) {
-            return view('users.reservation.pdf_view');
+            return view('users.reservation.pdf_view', compact('reservation'))
+            ->with('all_reservations', $all_reservations);
         } else {
             return redirect()->route('login');
         }
