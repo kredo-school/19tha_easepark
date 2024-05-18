@@ -98,7 +98,7 @@ $(document).ready(function() {
                                 <th scope="row" class="text-center">${reservation.id}</th>
                                 <td class="text-center">${reservation.area.name}</td>
                                 <td class="text-center">${reservation.date}</td>
-                                <td class="text-center">${fetchedData.userAttribute}</td>
+                                <td class="text-center">${reservation.area.attribute.name}</td>
                                 <td class="text-center">$${reservation.fee_log}</td>
                                 <td class="text-center"><a href="${pdfRoute}"><i class="fa-solid fa-download"></i></a></td>
                                 ${deleteTag}
