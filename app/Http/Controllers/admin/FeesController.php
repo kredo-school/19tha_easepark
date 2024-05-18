@@ -19,9 +19,9 @@ class FeesController extends Controller
     public function showFees(Request $request)
     {
         if($request->search) {
-            $fees = $this->fee->where('name', 'like', '%' . $request->search . '%')->paginate(5);
+            $fees = $this->fee->withTrashed()->where('name', 'like', '%' . $request->search . '%')->paginate(5);
         } else {
-            $fees = $this->fee->orderBy('id')->paginate(5);
+            $fees = $this->fee->withTrashed()->orderBy('id')->paginate(5);
         }
         return view('admin.fees.show')
             ->with('fees', $fees)
@@ -42,7 +42,7 @@ class FeesController extends Controller
         return redirect()->route('admin.fees.show')
             ->with('success_register', ' The added fee registered successfully.');
     }
-    
+
     public function showEditFeePage($id)
     {
         $fee = $this->fee->findOrFail($id);
@@ -64,11 +64,16 @@ class FeesController extends Controller
         return redirect()->route('admin.fees.show')->with('success_update', 'The selected fee updated successfully.');
     }
 
-    public function  destroyFees($id)
+    public function  deactivateFees($id)
     {
-        $fee = $this->fee->findOrFail($id);
-        $fee->forceDelete();
-        return redirect()->route('admin.fees.show')->with('success_delete', 'The selected fee has been deleted.');
+        $this->fee->destroy($id);
+        return redirect()->back()->with('success_delete', 'The selected fee deactivated successfully.');
+    }
+
+    public function activateFees($id)
+    {
+        $this->fee->onlyTrashed()->findOrFail($id)->restore();
+        return redirect()->back()->with('success_restore', 'The selected fee activated successfully.');
     }
 
 }

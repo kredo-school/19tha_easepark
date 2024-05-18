@@ -36,6 +36,7 @@
                             <th class="fw-bold">ID</th>
                             <th>Fee Name</th>
                             <th>Amount of Fee</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -45,13 +46,40 @@
                                 <td>{{ $fee->id }}</td>
                                 <td>{{ $fee->name }}</td>
                                 <td>${{ $fee->fee }}</td>
+                                <td>
+                                    @if ($fee->trashed())
+                                        <i class="fa-regular fa-circle text-secondary"></i>&nbsp; Inactive
+                                    @else
+                                        <i class="fa-solid fa-circle text-success"></i>&nbsp; Active
+                                    @endif
+                                </td>
                                 <td class="text-center">
-                                    <a href="{{ route('admin.fees.showEdit', ['id' => $fee->id]) }}"><span
+                                    @forelse ($fee->areas as $area)
+                                        @if ($area->fee_id === $fee->id)
+                                            <a href="{{ route('admin.fees.showEdit', ['id' => $fee->id]) }}"><span
                                             class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
-                                    <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
-                                        data-bs-target="#delete-fee-{{ $fee->id }}"><span class="text-danger"><i
-                                                class="fa-solid fa-trash-can"></i></span></button>
+                                            <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
+                                            data-bs-target="#warning-fee-{{ $fee->id }}"><span class="text-danger mx-1"><i
+                                            class="fa-solid fa-exclamation"></i></span></button>
+                                            @break
+                                        @endif
+                                    @empty
+                                        @if ($fee->trashed())
+                                            <button type="button" class="btn text-primary p-0" data-bs-toggle="modal"
+                                            data-bs-target="#activate-fee-{{ $fee->id }}">
+                                            <i class="fa-solid fa-rotate-left"></i></button>
+                                        @else
+                                            <a href="{{ route('admin.fees.showEdit', ['id' => $fee->id]) }}"><span
+                                            class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
+                                            <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
+                                            data-bs-target="#deactivate-fee-{{ $fee->id }}"><span class="text-danger"><i
+                                            class="fa-solid fa-trash-can"></i></span></button>
+                                        @endif
+                                    @endforelse
+
                                     @include('admin.fees.modal.delete')
+                                    @include('admin.fees.modal.warning')
+                                    @include('admin.fees.modal.activate')
                                 </td>
                             </tr>
                         @endforeach

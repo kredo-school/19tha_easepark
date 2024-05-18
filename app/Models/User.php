@@ -57,6 +57,6 @@ class User extends Authenticatable
 
     function attribute()
     {
-        return $this->belongsTo(Attribute::class);
+        return $this->belongsTo(Attribute::class)->withTrashed();
     }
 }
