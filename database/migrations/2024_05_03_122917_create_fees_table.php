@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 50);
             $table->double('fee', 5, 2);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,5 +26,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('fees');
+        Schema::table('fees', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

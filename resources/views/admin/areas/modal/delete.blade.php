@@ -14,13 +14,13 @@
                     Are you sure you want to deactivate this user?
 
                     <div class="my-4">
-                        <span class="modal-head-color-red-transparent px-2 py-1">{{ $area->name }}</span>
+                        <span class="modal-head-color-red-transparent px-2 py-1 fw-bold">{{ $area->name }}</span>
                     </div>
                     All associated data will be inaccessible, but not permanently deleted.
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn text-dark btn-cancel" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn text-white btn-red">deactivate</button>
+                    <button type="submit" class="btn text-white btn-red">Deactivate</button>
                 </div>
             </div>
         </form>

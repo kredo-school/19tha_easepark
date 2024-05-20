@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
+            $table->foreign('attribute_id')->references('id')->on('attributes');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

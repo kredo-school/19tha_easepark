@@ -39,7 +39,7 @@
                 </thead>
                 <tbody>
                     {{-- Add: backend --}}
-                    @foreach ($admins as $admin)
+                    @forelse ($admins as $admin)
                         <tr>
                             <td>{{ $admin['id'] }}</td>
                             <td>{{ $admin['name'] }}</td>
@@ -54,11 +54,15 @@
                                 @endif
                             </td>
                         </tr>
-                    @endforeach
-                    @include('admin.admins.modal.delete', ['admin' => $admin])
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">No relevant data exists.</td>
+                        </tr>
+                    @endforelse
+                    @include('admin.admins.modal.delete')
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="d-flex justify-content-center">{{ $admins->links() }}</div>
+    <div class="d-flex justify-content-center">{{ $admins->appends(request()->query())->links() }}</div>
 @endsection

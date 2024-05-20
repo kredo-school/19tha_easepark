@@ -88,7 +88,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/fees/register',[FeesController::class,'registerFee'])->name('fees.register');
         Route::get('/fees/{id}/edit', [FeesController::class, 'showEditFeePage'])->name('fees.showEdit');
         Route::patch('/fees/{id}/update', [FeesController::class, 'updateRegisteredFees'])->name('fees.update');
-        Route::delete('/fees/{id}/destroy', [FeesController::class, 'destroyFees'])->name('fees.destroy');
+        Route::delete('/fees/{id}/deactivate', [FeesController::class, 'deactivateFees'])->name('fees.deactivate');
+        Route::patch('/fees/{id}/deactivate', [FeesController::class, 'activateFees'])->name('fees.activate');
 
         //For Areas
         Route::get('/areas/show', [AreasController::class, 'showAreas'])->name('areas.show');
