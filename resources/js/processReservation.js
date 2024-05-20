@@ -6,10 +6,13 @@ $(document).ready(function() {
             this.reservationList = document.getElementById('reservation-list');
             this.totalFee = document.getElementById('total-fee');
             this.differentAreaAlertElement = document.getElementById(`different-area-alert-${reservationKey}`);
+            this.notRegisteredAttributeAlert = document.getElementById('not-registered-attribute-alert');
         }
 
         displayReservations() {
             this.attributeNameElement.textContent = this.reservationsToBeProcessed.attributeName;
+
+            this.notRegisteredAttributeAlert.style.visibility = (String(this.reservationsToBeProcessed.attributeMismatch) === 'true') ? 'visible' : 'hidden';
 
             this.differentAreaAlertElement.style.display = (String(this.reservationsToBeProcessed.differentAreaAlert) === 'true') ? 'block' : 'none';
 

@@ -31,7 +31,7 @@ class ReservationController extends Controller
         $userReservations = $this->reservation
             ->with(['area', 'area.attribute'])
             ->where('user_id', Auth::id())
-            ->orderBy('date', 'desc');
+            ->orderBy('date', 'asc');
         $userAttribute = Auth::user()->attribute->name;
 
         $filterCondition = $request->input('filterCondition');
@@ -87,6 +87,12 @@ class ReservationController extends Controller
         sort($selectedDates);
 
         $attributeId = $request->input('attributeId');
+
+        $attributeMismatch = false;
+
+        if(Auth::user()->attribute_id != $attributeId){
+            $attributeMismatch = true;
+        }
 
         // Validate inputs
         if (empty($selectedDates) || empty($attributeId)) {
@@ -144,6 +150,7 @@ class ReservationController extends Controller
         }, []);
 
         $reservationsToBeConfirmed = [
+            'attributeMismatch' => $attributeMismatch,
             'attributeId' => $attributeId,
             'attributeName' => $areas->first()->attribute->name,
             'differentAreaAlert' => $differentAreaAlert,
