@@ -14,7 +14,7 @@
                     Are you sure you want to deactivate this user?
                     <br>
                     <div class="my-4">
-                        <span class="modal-head-color-red-transparent px-2 py-1">{{ $user->name }}</span>
+                        <span class="modal-head-color-red-transparent px-2 py-1 fw-bold">{{ $user->name }}</span>
                     </div>
                     All associated data will be inaccessible
                     <br>but not permanently deleted.

@@ -46,7 +46,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($areas as $area)
+                        @forelse ($areas as $area)
                             <tr>
                                 <td>{{ $area['id'] }}</td>
                                 <td>{{ $area['name'] }}</td>
@@ -79,7 +79,11 @@
                                     @include('admin.areas.modal.delete')
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="9" class="text-center">No relevant data exists.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

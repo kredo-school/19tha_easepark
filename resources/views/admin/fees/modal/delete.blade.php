@@ -14,7 +14,7 @@
                     Are you sure you want to delete the fee below?
 
                     <div class="my-4">
-                        <span class="modal-head-color-red-transparent px-2 py-1">{{ $fee->name }}</span>
+                        <span class="modal-head-color-red-transparent px-2 py-1 fw-bold">{{ $fee->name }}</span>
                     </div>
                     Once deleted, it cannot be undone.
                 </div>

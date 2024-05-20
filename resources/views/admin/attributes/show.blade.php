@@ -72,7 +72,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3" class="text-center">No relevant data exists.</td>
+                                <td colspan="4" class="text-center">No relevant data exists.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="col-8 d-flex justify-content-center mt-2">
-            {{ $attributes->links() }}
+            {{ $attributes->appends(request()->query())->links() }}
         </div>
     </div>
 @endsection
