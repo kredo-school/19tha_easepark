@@ -52,22 +52,27 @@
                                 @endif
                                 </td>
                                 <td class="text-center">
-                                    @if($attribute->trashed())
-                                        <button type="button" class="btn btn-link p-0 text-primary" data-bs-toggle="modal" data-bs-target="#activate-attribute-{{ $attribute->id }}">
-                                            <i class="fa-solid fa-rotate-left"></i>
-                                        </button>
+                                    @if ($attribute->trashed())
+                                        <button type="button" class="btn text-primary p-0" data-bs-toggle="modal"
+                                        data-bs-target="#activate-attribute-{{ $attribute->id }}">
+                                        <i class="fa-solid fa-rotate-left"></i></button>
                                     @else
-                                        <!-- // Press the icon to display the EDIT BLADE. -->
-                                        <a href="{{ route('admin.attributes.showEdit', $attribute->id) }}" class="text-decoration-none">
-                                            <span class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span>
-                                        </a>
-                                        <!-- // Press the button to display the delete modal. -->
-                                        <button type="button" class="btn btn-link p-0" data-bs-toggle="modal" data-bs-target="#delete-attribute-{{ $attribute->id }}">
-                                            <span class="text-danger"><i class="fa-solid fa-trash-can"></i></span>
-                                        </button>
+                                        <a href="{{ route('admin.attributes.showEdit', ['id' => $attribute->id]) }}"><span
+                                        class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
+                                        @if($attribute->areas->count()>0)
+                                            <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
+                                            data-bs-target="#warning-attribute-{{ $attribute->id }}"><span class="text-danger mx-1"><i
+                                            class="fa-solid fa-exclamation"></i></span></button>
+                                        @else
+                                            <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
+                                            data-bs-target="#deactivate-attribute-{{ $attribute->id }}"><span class="text-danger"><i
+                                            class="fa-solid fa-trash-can"></i></span></button>
+                                        @endif
                                     @endif
-                                    @include('admin.attributes.modal.activate', ['attribute' => $attribute])
-                                    @include('admin.attributes.modal.delete', ['attribute' => $attribute])
+
+                                    @include('admin.attributes.modal.activate')
+                                    @include('admin.attributes.modal.delete')
+                                    @include('admin.attributes.modal.warning')
                                 </td>
                             </tr>
                         @empty
