@@ -54,21 +54,18 @@
                                 @endif
                             </td>
                             <td>
-                                @if (Auth::user()->id !== $user->id)
-                                    @if ($user->trashed())
-                                            <button type="button" class="btn text-primary" data-bs-toggle="modal"
-                                                data-bs-target="#activate-user-{{ $user->id }}">
-                                                <i class="fa-solid fa-rotate-left"></i>
-                                            </button>
-                                            @include('admin.users.modal.activate', ['user' => $user])
-                                        </form>
-                                    @else
-                                        <button type="button" class="btn text-danger" data-bs-toggle="modal"
-                                            data-bs-target="#delete-user-{{ $user->id }}">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                        </button>
-                                    @endif
-                                    @include('admin.users.modal.delete', ['user' => $user])
+                                @if ($user->trashed())
+                                    <button type="button" class="btn text-primary" data-bs-toggle="modal"
+                                        data-bs-target="#activate-user-{{ $user->id }}">
+                                        <i class="fa-solid fa-rotate-left"></i>
+                                    </button>
+                                    @include('admin.users.modal.activate')
+                                 @else
+                                    <button type="button" class="btn text-danger" data-bs-toggle="modal"
+                                        data-bs-target="#delete-user-{{ $user->id }}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                    @include('admin.users.modal.delete')
                                 @endif
                             </td>
                         </tr>
