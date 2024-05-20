@@ -157,7 +157,7 @@ $(document).ready(function() {
 
         // Update the modal content with the reservation data
         $('#delete-reservation').find('ul').html(`
-            <li>${reservation.area.name} &nbsp; ${reservation.date} &nbsp; ${reservation.area.attribute.name} &nbsp; ${reservation.fee_log}</li>
+            <li class="fw-bold">${reservation.area.name} &nbsp; ${reservation.date} &nbsp; ${reservation.area.attribute.name} &nbsp; ${reservation.fee_log}</li>
         `);
 
 

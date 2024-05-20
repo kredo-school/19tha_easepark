@@ -38,14 +38,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($all_users as $user)
+                    @forelse ($all_users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->plate_number }}</td>
                             <td>{{ $user->phone_number }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ date('M d,Y', strtotime($user->created_at)) }}</td>
+                            <td>{{ date('M d, Y', strtotime($user->created_at)) }}</td>
                             <td>
                                 @if ($user->trashed())
                                     <i class="fa-regular fa-circle text-secondary"></i>&nbsp; Inactive
@@ -72,7 +72,11 @@
                                 @endif
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="8" class="text-center">No relevant data exists.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
 

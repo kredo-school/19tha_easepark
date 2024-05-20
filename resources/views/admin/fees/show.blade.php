@@ -41,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($fees as $fee)
+                        @forelse ($fees as $fee)
                             <tr>
                                 <td>{{ $fee->id }}</td>
                                 <td>{{ $fee->name }}</td>
@@ -82,7 +82,11 @@
                                     @include('admin.fees.modal.activate')
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">No relevant data exists.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
