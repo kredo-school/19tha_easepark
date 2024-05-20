@@ -1,7 +1,7 @@
 {{-- delete --}}
-<div class="modal fade" id="delete-fee-{{ $fee->id }}">
+<div class="modal fade" id="deactivate-fee-{{ $fee->id }}">
     <div class="modal-dialog">
-        <form action="{{ route('admin.fees.destroy', ['id' => $fee->id]) }}" method="post">
+        <form action="{{ route('admin.fees.deactivate', ['id' => $fee->id]) }}" method="post">
             @csrf
             @method('DELETE')
             <div class="modal-content">
@@ -16,7 +16,8 @@
                     <div class="my-4">
                         <span class="modal-head-color-red-transparent px-2 py-1 fw-bold">{{ $fee->name }}</span>
                     </div>
-                    Once deleted, it cannot be undone.
+                    All associated data will be inaccessible,<br>
+                    but not permanently deleted.
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn text-dark btn-cancel" data-bs-dismiss="modal">Cancel</button>

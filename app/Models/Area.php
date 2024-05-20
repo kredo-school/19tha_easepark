@@ -14,14 +14,14 @@ class Area extends Model
     {
         return $this->hasMany(Reservation::class);
     }
-    
+
     function attribute()
     {
-        return $this->belongsTo(Attribute::class);
+        return $this->belongsTo(Attribute::class)->withTrashed();
     }
 
     function fee()
     {
-        return $this->belongsTo(Fee::class);
+        return $this->belongsTo(Fee::class)->withTrashed();
     }
 }

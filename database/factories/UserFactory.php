@@ -35,7 +35,7 @@ class UserFactory extends Factory
                 return Attribute::all()->random()->id;
             },
             'created_at' => fake()->dateTimeBetween('2023-01-01', '2023-12-31'),
-            'deleted_at' => fake()->dateTimeBetween('2024-01-01', '2024-12-31'),
+            // 'deleted_at' => fake()->dateTimeBetween('2024-01-01', '2024-12-31'),
         ];
     }
 
