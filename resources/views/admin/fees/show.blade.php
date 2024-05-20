@@ -54,7 +54,7 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    @forelse ($fee->areas as $area)
+                                    {{-- @forelse ($fee->areas as $area)
                                         @if ($area->fee_id === $fee->id)
                                             <a href="{{ route('admin.fees.showEdit', ['id' => $fee->id]) }}"><span
                                             class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
@@ -75,7 +75,25 @@
                                             data-bs-target="#deactivate-fee-{{ $fee->id }}"><span class="text-danger"><i
                                             class="fa-solid fa-trash-can"></i></span></button>
                                         @endif
-                                    @endforelse
+                                    @endforelse --}}
+                                    
+                                    @if ($fee->trashed())
+                                        <button type="button" class="btn text-primary p-0" data-bs-toggle="modal"
+                                        data-bs-target="#activate-fee-{{ $fee->id }}">
+                                        <i class="fa-solid fa-rotate-left"></i></button>
+                                    @else
+                                        <a href="{{ route('admin.fees.showEdit', ['id' => $fee->id]) }}"><span
+                                        class="text-warning me-2"><i class="fa-solid fa-pen-to-square"></i></span></a>
+                                        @if($fee->areas->count()>0)
+                                            <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
+                                            data-bs-target="#warning-fee-{{ $fee->id }}"><span class="text-danger mx-1"><i
+                                            class="fa-solid fa-exclamation"></i></span></button>
+                                        @else
+                                            <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
+                                            data-bs-target="#deactivate-fee-{{ $fee->id }}"><span class="text-danger"><i
+                                            class="fa-solid fa-trash-can"></i></span></button>
+                                        @endif
+                                    @endif
 
                                     @include('admin.fees.modal.delete')
                                     @include('admin.fees.modal.warning')

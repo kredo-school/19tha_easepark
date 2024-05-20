@@ -8,9 +8,10 @@
                 </div>
                 <div class="modal-body fs-5 text-dark text-center mt-3">
                     The Fee you selected is used in the Area below.
-                    <div class="modal-head-color-red-transparent py-1 my-4">
+                    <div class="modal-head-color-red-transparent py-1">
                         @foreach ($fee->areas as $area)
-                            <ul>
+                            <ul class="text-start">
+                            {{-- <ul> --}}
                                 <li>{{ $area->name }}</li>
                             </ul>
                         @endforeach
@@ -19,8 +20,11 @@
                     please change the Fee of these Areas first.
                 </div>
                 <div class="modal-footer border-0">
-                    <a href="{{ route('admin.areas.show') }}" class="btn text-white btn-red">Show Areas</a>
+                    {{-- <a href="{{ route('admin.areas.show') }}" class="btn text-white btn-red">Show Areas</a>
+                    <button type="button" class="btn text-dark btn-cancel" data-bs-dismiss="modal">Close</button> --}}
+                    
                     <button type="button" class="btn text-dark btn-cancel" data-bs-dismiss="modal">Close</button>
+                    <a href="{{ route('admin.areas.show') }}" class="btn text-white btn-red">Show Areas</a>
                 </div>
             </div>
     </div>

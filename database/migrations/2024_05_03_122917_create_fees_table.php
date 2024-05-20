@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 50);
             $table->double('fee', 5, 2);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
