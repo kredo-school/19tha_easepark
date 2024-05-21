@@ -12,7 +12,7 @@
                 <div class="modal-body fs-5 text-dark mt-3">
                     Are you sure you want to activate the attribute below?
                     <div class="my-4 d-flex justify-content-center">
-                        <div class="col-8 text-center modal-head-color-blue-transparent px-2 py-1">{{ $attribute->name }}</div>
+                        <div class="col-8 text-center modal-head-color-blue-transparent px-2 py-1 fw-bold">{{ $attribute->name }}</div>
                     </div>
                     The administrator regains access to this Attribute.
                 </div>

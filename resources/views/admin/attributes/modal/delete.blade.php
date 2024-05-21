@@ -13,14 +13,14 @@
                 <div class="modal-body fs-5 text-dark mt-3">
                     <p>Are you sure you want to deactivate the attribute below?</p>
                     <div class="my-4 d-flex justify-content-center">
-                        <div class="col-8 text-center modal-head-color-red-transparent px-2 py-1">{{ $attribute->name }}</div>
+                        <div class="col-8 text-center modal-head-color-red-transparent px-2 py-1 fw-bold">{{ $attribute->name }}</div>
                     </div>
                 </div>
                 All associated data will be inaccessible
                 <br>but not permanently deleted.
                 <div class="modal-footer border-0 text-center justify-content-center">
                     <button type="button" class="btn text-dark btn-cancel" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn text-white btn-red">Delete</button>
+                    <button type="submit" class="btn text-white btn-red">Deactivate</button>
                 </div>
             </div>
         </form>

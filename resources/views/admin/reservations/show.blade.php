@@ -49,7 +49,7 @@
                         </tr>
                 </thead>
                 <tbody class="text-center">
-                    @foreach ($reservations as $reservation)
+                    @forelse ($reservations as $reservation)
                         <tr>
                             <td>{{ $reservation->id }}</td>
                             <td>{{ $reservation->user_id }}</td>
@@ -83,7 +83,11 @@
                                 @endif
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="9" class="text-center">No relevant data exists.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
