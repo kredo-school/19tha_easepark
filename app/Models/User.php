@@ -59,4 +59,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Attribute::class)->withTrashed();
     }
+
+    public static function booted(): void
+    {
+        static::deleted(function ($user) {
+            $user->reservations()->delete();
+        });
+    }
 }
