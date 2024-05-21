@@ -50,7 +50,7 @@ class AdminsController extends Controller
         if (auth('admin')->user()->id != $admin->id) {
             return redirect()->route('admin.admins.show');
         }
-        
+
         return view('admin.admins.edit', ['admin' => $admin]);
     }
 
@@ -64,7 +64,7 @@ class AdminsController extends Controller
         $admin = $this->admin->findOrFail(auth('admin')->user()->id);
         $admin->name = $request->name;
         $admin->email = $request->email;
-    
+
         $admin->save();
 
         return redirect()->route('admin.admins.show', $admin->id)->with('success_update', 'Profile updated successfully.');
@@ -74,12 +74,12 @@ class AdminsController extends Controller
         // confirm current password
         if (!(Hash::check($request->get('current_password'), auth('admin')->user()->password))) {
 
-            return redirect()->route('admin.admins.edit')->withInput()->withErrors(['current_password' => 'The current password is incorrect.']);
+            return redirect()->route('admin.admins.showEdit', auth('admin')->user()->id)->withInput()->withErrors(['current_password' => 'The current password is incorrect.']);
         }
 
-        // check if current password = new password or not 
+        // check if current password = new password or not
         if ($request->get('current_password') === $request->get('new_password')) {
-            return redirect()->route('admin.admins.edit')->withInput()->withErrors(['new_password' => 'The new password cannot be the same as the current password.']);
+            return redirect()->route('admin.admins.showEdit', auth('admin')->user()->id)->withInput()->withErrors(['new_password' => 'The new password cannot be the same as the current password.']);
         }
 
         // validate new password and confirm
@@ -100,7 +100,7 @@ class AdminsController extends Controller
         $admin = $this->admin->findOrFail(auth('admin')->user()->id);
         $admin->delete();
 
-        
+
         return redirect()->route('admin.login')->with('success_delete', 'Account deleted successfully.');
     }
 }
