@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="row mb-4">
-                        <input id="name" type="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $admin->name) }}" required autocomplete="name">
+                        <input id="name" type="name" class="form-control" name="name" value="{{ old('name', $admin->name) }}" required autocomplete="name">
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="row mb-5">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email" value="{{ old('email', $admin->email) }}">
+                        <input id="email" type="email" class="form-control" name="email" required autocomplete="email" value="{{ old('email', $admin->email) }}">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -81,12 +81,13 @@
                     </div>
 
                     <div class="row mb-4">
-                        <input id="current-password" type="password" class="form-control @error('current-password') is-invalid @enderror" name="current_password" autocomplete="current-password">
+                        <input id="current-password" type="password" class="form-control" name="current_password" autocomplete="current-password">
 
+                        @if (session('incorrect_old_password'))
+                        <span class="d-block small text-danger">{{ session('incorrect_old_password') }}</span>
+                        @endif
                         @error('current_password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <span class="d-block small text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -95,12 +96,13 @@
                     </div>
 
                     <div class="row mb-4">
-                        <input id="new-password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" autocomplete="">
+                        <input id="new-password" type="password" class="form-control" name="new_password" autocomplete="">
 
+                        @if (session('same_password_error'))
+                        <span class="d-block small text-danger">{{ session('same_password_error') }}</span>
+                        @endif
                         @error('new_password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <span class="d-block small text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 
@@ -109,7 +111,7 @@
                     </div>
 
                     <div class="row mb-5">
-                        <input id="confirm-new-password" type="password" class="form-control @error('new_password_confirmation') is-invalid @enderror" name="new_password_confirmation" required autocomplete="">
+                        <input id="confirm-new-password" type="password" class="form-control" name="new_password_confirmation" required autocomplete="">
 
                         @error('new_password_confirmation')
                             <span class="invalid-feedback" role="alert">
