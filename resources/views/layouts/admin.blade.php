@@ -156,7 +156,7 @@
                         </div>
                         @elseif (session('success_restore'))
                         {{-- Success alert for restoration --}}
-                        <div class="alert alert-warning success-alert text-center ms-2" id="restore-success-alert">
+                        <div class="alert alert-primary success-alert text-center ms-2" id="restore-success-alert">
                             {{ session('success_restore') }}
                         </div>
                         @endif

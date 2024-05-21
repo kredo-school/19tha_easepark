@@ -70,10 +70,14 @@
                             <td>
                                 @if ((new DateTime($reservation['date']))->format('Y-m-d') >= date('Y-m-d'))
                                     @if ($reservation->trashed())
-                                        <button type="button" class="btn btn-sm text-primary" data-bs-toggle="modal" data-bs-target="#activate-reservation-{{ $reservation->id }}">
-                                            <i class="fa-solid fa-rotate-left mx-1"></i>
-                                        </button>
-                                        @include('admin.reservations.modal.activate', ['reservation' => $reservation])
+                                        @if($reservation->user->trashed())
+                                            <i class="fa-solid fa-ban mx-1"></i>
+                                        @else
+                                            <button type="button" class="btn btn-sm text-primary" data-bs-toggle="modal" data-bs-target="#activate-reservation-{{ $reservation->id }}">
+                                                <i class="fa-solid fa-rotate-left mx-1"></i>
+                                            </button>
+                                            @include('admin.reservations.modal.activate', ['reservation' => $reservation])
+                                        @endif
                                     @else
                                         <button type="button" class="btn btn-sm text-danger" data-bs-toggle="modal" data-bs-target="#deactivate-reservation-{{ $reservation->id }}">
                                             <i class="fa-solid fa-trash-can mx-1"></i>
