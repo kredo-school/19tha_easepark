@@ -42,7 +42,7 @@ class HomeController extends Controller
         $startDate = new DateTime();
         $endDate = (new DateTime())->modify('+1 year');
 
-        $data;
+        $data = [];
         if ($areaIds->isEmpty()) {
             $data = [
                 'reservationNumPerArea' => 'none',
@@ -53,8 +53,6 @@ class HomeController extends Controller
                 'availableDates' => 'none',
             ];
         } else {
-            $reservationNumPerArea = [];
-
             // Fetch all reservations for the areas and dates at once
             $reservations = $this->reservation
                 ->whereIn('area_id', $areaIds)
@@ -81,6 +79,18 @@ class HomeController extends Controller
                 }
             }
 
+            $datesAlreadyReservedByUser = [];
+            // Remove the dates that the authenticated user has already booked from the available dates
+            if(auth()->check()){
+                $datesAlreadyReservedByUser = $this->reservation
+                ->where('user_id', auth()->id())
+                ->whereBetween('date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
+                ->pluck('date')
+                ->toArray();
+                
+                $availableDates = array_diff($availableDates, $datesAlreadyReservedByUser);
+            }
+
             /*
             'availableDates' contains all available dates with duplicates possibly included. array_unique() removes duplicates but doesn't reindex keys, leading to non-sequential keys if duplicates are removed.
             This can cause issues in JavaScript, as it treats arrays with non-sequential keys as objects, and we want to use the 'includes()' array method.
@@ -93,6 +103,7 @@ class HomeController extends Controller
                 ],
                 'startDate' => $startDate->format('Y-m-d'),
                 'availableDates' => array_values(array_unique($availableDates)),
+                'datesAlreadyReservedByUser' => $datesAlreadyReservedByUser,
             ];
         }
 
