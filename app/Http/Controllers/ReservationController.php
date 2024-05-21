@@ -31,7 +31,7 @@ class ReservationController extends Controller
         $userReservations = $this->reservation
             ->with(['area', 'area.attribute'])
             ->where('user_id', Auth::id())
-            ->orderBy('date', 'desc');
+            ->orderBy('date', 'asc');
         $userAttribute = Auth::user()->attribute->name;
 
         $filterCondition = $request->input('filterCondition');
@@ -87,54 +87,129 @@ class ReservationController extends Controller
         sort($selectedDates);
 
         $attributeId = $request->input('attributeId');
-        $availableAreas = [];
 
-        // Get areas with the given attributeId
+        $attributeMismatch = false;
+
+        if(Auth::user()->attribute_id != $attributeId){
+            $attributeMismatch = true;
+        }
+
+        // Validate inputs
+        if (empty($selectedDates) || empty($attributeId)) {
+            return response()->json(['error' => 'Invalid input'], 400);
+        }
+
         $areas = $this->area->where('attribute_id', $attributeId)->get();
 
-        // Fetch all reservations for the areas and dates at once
         $reservations = $this->reservation
             ->whereIn('area_id', $areas->pluck('id'))
             ->whereIn('date', $selectedDates)
             ->get();
 
-        // Group reservations by area and date
         $reservationsGroupedByAreaAndDate = $reservations->groupBy(['area_id', 'date']);
 
-        // Create an array for reservationsToBeConfirmed
-        $reservationsToBeConfirmed = array_map(function ($date) use ($attributeId, $areas, $reservationsGroupedByAreaAndDate, &$availableAreas) {
-            // Filter out areas whose reservation number reaches the max num
-            $areas = $areas->filter(function ($area) use ($date, $reservationsGroupedByAreaAndDate) {
-                $reservationCount = isset($reservationsGroupedByAreaAndDate[$area->id][$date])
-                    ? count($reservationsGroupedByAreaAndDate[$area->id][$date])
-                    : 0;
-                return $reservationCount < $area->max_num;
-            });
+        list($consecutiveDateGroups, $separateDateGroups) = $this->getConsecutiveAndSeparateDates($selectedDates);
+        
 
-            $availableAreas[$date] = $areas;
+        $differentAreaAlert = false;
 
-            // If there are no available areas, return null
-            if ($areas->isEmpty()) {
-                return null;
+        $reservationsDetails = array_reduce(array_merge($consecutiveDateGroups, $separateDateGroups), function ($carry, $dateGroup) use ($areas, $reservationsGroupedByAreaAndDate, &$commonAreas, &$differentAreaAlert) {
+            $dateGroup = is_array($dateGroup) ? $dateGroup : [$dateGroup];
+            $commonAreas = $this->getCommonAreas($dateGroup, $areas, $reservationsGroupedByAreaAndDate);
+
+            if ($commonAreas->isEmpty()) {
+                $differentAreaAlert = true;
             }
 
-            // Choose an area at random
-            $area = $areas->random();
+            if (!$commonAreas->isEmpty()) {
+                $area = $commonAreas->random();
+                foreach ($dateGroup as $date) {
+                    $carry[$date] = [
+                        'areaId' => $area->id,
+                        'areaName' => $area->name,
+                        'fee' => $area->fee->fee,
+                    ];
+                }
+            } else {
+                foreach ($dateGroup as $date) {
+                    $availableAreas = $areas->filter(function ($area) use ($date, $reservationsGroupedByAreaAndDate) {
+                        return !isset($reservationsGroupedByAreaAndDate[$area->id][$date]) || count($reservationsGroupedByAreaAndDate[$area->id][$date]) < $area->max_num;
+                    });
+                    if (!$availableAreas->isEmpty()) {
+                        $area = $availableAreas->random();
+                        $carry[$date] = [
+                            'areaId' => $area->id,
+                            'areaName' => $area->name,
+                            'fee' => $area->fee->fee,
+                        ];
+                    }
+                }
+            }
 
-            return [
-                'date' => $date,
-                'areaId' => $area->id,
-                'areaName' => $area->name,
-                'attributeId' => $attributeId,
-                'attributeName' => $area->attribute->name,
-                'fee' => $area->fee->fee,
-            ];
-        }, $selectedDates);
+            return $carry;
+        }, []);
 
-        // Filter out null values
-        $reservationsToBeConfirmed = array_filter($reservationsToBeConfirmed);
+        $reservationsToBeConfirmed = [
+            'attributeMismatch' => $attributeMismatch,
+            'attributeId' => $attributeId,
+            'attributeName' => $areas->first()->attribute->name,
+            'differentAreaAlert' => $differentAreaAlert,
+            'reservations' => $reservationsDetails,
+        ];
 
         return response()->json($reservationsToBeConfirmed);
+    }
+
+    private function getConsecutiveAndSeparateDates($dates)
+    {
+        $consecutiveDateGroups = [];
+        $separateDateGroups = [];
+        $group = [];
+
+        for ($i = 0; $i < count($dates); $i++) {
+            if ($i == 0 || strtotime($dates[$i]) - strtotime($dates[$i - 1]) == 24 * 60 * 60) {
+                $group[] = $dates[$i];
+            } else {
+                $this->addDateGroup($group, $consecutiveDateGroups, $separateDateGroups);
+                $group = [$dates[$i]];
+            }
+        }
+
+        if (!empty($group)) {
+            $this->addDateGroup($group, $consecutiveDateGroups, $separateDateGroups);
+        }
+
+        return [$consecutiveDateGroups, $separateDateGroups];
+    }
+
+    private function addDateGroup($group, &$consecutiveDateGroups, &$separateDateGroups)
+    {
+        if (count($group) > 1) {
+            $consecutiveDateGroups[] = $group;
+        } else {
+            $separateDateGroups[] = $group[0];
+        }
+    }
+
+    private function getCommonAreas($dateGroup, $areas, $reservationsGroupedByAreaAndDate)
+    {
+        $areasForAllDates = collect();
+
+        foreach ($dateGroup as $date) {
+            $areasForDate = $areas->filter(function ($area) use ($date, $reservationsGroupedByAreaAndDate) {
+                return !isset($reservationsGroupedByAreaAndDate[$area->id][$date]) || $reservationsGroupedByAreaAndDate[$area->id][$date]->count() < $area->max_num;
+            });
+
+            if ($areasForDate->isEmpty()) {
+                return collect();
+            }
+
+            $areasForAllDates->push($areasForDate->pluck('id')->all());
+        }
+
+        $commonAreaIds = call_user_func_array('array_intersect', $areasForAllDates->toArray());
+
+        return $areas->whereIn('id', $commonAreaIds);
     }
 
     public function showConfirmationReservation()
@@ -145,14 +220,16 @@ class ReservationController extends Controller
     public function reserveSpaces (Request $request){
         $reservationsToBeCompleted = $request->input('reservationsToBeConfirmed');
 
+        $reservations = $reservationsToBeCompleted['reservations'];
+
         //Database transaction to save reservations
-        DB::transaction(function () use ($reservationsToBeCompleted) {
-            foreach ($reservationsToBeCompleted as $reservationData) {
-                //a new Reservation instance for each reservation in $reservationsToBeCompleted, sets its properties, and saves it.
+        DB::transaction(function () use ($reservations) {
+            foreach ($reservations as $date => $reservationData) {
+                //a new Reservation instance for each reservation in $reservations, sets its properties, and saves it.
                 $reservation = new Reservation;
                 $reservation->user_id = Auth::id();
                 $reservation->area_id = $reservationData['areaId'];
-                $reservation->date = $reservationData['date'];
+                $reservation->date = $date;
                 $reservation->fee_log = $reservationData['fee'];
                 $reservation->save();
             }
@@ -160,6 +237,7 @@ class ReservationController extends Controller
 
         return response()->json($reservationsToBeCompleted);
     }
+
     public function deleteReservation($id)
     {
         $reservation = Reservation::where('user_id', Auth::user()->id)->findOrFail($id);

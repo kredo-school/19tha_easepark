@@ -50,6 +50,9 @@ $(document).ready(function() {
                             center: 'title',
                             right: 'resetSelection,today',
                         },
+                        footerToolbar: {
+                            center: 'iconExplanations'
+                        },
 
                         customButtons: {
                             resetSelection: {
@@ -73,6 +76,18 @@ $(document).ready(function() {
                             anchorEl.style.color = 'black';
                             anchorEl.style.textDecoration = 'none';
                         },
+                        viewDidMount: function() {
+                            var footer = document.querySelector('.fc-iconExplanations-button');
+                            if (footer) {
+                                footer.innerHTML = `
+                                <i class="fa-solid fa-circle"></i> : Available 
+                                <i class="fa-solid fa-xmark ms-2"></i> : Full
+                                <br> 
+                                <i class="fa-solid fa-slash ms-2"></i> : Already Booked 
+                                <i class="fa-solid fa-ban ms-2"></i> : Past Dates or No Areas
+                            `;
+                            }
+                        },
 
                         datesSet: function(info) {
                             // Store the current view in localStorage every time the view changes
@@ -86,8 +101,13 @@ $(document).ready(function() {
                             var icon = document.createElement('i');
 
                             if (dateStr >= data.startDate) {
-                                icon.className = data.availableDates.includes(dateStr) ? 'fa-solid fa-circle' : 'fa-solid fa-xmark';
-                                icon.style.color = data.availableDates.includes(dateStr) ? '#24936E' : '#C73E3A';
+                                if (data.datesAlreadyReservedByUser.includes(dateStr)) {
+                                    icon.className = 'fa-solid fa-slash font-weight-bold';
+                                    icon.style.color = '#000080';
+                                } else {
+                                    icon.className = data.availableDates.includes(dateStr) ? 'fa-solid fa-circle' : 'fa-solid fa-xmark';
+                                    icon.style.color = data.availableDates.includes(dateStr) ? '#24936E' : '#C73E3A';
+                                }
                             } else {
                                 icon.className = 'fa-solid fa-ban';
                             }
@@ -183,6 +203,7 @@ $(document).ready(function() {
         localStorage.setItem('selectedDates', JSON.stringify(selectedDates)); // Update the selected dates in localStorage
         $('#calendar-range').show();
         fetchAvailableDates(attributeId);
+        updateReserveButton()
     });
 
     // When the user clicks the "Reserve" button, pass the selected dates and attribute to confirmation page or show the register guidance modal based on login status
@@ -203,7 +224,7 @@ $(document).ready(function() {
                     attributeId: selectedAttributeId,
                 },
                 success: function(reservationsToBeConfirmed) {
-                    // console.log(reservationsToBeConfirmed);
+                    console.log(reservationsToBeConfirmed);
                     localStorage.setItem('reservationsToBeConfirmed', JSON.stringify(reservationsToBeConfirmed));  // Store the reservation details that should be passed to /reservation/confirmation in localStorage
                     window.location.href = "/reservation/confirmation";  // Redirect to /reservation/confirmation
                 }

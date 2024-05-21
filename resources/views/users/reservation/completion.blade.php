@@ -8,7 +8,12 @@
     <h2 class="text-center font-navy font-bold pt-3"><i class="fas fa-check-circle"></i> Reservation Completed !!</h2>
     <div class="mt-3 py-3 details-box">
         <div class="w-75">
-            <h4 class="py-2 font-bold">Choose Type: <span id="attribute-name"></span></h4>
+            <h4 class="py-2 font-bold">Choose Type: 
+                <span id="attribute-name"></span>
+                <span id="not-registered-attribute-alert" class="text-danger font-bold" style="font-size: 1.0rem;">
+                    (NOTE: Your registered type is {{ auth()->user()->attribute->name }}.)
+                </span>
+            </h4>
             <h4 class="py-3 font-bold">Details: </h4>
 
             <ul class="record-list" id="reservation-list">
@@ -22,8 +27,13 @@
                 </span>
             </div>
 
-            <div class="text-danger font-bold" style="font-size: 1.5rem;">*Payment on site.</div>
-            <div class="mt-5 button-group">
+            <div class="text-danger font-bold py-1" style="font-size: 1.5rem;">*Payment on site.</div>
+
+            <div class="text-danger font-bold py-1" id="different-area-alert-reservationsToBeCompleted" style="font-size: 1.0rem;">
+                * Please note that the same area was NOT be reserved for some of the consecutive dates due to lack of available spaces.
+            </div>
+
+            <div class="mt-2 button-group">
                 <a href="{{route('homepage')}}" class="btn btn-cancel me-2">Back to Home</button>
                 <a href="{{ route('reservation.list', Auth::user()->id) }}" class="btn btn-blue text-white">Reservation List</a>
             </div>
