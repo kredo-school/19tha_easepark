@@ -32,41 +32,41 @@ class StatisticsController extends Controller
         $months = self::MONTH_MAP;
         $selectedYear = $request->selectedYear;
         $selectedTableId = $request->selectedTableId;
-    
+
         $tableIdMethodMap = [
-            'registrations-num' => 
+            'registrations-num' =>
                 [
-                    'yearlyDataFetchMethod' => 'fetchYearlyRegistrationsData', 'table' => 'users', 
+                    'yearlyDataFetchMethod' => 'fetchYearlyRegistrationsData', 'table' => 'users',
                     'statisticalDataFetchMethod' => 'fetchRegistrationsStatisticalData'
                 ],
-            'deletions-num' => 
+            'deletions-num' =>
                 [
-                    'yearlyDataFetchMethod' => 'fetchYearlyDeletionsData', 
-                    'table' => 'users', 
+                    'yearlyDataFetchMethod' => 'fetchYearlyDeletionsData',
+                    'table' => 'users',
                     'statisticalDataFetchMethod' => 'fetchDeletionsStatisticalData'
                 ],
-            'reservations-num' => 
+            'reservations-num' =>
                 [
-                    'yearlyDataFetchMethod' => 'fetchYearlyReservationsData', 'table' => 'reservations', 
+                    'yearlyDataFetchMethod' => 'fetchYearlyReservationsData', 'table' => 'reservations',
                     'statisticalDataFetchMethod' => 'fetchReservationsStatisticalData'
                 ],
-            'cancellations-num' => 
+            'cancellations-num' =>
                 [
-                    'yearlyDataFetchMethod' => 'fetchYearlyCancellationsData', 'table' => 'reservations', 
+                    'yearlyDataFetchMethod' => 'fetchYearlyCancellationsData', 'table' => 'reservations',
                     'statisticalDataFetchMethod' => 'fetchCancellationsStatisticalData'
                 ],
-            'sales-num' => 
+            'sales-num' =>
                 [
-                    'yearlyDataFetchMethod' => 'fetchYearlySalesData', 
-                    'table' => 'reservations', 
+                    'yearlyDataFetchMethod' => 'fetchYearlySalesData',
+                    'table' => 'reservations',
                     'statisticalDataFetchMethod' => 'fetchSalesStatisticalData'
                 ],
         ];
-    
+
         if (!array_key_exists($selectedTableId, $tableIdMethodMap)) {
             return response()->json(['error' => 'Invalid table ID']);
         }
-    
+
         $yearlyDataFetchMethod = $tableIdMethodMap[$selectedTableId]['yearlyDataFetchMethod'];
         $table = $tableIdMethodMap[$selectedTableId]['table'];
         $statisticalDataFetchMethod = $tableIdMethodMap[$selectedTableId]['statisticalDataFetchMethod'];
@@ -76,7 +76,7 @@ class StatisticsController extends Controller
         $statisticalData = [];
         if (!empty($yearlyData)) {
             $statisticalData = $this->$statisticalDataFetchMethod($attributes, $months, $yearlyData, $selectedTableId);
-            
+
             // Add "Total" attribute
             $statisticalData['Total'] = [];
             foreach($months as $monthName) {
@@ -87,7 +87,7 @@ class StatisticsController extends Controller
                 $statisticalData['Total'][$monthName] = $total;
             }
         }
-    
+
         // Convert the results array to an object
         $fetchedData = [
             'months' => array_values($months),
@@ -96,15 +96,15 @@ class StatisticsController extends Controller
         ];
         return response()->json($fetchedData);
     }
-    
+
     private function getAttributes($table) {
         $attributes = [];
         if($table === 'users'){
-            $attributes = $this->attribute->whereIn('id', function($query) {
+            $attributes = $this->attribute->withTrashed()->whereIn('id', function($query) {
                 $query->select('attribute_id')->from($this->user->getTable())->distinct();
             })->get();
         } else if ($table === 'reservations'){
-            $attributes = $this->attribute->whereIn('id', function($query) {
+            $attributes = $this->attribute->withTrashed()->whereIn('id', function($query) {
                 $query->select('attribute_id')
                     ->from($this->area->getTable())
                     ->whereIn('id', function($subQuery) {

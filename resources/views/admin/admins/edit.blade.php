@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="row mb-4">
-                        <input id="current-password" type="password" class="form-control @error('current-password') is-invalid @enderror" name="current_password" autocomplete="current-password">
+                        <input id="current-password" type="password" class="form-control @error('current_password') is-invalid @enderror" name="current_password" autocomplete="current-password" required>
 
                         @error('current_password')
                             <span class="invalid-feedback" role="alert">
@@ -95,7 +95,7 @@
                     </div>
 
                     <div class="row mb-4">
-                        <input id="new-password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" autocomplete="">
+                        <input id="new-password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" autocomplete="" required>
 
                         @error('new_password')
                             <span class="invalid-feedback" role="alert">

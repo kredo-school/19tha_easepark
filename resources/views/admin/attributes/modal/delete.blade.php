@@ -1,5 +1,5 @@
 <!-- deactivate -->
-<div class="modal" id="delete-attribute-{{ $attribute->id }}">
+<div class="modal" id="deactivate-attribute-{{ $attribute->id }}">
     <div class="modal-dialog modal-sm">
         <form action="{{ route('admin.attributes.deactivate', $attribute->id) }}" method="POST">
             @csrf

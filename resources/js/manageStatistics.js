@@ -12,7 +12,7 @@ $(document).ready(function() {
     var savedSidebarId = localStorage.getItem('selectedSidebarId');
     var savedStatisticalTableId = localStorage.getItem('selectedStatisticalTableId');
     var savedYear = localStorage.getItem('selectedYear');
-    
+
     // console.log(`savedDbTabId is ${savedDbTabId}, savedSibarId is ${savedSidebarId}, and savedStatisticalTableId is ${savedStatisticalTableId}`);
 
     // Hide all tabs and sidebars and reset the highlight initially
@@ -22,7 +22,7 @@ $(document).ready(function() {
     $('.statical-table-range').hide();
     // Set the default year to the current year
     $('#year').val(savedYear || selectedYear);
-    
+
     if (savedDbTabId) {
         // If there is saved database tab id, show it
         $('#' + savedDbTabId).addClass('active');
@@ -76,7 +76,7 @@ $(document).ready(function() {
     });
 
     // * End: Features for when the year is changed * //
-    
+
     // * Start: Features for when the database tab is changed * //
 
     // Attach a click event handler to button which has an attribute, "data-db-tab-id" to store which database tab the user selects.
@@ -116,7 +116,7 @@ $(document).ready(function() {
 
         // Save the selected sidebar in localStorage
         localStorage.setItem('selectedSidebarId', selectedSidebarId);
-    
+
         // Hide all of the tables first
         $('.statical-table-range').removeClass('show active').hide();
         // $('.statical-table-range').hide();
@@ -175,7 +175,7 @@ $(document).ready(function() {
                 // console.log('Fetched data:', fetchedData);
 
                 updateTable('.table-responsive', fetchedData);
-                
+
                 updateChart(chartId, fetchedData);
             },
             error: function(error) {
@@ -183,7 +183,7 @@ $(document).ready(function() {
             }
         });
     }
-    
+
     /**
      * Updates the HTML of a table with new data.
      *
@@ -195,7 +195,7 @@ $(document).ready(function() {
      *         months: Array of strings (the table column headers),
      *         attributes: Array of strings (the row headers),
      *         statisticalData: Object where each key
-     *         is an attribute name and the value is another      
+     *         is an attribute name and the value is another
      *         object. This inner object should have month names as
      *         keys and numerical data as values.
      *     }
@@ -244,8 +244,32 @@ $(document).ready(function() {
             myChart.destroy();
         }
         var ctx = document.querySelector(`#${selector}`).getContext('2d');
-        var colors = ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(54, 162, 235, 0.2)'];
-        var borderColors = ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 206, 86, 1)', 'rgba(54, 162, 235, 1)'];
+        var colors = [
+            'rgba(255, 99, 132, 0.2)',  // red
+            'rgba(54, 162, 235, 0.2)',  // blue
+            'rgba(255, 206, 86, 0.2)',  // yellow
+            'rgba(75, 192, 192, 0.2)',  // green
+            'rgba(153, 102, 255, 0.2)', // purple
+            'rgba(255, 159, 64, 0.2)'   // orange
+        ];
+
+        var borderColors = [
+            'rgba(255, 99, 132, 1)',  // red
+            'rgba(54, 162, 235, 1)',  // blue
+            'rgba(255, 206, 86, 1)',  // yellow
+            'rgba(75, 192, 192, 1)',  // green
+            'rgba(153, 102, 255, 1)', // purple
+            'rgba(255, 159, 64, 1)'   // orange
+        ];
+
+        function getColor(index) {
+            return colors[index % colors.length];
+        }
+
+        function getBorderColor(index) {
+            return borderColors[index % borderColors.length];
+        }
+
         var datasets = data['attributes'].map(function(attribute, index) {
             var dataset = {
                 label: attribute,
@@ -253,12 +277,12 @@ $(document).ready(function() {
                     // Adjust how you're accessing the statistical data
                     return data['statisticalData'][attribute][month] || 0;
                 }),
-                backgroundColor: colors[index % colors.length],
-                borderColor: borderColors[index % borderColors.length],
+                backgroundColor: getColor(index),
+                borderColor: getBorderColor(index),
                 borderWidth: 1
             };
             // If the selector is "#sales-num-chart" and the attribute is "Total", set the type to 'bar'
-            if (selector === 'sales-num-chart' && attribute === 'Total') {
+            if (attribute === 'Total') {
                 // console.log(`sales-num.`);
                 dataset.type = 'bar';
             }

@@ -33,6 +33,7 @@
                         <select id="attribute" name="attribute_id"
                             class="form-select @error('attribute_id') is-invalid @enderror" required
                             autocomplete="attribute">
+                            <option disabled value=“” {{ old('attribute_id') ? '' : 'selected' }}>Select Attribute</option>
                             @foreach ($all_attributes as $attribute)
                                 <option value="{{ $attribute->id }}"
                                     {{ old('attribute_id') == $attribute->id ? 'selected' : '' }}>
@@ -54,6 +55,7 @@
                     <div class="row mb-4">
                         <select id="fee" name="fee_id" class="form-select @error('fee_id') is-invalid @enderror"
                             required autocomplete="fee">
+                            <option disabled selected value=“” {{ old('fee_id') ? '' : 'selected' }}>Select Fee</option>
                             @foreach ($all_fees as $fee)
                                 <option value="{{ $fee->id }}" {{ old('fee_id') == $fee->id ? 'selected' : '' }}>
                                     {{ $fee->name }} : {{ $fee->fee }}
